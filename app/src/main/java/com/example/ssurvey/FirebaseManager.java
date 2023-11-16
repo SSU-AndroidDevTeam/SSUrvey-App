@@ -1,5 +1,7 @@
 package com.example.ssurvey;
 
+import static com.example.ssurvey.FirebaseConstants.SurveyCollectionName;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Map;
 
 public class FirebaseManager {
@@ -29,14 +30,14 @@ public class FirebaseManager {
         db = FirebaseFirestore.getInstance();
     }
 
-    private void loadDocument(DocumentReference docRef, FirebaseCallable callable) {
+    private void loadSurveyDocument(DocumentReference docRef, SurveyCallable callable) {
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        callable.call(document.getData(), false);
+                        callable.call(new Survey(document.getData()), false);
                     } else {
                         callable.call(null, false);
                     }
@@ -48,8 +49,15 @@ public class FirebaseManager {
         docRef.get();
     }
 
-    public void loadDataOfPath(FirebaseCallable callable, String collectionPath, String documentPath) {
-        DocumentReference docRef = db.collection(collectionPath).document(documentPath);
-        loadDocument(docRef, callable);
+    public void loadSurveyOfId(SurveyCallable callable, String documentId) {
+        DocumentReference docRef = db.collection(SurveyCollectionName).document(documentId);
+        loadSurveyDocument(docRef, callable);
+    }
+
+    // 설문을 DB에 올린 후 고유 id를 반환한다
+    public String addNewSurvey(Survey survey) {
+        DocumentReference docRef = db.collection(SurveyCollectionName).document();
+        docRef.set(survey.getData());
+        return docRef.getId();
     }
 }
