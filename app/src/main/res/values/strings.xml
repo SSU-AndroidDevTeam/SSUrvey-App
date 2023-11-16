@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SSUrvey</string>
+    <string name="tag_firebase">Firebase</string>
+</resources>

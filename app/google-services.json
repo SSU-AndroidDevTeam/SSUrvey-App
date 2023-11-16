@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "137656285980",
+    "project_id": "ssurvey-698f7",
+    "storage_bucket": "ssurvey-698f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137656285980:android:30ce0aa6f1414bd184d8d9",
+        "android_client_info": {
+          "package_name": "com.example.ssurvey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKne6CspqktoEaClkItnmlE66ucS1I-8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
