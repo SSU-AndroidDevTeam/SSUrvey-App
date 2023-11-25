@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.example.ssurvey.databinding.ActivityFirebaseExampleBinding;
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.service.CbCode;
+import com.example.ssurvey.service.SurveyCallback;
 import com.google.firebase.Timestamp;
 
 import java.util.Date;
@@ -28,20 +30,22 @@ public class FirebaseExampleActivity extends AppCompatActivity {
         // 1. FirebaseCallable 인터페이스의 call 함수를 오버라이드 (파이어베이스로부터 데이터 수신 시 어떻게 처리되길 원하는지 로직 작성)
         // 파이어베이스로부터 데이터를 받았을 때 실행되길 원하는 로직을 구현한다
         // 아래 예시에서는 파이어베이스로부터 받은 data의 name 정보를 액티비티의 TextView에 출력하고 있다
-        SurveyCallable callable = new SurveyCallable() {
+        SurveyCallback callable = new SurveyCallback() {
             @Override
-            public void call(Survey survey, boolean hasFailed) {
+            public void onCallback(Survey survey, CbCode cbCode) {
                 // 예외 처리
-                if (hasFailed) {
-                    Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
-                    return;
-                } else if (survey == null) {
-                    Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                switch (cbCode) {
+                    case OK:
+                        break;
+                    case ERROR:
+                        Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                        return;
+                    case NOT_FOUND:
+                        Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                        return;
                 }
-
                 // 로직 실행
-                binding.text.setText(survey.getName());
-                // .getName()으로 name 정보를 읽어온다.
+                binding.text.setText(survey.getName()); // .getName()으로 name 정보를 읽어온다.
             }
         };
 

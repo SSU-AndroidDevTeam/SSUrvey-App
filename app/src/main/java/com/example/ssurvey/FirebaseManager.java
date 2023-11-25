@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.service.CbCode;
+import com.example.ssurvey.service.SurveyCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -28,26 +30,26 @@ public class FirebaseManager {
         db = FirebaseFirestore.getInstance();
     }
 
-    private void loadSurveyDocument(DocumentReference docRef, SurveyCallable callable) {
+    private void loadSurveyDocument(DocumentReference docRef, SurveyCallback callable) {
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        callable.call(document.toObject(Survey.class), false);
+                        callable.onCallback(document.toObject(Survey.class), CbCode.OK);
                     } else {
-                        callable.call(null, false);
+                        callable.onCallback(null, CbCode.ERROR);
                     }
                 } else {
-                    callable.call(null, true);
+                    callable.onCallback(null, CbCode.NOT_FOUND);
                 }
             }
         });
         docRef.get();
     }
 
-    public void loadSurveyOfId(SurveyCallable callable, String documentId) {
+    public void loadSurveyOfId(SurveyCallback callable, String documentId) {
         DocumentReference docRef = db.collection(SurveyCollectionName).document(documentId);
         loadSurveyDocument(docRef, callable);
     }
