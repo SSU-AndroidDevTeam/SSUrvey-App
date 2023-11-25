@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout_survey_questions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Survey_questions">
+
+    <TextView
+        android:id="@+id/textView_title_survey_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="설문조사 세부 사항"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView_survey_questions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_next_survey_questions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_questions">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_scroll_survey_questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout_question1_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView_question1_survey_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/question_wallpaper" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_question1_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout_question1_survey_questions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout_question1_survey_questions">
+
+                <TextView
+                    android:id="@+id/textView_question1_number_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="# 1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_question1_type_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="선택형"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editText_question1_title_survey_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint=" 설문 제목"
+                    android:maxLines="1"
+                    android:minHeight="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question1_number_survey_questions" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_radioGroup1_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/editText_question1_title_survey_questions">
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn1_question1_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn2_question1_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn3_question1_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn4_question1_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn5_question1_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/editText_question1_radio1_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question1_title_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question1_radio2_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question1_radio1_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question1_radio3_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question1_radio2_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question1_radio4_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question1_radio3_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question1_radio5_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question1_radio4_survey_questions" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_question2_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_question1_survey_questions">
+
+                <ImageView
+                    android:id="@+id/imageView_question2_survey_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/question_wallpaper" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_question2_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout_question2_survey_questions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_question1_survey_questions">
+
+                <TextView
+                    android:id="@+id/textView_question2_number_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="# 2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_question2_type_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="선택형"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editText_question2_title_survey_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint=" 설문 제목"
+                    android:maxLines="1"
+                    android:minHeight="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question2_number_survey_questions" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_radioGroup2_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/editText_question2_title_survey_questions">
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn1_question2_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn2_question2_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn3_question2_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn4_question2_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_btn5_question2_survey_questions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"/>
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/editText_question2_radio1_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question2_title_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question2_radio2_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question2_radio1_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question2_radio3_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question2_radio2_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question2_radio4_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question2_radio3_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question2_radio5_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question2_radio4_survey_questions" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_question3_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_question2_survey_questions">
+
+                <ImageView
+                    android:id="@+id/imageView_question3_survey_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/question_wallpaper" />
+
+            </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_question3_survey_questions"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout_question3_survey_questions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_question2_survey_questions">
+
+            <TextView
+                android:id="@+id/textView_question3_number_survey_questions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/border_edittext"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="# 3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_question3_type_survey_questions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/border_edittext"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="선택형"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText_question3_title_survey_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/border_edittext"
+                android:ellipsize="end"
+                android:hint=" 설문 제목"
+                android:maxLines="1"
+                android:minHeight="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_question3_number_survey_questions" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_radioGroup3_survey_questions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_question3_title_survey_questions">
+
+                <RadioButton
+                    android:id="@+id/radioButton_btn1_question3_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_btn2_question3_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton_btn3_question3_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton_btn4_question3_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton_btn5_question3_survey_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+
+            </RadioGroup>
+
+                <EditText
+                    android:id="@+id/editText_question3_radio1_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question3_title_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question3_radio2_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question3_radio1_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question3_radio3_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question3_radio2_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question3_radio4_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question3_radio3_survey_questions" />
+
+                <EditText
+                    android:id="@+id/editText_question3_radio5_survey_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/border_edittext"
+                    android:ellipsize="end"
+                    android:hint="  항목"
+                    android:maxLines="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_questions"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_question3_radio4_survey_questions" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button_next_survey_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_next"
+        android:text="다음 단계"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_before_survey_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_before"
+        android:text="이전 단계"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
