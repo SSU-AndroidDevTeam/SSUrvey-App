@@ -6,14 +6,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.ssurvey.model.Survey;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.util.concurrent.ExecutionError;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.Map;
 
 public class FirebaseManager {
     private FirebaseFirestore db;
@@ -37,7 +35,7 @@ public class FirebaseManager {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        callable.call(new Survey(document.getData()), false);
+                        callable.call(document.toObject(Survey.class), false);
                     } else {
                         callable.call(null, false);
                     }
@@ -57,7 +55,7 @@ public class FirebaseManager {
     // 설문을 DB에 올린 후 고유 id를 반환한다
     public String addNewSurvey(Survey survey) {
         DocumentReference docRef = db.collection(SurveyCollectionName).document();
-        docRef.set(survey.getData());
+        docRef.set(survey);
         return docRef.getId();
     }
 }

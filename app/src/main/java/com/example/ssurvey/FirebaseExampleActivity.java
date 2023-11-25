@@ -7,9 +7,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.ssurvey.databinding.ActivityFirebaseExampleBinding;
-import com.example.ssurvey.databinding.ActivityMainBinding;
+import com.example.ssurvey.model.Survey;
+import com.google.firebase.Timestamp;
 
-import java.util.Map;
+import java.util.Date;
 
 public class FirebaseExampleActivity extends AppCompatActivity {
     private FirebaseManager fbManager; // Firebase 작업은 모두 FirebaseManager를 거쳐서 처리한다
@@ -39,10 +40,8 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 }
 
                 // 로직 실행
-                binding.text.setText((String) survey.getData().get("name"));
-                // survey.getData()로 설문 응답 정보가 담긴 Map 객체를 가져오고
-                // .get("name")으로 그 Map의 name 정보를 읽어온다.
-                // 이때 .get()의 반환형이 Object이므로 String 타입으로 캐스팅해준다.
+                binding.text.setText(survey.getName());
+                // .getName()으로 name 정보를 읽어온다.
             }
         };
 
@@ -88,8 +87,8 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 "사비",
                 "긱스",
                 "디마리아",
-                0,
-                0,
+                new Timestamp(new Date(23,11,25)),
+                new Timestamp(new Date(23,11,25)),
                 "(구현 안됨)"
         );
 
