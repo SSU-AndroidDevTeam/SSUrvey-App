@@ -1,18 +1,26 @@
 package com.example.ssurvey;
 
+import com.example.ssurvey.model.Survey;
+
 public class SurveyItem {
-    private String title;
+    private String name;
     private String description;
     private String date;
 
-    public SurveyItem(String title, String description, String date) {
-        this.title = title;
+    public SurveyItem(String name, String description, String date) {
+        this.name = name;
         this.description = description;
         this.date = date;
     }
 
-    public String getTitle() {
-        return title;
+    public SurveyItem(Survey survey) {
+        this.name = survey.getName();
+        this.description = survey.getDesc();
+        this.date = "D-day"; // TODO: 남은 날짜 계산
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -20,7 +28,7 @@ public class SurveyItem {
     }
 
     public String getDate() {
-        return date;
+        return date; // TODO
     }
 }
 

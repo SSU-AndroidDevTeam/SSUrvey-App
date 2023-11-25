@@ -1,5 +1,5 @@
 package com.example.ssurvey;
 
 public class FirebaseConstants {
-    static final String SurveyCollectionName = "Surveys";
+    public static final String SurveyCollectionName = "Surveys";
 }

@@ -70,4 +70,7 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("com.google.android.material:material:1.11.0-beta01")
+
+    // RecyclerView
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 }

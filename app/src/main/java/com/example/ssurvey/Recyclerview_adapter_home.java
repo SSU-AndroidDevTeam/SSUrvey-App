@@ -77,7 +77,7 @@ public class Recyclerview_adapter_home extends RecyclerView.Adapter<Recyclerview
         // 이 코드를 사용해서 행의 내용을 구성
         public void bind(SurveyItem item) {
             textViewDdate.setText(item.getDate());
-            textViewTitle.setText(item.getTitle());
+            textViewTitle.setText(item.getName());
             textViewDescription.setText(item.getDescription());
             // 이미지를 로드하는 코드 (Glide, Picasso 등을 사용할 수 있음)
             // imageViewImage.setImageResource(item.getImageResId());
