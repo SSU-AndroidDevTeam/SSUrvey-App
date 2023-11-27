@@ -148,6 +148,9 @@ public class User {
     /** 다전공 소속 대학 */
     private College collegeMultiMajor = College.NONE;
 
+    /** 전과 (학과 이동) 유무 */
+    private boolean hasChangeMajor;
+
     /** 교직 이수 유무 */
     private boolean hasTeaching;
 
@@ -265,6 +268,10 @@ public class User {
     public void setCollegeMultiMajor(College collegeMultiMajor) {
         this.collegeMultiMajor = collegeMultiMajor;
     }
+
+    public boolean isHasChangeMajor() { return hasChangeMajor; }
+
+    public void setHasChangeMajor(boolean hasChangeMajor) { this.hasChangeMajor = hasChangeMajor; }
 
     public boolean isHasTeaching() {
         return hasTeaching;
