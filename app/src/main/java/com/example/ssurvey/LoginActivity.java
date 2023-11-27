@@ -142,11 +142,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 Exception exception = task.getException();
                 if (exception instanceof FirebaseAuthUserCollisionException) {
-                    Toast.makeText(getApplicationContext(), "이미 존재하는 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "이미 등록된 학번입니다.", Toast.LENGTH_SHORT).show();
                 } else if (exception instanceof FirebaseAuthWeakPasswordException) {
                     Toast.makeText(getApplicationContext(), "비밀번호가 너무 짧습니다.", Toast.LENGTH_SHORT).show();
                 } else if (exception instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(getApplicationContext(), "잘못된 이메일 형식입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "잘못된 학번입니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                 }

@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/** User 컬렉션 접근 클래스 (Singleton) */
 public class UserService {
 
     private static UserService instance = null;
