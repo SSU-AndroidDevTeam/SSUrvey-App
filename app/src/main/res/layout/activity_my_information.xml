@@ -8,12 +8,135 @@
     tools:context=".MyInformation">
 
     <TextView
-        android:id="@+id/textView_myInformation"
+        android:id="@+id/textView_title_my_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Information"
-        android:textSize="40sp"
+        android:padding="16dp"
+        android:text="계정 관리"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_editimage_my_information"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_my_information"
+        app:srcCompat="@drawable/info" />
+
+    <Button
+        android:id="@+id/button_edit_my_information"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="회원 정보 수정"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_editimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_my_information" />
+
+    <ImageView
+        android:id="@+id/imageView_registeredimage_my_information"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_edit_my_information"
+        app:srcCompat="@drawable/surveyregister" />
+
+    <Button
+        android:id="@+id/button_registered_my_information"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="등록한 설문"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/button_edit_my_information" />
+
+    <ImageView
+        android:id="@+id/imageView_participatedimage_my_information"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_registered_my_information"
+        app:srcCompat="@drawable/surveyparticipation" />
+
+    <Button
+        android:id="@+id/button_participated_my_information"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="참여한 설문"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/button_registered_my_information" />
+
+    <ImageView
+        android:id="@+id/imageView_invitedimage_my_information"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_participated_my_information"
+        app:srcCompat="@drawable/invitation" />
+
+    <Button
+        android:id="@+id/button_invited_my_information"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="초청된 설문"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/button_participated_my_information" />
+
+    <ImageView
+        android:id="@+id/imageView_giftimage_my_information"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_invited_my_information"
+        app:srcCompat="@drawable/gift" />
+
+    <Button
+        android:id="@+id/button_gift_my_information"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="당첨된 경품"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/button_invited_my_information" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

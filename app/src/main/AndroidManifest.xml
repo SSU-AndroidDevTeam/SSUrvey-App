@@ -13,20 +13,32 @@
         android:theme="@style/Theme.SSUrvey"
         tools:targetApi="31">
         <activity
+            android:name=".Survey_giftSetting"
+            android:exported="false" />
+        <activity
+            android:name=".MyGift"
+            android:exported="false" />
+        <activity
+            android:name=".InvitedSurvey"
+            android:exported="false" />
+        <activity
+            android:name=".ParticipatedSurvey"
+            android:exported="false" />
+        <activity
+            android:name=".RegisteredSurvey"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
             android:name=".FBRecyclerView.FBRecyclerExampleActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".FirebaseExampleActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
@@ -50,7 +62,13 @@
             android:exported="true" />
         <activity
             android:name=".Home"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Survey_targetSelection"
             android:exported="true" />

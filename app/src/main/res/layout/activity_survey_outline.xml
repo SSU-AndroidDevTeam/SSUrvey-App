@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_survey_title_survey_outline" />
 
     <EditText
-        android:id="@+id/editText_survey_discrption"
+        android:id="@+id/editText_survey_descrption_survey_outline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -84,7 +84,7 @@
         android:text="이미지 추가"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_survey_discrption" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_survey_descrption_survey_outline" />
 
 
     <ImageButton

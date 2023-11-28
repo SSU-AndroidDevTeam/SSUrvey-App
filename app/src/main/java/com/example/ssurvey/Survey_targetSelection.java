@@ -29,7 +29,7 @@ public class Survey_targetSelection extends MainActivity {
         surveyTargetSelectionNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Home.class); //홈 화면으로 넘어가는 버튼이벤트
+                Intent intent = new Intent(getApplicationContext(), Survey_giftSetting.class); //경품 설정 화면으로 넘어가는 버튼이벤트
                 startActivity(intent);
             }
         });

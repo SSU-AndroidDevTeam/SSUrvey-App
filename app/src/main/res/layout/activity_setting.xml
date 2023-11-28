@@ -8,12 +8,105 @@
     tools:context=".Setting">
 
     <TextView
-        android:id="@+id/textView_setting"
+        android:id="@+id/textView_title_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Setting"
-        android:textSize="40sp"
+        android:padding="16dp"
+        android:text="설정"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_participatedimage_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_setting"
+        app:srcCompat="@drawable/surveyparticipation" />
+
+    <TextView
+        android:id="@+id/textView_participated_setting"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:text="참여한 설문이 종료되면 알림 받기"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_setting" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_participated_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_setting" />
+
+    <ImageView
+        android:id="@+id/imageView_registeredimage_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting"
+        app:srcCompat="@drawable/surveyregister" />
+
+    <TextView
+        android:id="@+id/textView_registered_setting"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:text="등록한 설문이 종료되면 알림 받기"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
+        app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_registered_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
+        app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting" />
+
+    <ImageView
+        android:id="@+id/imageView_invitedimage_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting"
+        app:srcCompat="@drawable/invitation" />
+
+    <TextView
+        android:id="@+id/textView_invited_setting"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:text="설문 초청 거부"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
+        app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_invited_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
+        app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
