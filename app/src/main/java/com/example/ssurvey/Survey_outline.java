@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,7 +44,8 @@ public class Survey_outline extends MainActivity {
     ImageButton btnImageSelect; //이미지 선택 버튼
     Button surveyOutlineNextBtn; //설문 개요에서 설문 세부 사항으로 넘어가는 버튼
 
-    private SharedViewModel sharedViewModel; //뷰모델
+    EditText editTextSurveyTitle; //설문 개요 제목
+    EditText editTextSurveyDescription; //설문 개요 설명
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +58,11 @@ public class Survey_outline extends MainActivity {
         // navigationBar 함수 호출
         navigationBar(constraintLayout_survey_outline);
 
-        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
         //설문 개요 제목 부분 가져오기
-        EditText editTextSurveyTitle = findViewById(R.id.editText_survey_title_survey_outline);
+        editTextSurveyTitle = findViewById(R.id.editText_survey_title_survey_outline);
+        editTextSurveyDescription = findViewById(R.id.editText_survey_descrption_survey_outline);
 
-        // 저장된 데이터 불러오기
-        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String savedSurveyTitle = preferences.getString("surveyTitle", "");
-        editTextSurveyTitle.setText(savedSurveyTitle);
 
 
         //설문 개요에서 설문 세부 사항으로 넘어가는 버튼이벤트
@@ -71,14 +70,6 @@ public class Survey_outline extends MainActivity {
         surveyOutlineNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // 첫 번째 화면에서 입력한 데이터를 뷰모델에 저장
-                sharedViewModel.setSurveyTitle(editTextSurveyTitle.getText().toString());
-
-                // 데이터를 SharedPreferences에 저장
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("surveyTitle", editTextSurveyTitle.getText().toString());
-                editor.apply();
 
                 Intent intent = new Intent(getApplicationContext(), Survey_questions.class);
                 startActivity(intent);
@@ -154,6 +145,8 @@ public class Survey_outline extends MainActivity {
                 .load(imageUri)
                 .into(imageView);
 
+        imageView.setBackground(null);
+
         // 이미지뷰의 크기 조절
         int desiredWidthInDp = 50; // 원하는 너비 (dp)
         int desiredHeightInDp = 50; // 원하는 높이 (dp)
@@ -200,5 +193,45 @@ public class Survey_outline extends MainActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String selectedDate = dateFormat.format(calendar.getTime());
         textView.setText(selectedDate);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        String userInput1 = editTextSurveyTitle.getText().toString();
+        String userInput2 = editTextSurveyDescription.getText().toString();
+        String userInput3 = startDateTextView.getText().toString();
+        String userInput4 = endDateTextView.getText().toString();
+
+        Log.d("MainActivity", "onPause: userInput1=" + userInput1 + ", userInput2=" + userInput2);
+
+        // 앱 전체에서 공유되는 SharedPreferences에 저장
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("userInputKey1", userInput1);
+        editor.putString("userInputKey2", userInput2);
+        editor.putString("userInputKey3", userInput3);
+        editor.putString("userInputKey4", userInput4);
+        editor.apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // 앱 전체에서 공유되는 SharedPreferences에서 불러오기
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedUserInput1 = preferences.getString("userInputKey1", "");
+        String savedUserInput2 = preferences.getString("userInputKey2", "");
+        String savedUserInput3 = preferences.getString("userInputKey3", "");
+        String savedUserInput4 = preferences.getString("userInputKey4", "");
+
+        Log.d("MainActivity", "onResume: savedUserInput1=" + savedUserInput1 + ", savedUserInput2=" + savedUserInput2);
+
+        editTextSurveyTitle.setText(savedUserInput1);
+        editTextSurveyDescription.setText(savedUserInput2);
+        startDateTextView.setText(savedUserInput3);
+        endDateTextView.setText(savedUserInput4);
     }
 }

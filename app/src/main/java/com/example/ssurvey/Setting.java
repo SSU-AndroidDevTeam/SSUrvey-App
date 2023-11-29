@@ -16,5 +16,9 @@ public class Setting extends MainActivity {
         ConstraintLayout constraintLayout_setting = findViewById(R.id.constraintLayout_setting);
 
         navigationBar(constraintLayout_setting);
+
+        //스위치가 온일 경우 사용자에 따라 참여/등록된 설문이 Ddate가 0일때 알림을 전송
+        //스위치가 온일 경우 사용자에 따라 초청시스템이 거부 되도록하는 로직을 짜야함
+
     }
 }
