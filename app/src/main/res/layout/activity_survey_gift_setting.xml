@@ -131,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="84dp"
-        android:background="@drawable/button_next"
+        android:background="@drawable/button_main"
         android:text="설문 등록"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="84dp"
-        android:background="@drawable/button_before"
+        android:background="@drawable/button_sub"
         android:text="이전 단계"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
