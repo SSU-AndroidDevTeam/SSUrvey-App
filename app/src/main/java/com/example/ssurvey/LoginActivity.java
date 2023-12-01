@@ -1,7 +1,5 @@
 package com.example.ssurvey;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,13 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ssurvey.databinding.ActivityLoginBinding;
-import com.example.ssurvey.model.User;
-
-import com.example.ssurvey.service.UserService;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
@@ -26,7 +18,7 @@ import java.util.regex.Matcher;
 /***
  * 로그인 화면 액티비티
  */// 231120 east
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends MainActivity {
 
     final String TAG = "LoginActivity";
 
@@ -55,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // 회원가입 버튼이 눌렸을 때
         btJoin.setOnClickListener(v -> join());
+
+        super.navigationBar(binding.getRoot());
     }
 
     @Override
@@ -124,36 +118,9 @@ public class LoginActivity extends AppCompatActivity {
      * 회원가입
      */
     private void join() {
-        if(isValidInput() == false)
-            return;
 
-        mAuth.createUserWithEmailAndPassword(AuthManager.id2Email(etId.getText().toString()), etPw.getText().toString()).addOnCompleteListener(this, task -> {
-            Log.d(TAG,"createUserWithEmailAndPassword()");
+        startActivity(new Intent(this, JoinActivity.class));
 
-            if (task.isSuccessful()) {
-                Log.d(TAG, "join success");
-
-                // 유저 등록
-                UserService.getInstance().setUser(new User(task.getResult().getUser().getUid(), AuthManager.id2Email(etId.getText().toString()), etId.getText().toString()));
-
-                ChangeActivity();
-            } else {
-                Log.d(TAG, "join failure");
-
-                Exception exception = task.getException();
-                if (exception instanceof FirebaseAuthUserCollisionException) {
-                    Toast.makeText(getApplicationContext(), "이미 등록된 학번입니다.", Toast.LENGTH_SHORT).show();
-                } else if (exception instanceof FirebaseAuthWeakPasswordException) {
-                    Toast.makeText(getApplicationContext(), "비밀번호가 너무 짧습니다.", Toast.LENGTH_SHORT).show();
-                } else if (exception instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(getApplicationContext(), "잘못된 학번입니다.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            Log.d(TAG,"~createUserWithEmailAndPassword()");
-        });
     }
 
     /***
@@ -164,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
             // 어스 매니저에 현재 유저 정보 저장
             AuthManager.getInstance().renewCurrentUser();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, Home.class));
         }
     }
 }

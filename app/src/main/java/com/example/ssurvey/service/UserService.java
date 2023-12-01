@@ -9,7 +9,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.HashMap;
 import java.util.Map;
 
 /** User 컬렉션 접근 클래스 (Singleton) */
@@ -17,7 +16,7 @@ public class UserService {
 
     private static UserService instance = null;
 
-    private FirebaseFirestore db;
+    private final FirebaseFirestore db;
 
     private final String COLLECTION = "User";
 
@@ -48,11 +47,7 @@ public class UserService {
         Log.d(TAG, "setUser(User user)");
 
         CollectionReference colRef = db.collection(COLLECTION);
-        Map<String, Object> data = new HashMap<>();
-        data.put("uid", user.getUid());
-        data.put("firebaseId", user.getFirebaseId());
-        data.put("id", user.getId());
-        colRef.document(user.getUid()).set(data);
+        colRef.document(user.getUid()).set(user);
 
         Log.d(TAG, "~setUser(User user)");
     }
@@ -72,11 +67,7 @@ public class UserService {
                         Map<String, Object> data = document.getData();
                         Log.d(TAG, "getUser Result : " + data);
 
-                        String uid = data.get("uid").toString();
-                        String firebaseId = data.get("firebaseId").toString();
-                        String id = data.get("id").toString();
-
-                        callback.onCallback(new User(uid, firebaseId, id), CbCode.OK);
+                        callback.onCallback(document.toObject(User.class), CbCode.OK);
                     } else {
                         Log.d(TAG, "getUser Not Found");
                         callback.onCallback(null, CbCode.NOT_FOUND);

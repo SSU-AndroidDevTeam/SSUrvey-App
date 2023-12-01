@@ -28,6 +28,9 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // 계정 정보 가져오기
+        AuthManager.getInstance();
+
         recyclerView = findViewById(R.id.recyclerview_home);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,7 +71,11 @@ public class Home extends AppCompatActivity {
         homeGoMyInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyInformation.class);
+                Intent intent;
+                if(AuthManager.getInstance().isLoggedIn())
+                    intent = new Intent(getApplicationContext(), MyInformation.class);
+                else
+                    intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

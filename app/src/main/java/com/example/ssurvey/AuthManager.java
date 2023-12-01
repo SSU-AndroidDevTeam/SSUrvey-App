@@ -15,17 +15,19 @@ public class AuthManager {
     /** 학번ID 이메일 변환용 도메인 */
     public static final String EMAIL_DOMAIN = "@com.example.ssurvey";
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
 
     /** 현재 로그인 한 유저의 User 클래스 객체 */
     private User currentUser = null;
 
     private AuthManager() {
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        UserService.getInstance().getUser(getCurrentUserID(), (user, code) -> {
-            currentUser = user;
-        });
+        if(!getCurrentUid().isEmpty()) {
+            UserService.getInstance().getUser(getCurrentUid(), (user, code) -> {
+                currentUser = user;
+            });
+        }
     }
 
     public static AuthManager getInstance() {
@@ -35,10 +37,14 @@ public class AuthManager {
         return instance;
     }
 
+    public FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
+    }
+
     /** 현재 유저 갱신 */
     public void renewCurrentUser() {
-        if(getCurrentUserID() != null)
-            UserService.getInstance().getUser(getCurrentUserID(), (user, code) -> {
+        if(getCurrentUid() != null)
+            UserService.getInstance().getUser(getCurrentUid(), (user, code) -> {
                 currentUser = user;
             });
     }
@@ -48,9 +54,18 @@ public class AuthManager {
         return currentUser;
     }
 
-    /** 현재 로그인 한 User의 ID (UID) 반환 */
-    public String getCurrentUserID() {
-        return mAuth.getCurrentUser().getUid();
+    public void setCurrentUser(User user) { currentUser = user; }
+
+    /** 현재 로그인 한 User의 고유 ID (UID) 반환 (학번이 아님) */
+    public String getCurrentUid() {
+        if(firebaseAuth.getCurrentUser() != null)
+            return firebaseAuth.getCurrentUser().getUid();
+        return "";
+    }
+
+    /** 현재 로그인이 되어있는가? */
+    public boolean isLoggedIn() {
+        return firebaseAuth.getCurrentUser() != null;
     }
 
     /***

@@ -1,12 +1,16 @@
 package com.example.ssurvey;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -43,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
         setupConstraints(constraintLayout, linearLayout);
 
         // 각 버튼에 대한 클릭 이벤트 처리
-        myInfoBtn.setOnClickListener(new MyButtonClickListener(MyInformation.class));
+        if(AuthManager.getInstance().isLoggedIn())
+            myInfoBtn.setOnClickListener(new MyButtonClickListener(MyInformation.class));
+        else
+            myInfoBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
+
         homeBtn.setOnClickListener(new MyButtonClickListener(Home.class));
         settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
     }
@@ -109,5 +117,44 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, destinationActivityClass);
             startActivity(intent);
         }
+    }
+
+    /** 입력란 외 부분 터치 시 키보드 숨기기 */
+    @SuppressLint("ClickableViewAccessibility")
+    public void hideKeyboard(ConstraintLayout layout) {
+        layout.setOnTouchListener((v, event) -> {
+            if(!(v instanceof EditText)) {
+                // 포커스 해제
+                if(getCurrentFocus() != null) getCurrentFocus().clearFocus();
+                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+            return false;
+        });
+    }
+
+    /** 입력란 외 부분 터치 시 키보드 숨기기 */
+    @SuppressLint("ClickableViewAccessibility")
+    public void hideKeyboard(LinearLayout layout) {
+        layout.setOnTouchListener((v, event) -> {
+            if(!(v instanceof EditText)) {
+                // 포커스 해제
+                if(getCurrentFocus() != null) getCurrentFocus().clearFocus();
+                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+            return false;
+        });
+    }
+
+    /** 입력란 외 부분 터치 시 키보드 숨기기 */
+    @SuppressLint("ClickableViewAccessibility")
+    public void hideKeyboard(ScrollView layout) {
+        layout.setOnTouchListener((v, event) -> {
+            if(!(v instanceof EditText)) {
+                // 포커스 해제
+                if(getCurrentFocus() != null) getCurrentFocus().clearFocus();
+                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+            return false;
+        });
     }
 }

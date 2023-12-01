@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">SSUrvey</string>
+
+    <!-- User -->
+    <string name="user_student_type_in">재학생</string>
+    <string name="user_student_type_leave">휴학생</string>
+    <string name="user_student_type_graduate">졸업생</string>
+
+    <string name="user_student_course_bachelor">학사 과정</string>
+    <string name="user_student_course_bachelor_master">학석사 통합 과정</string>
+    <string name="user_student_course_master">석사 과정</string>
+    <string name="user_student_course_master_doctor">석박사 통합 과정</string>
+    <string name="user_student_course_doctor">박사 과정</string>
+
+    <string name="user_college_humanities">인문대학</string>
+    <string name="user_college_natural">자연과학대학</string>
+    <string name="user_college_law">법과대학</string>
+    <string name="user_college_social">사회과학대학</string>
+    <string name="user_college_economics">경제통상대학</string>
+    <string name="user_college_business">경영대학</string>
+    <string name="user_college_engineering">공과대학</string>
+    <string name="user_college_it">IT대학</string>
+    <string name="user_college_convergence">융합특성화자유전공학부</string>
+    <string name="user_college_semiconductor">차세대반도체 혁신융합대학</string>
+
+    <string name="user_multi_major_none">해당 없음</string>
+    <string name="user_multi_major_minor">부전공</string>
+    <string name="user_multi_major_double_major">복수전공</string>
+
+    <string name="user_club_none">소속 동아리 없음</string>
+    <string name="user_club_sports">운동 / 스포츠</string>
+    <string name="user_club_outdoor">아웃도어 / 여행</string>
+    <string name="user_club_books">인문학 / 책 / 글</string>
+    <string name="user_club_language">외국어</string>
+    <string name="user_club_culture">문화 / 공연 / 축제</string>
+    <string name="user_club_music">음악 / 악기</string>
+    <string name="user_club_crafts">공예 / 만들기</string>
+    <string name="user_club_dance">댄스 / 무용</string>
+    <string name="user_club_social">사교 / 인맥</string>
+    <string name="user_club_picture">사진 / 영상</string>
+    <string name="user_club_games">게임 / 오락</string>
+    <string name="user_club_develop">개발 / 코딩</string>
+    <string name="user_club_cooking">요리 / 제조</string>
+    <string name="user_club_volunteer">봉사활동</string>
+    <string name="user_club_etc">그 외</string>
+
 </resources>
