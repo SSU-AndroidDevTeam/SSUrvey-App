@@ -19,8 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
     <ScrollView
         android:id="@+id/scrollView_survey_ing"
         android:layout_width="match_parent"
@@ -129,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="28dp"
                     android:text="textView_qusetion1_radio1"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_ing"
@@ -140,44 +138,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio2"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question1_radio1_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question1_radio1_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question1_radio3_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio3"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question1_radio2_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question1_radio2_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question1_radio4_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio4"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question1_radio3_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question1_radio3_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question1_radio5_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio5"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup1_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question1_radio4_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question1_radio4_survey_ing" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -273,7 +271,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="28dp"
                     android:text="textView_qusetion1_radio1"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_ing"
@@ -284,44 +282,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio2"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2_radio1_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question2_radio1_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question2_radio3_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio3"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2_radio2_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question2_radio2_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question2_radio4_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio4"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2_radio3_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question2_radio3_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question2_radio5_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio5"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup2_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2_radio4_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question2_radio4_survey_ing" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -417,7 +415,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="28dp"
                     android:text="textView_qusetion1_radio1"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_ing"
@@ -428,44 +426,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio2"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3_radio1_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question3_radio1_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question3_radio3_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio3"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3_radio2_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question3_radio2_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question3_radio4_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio4"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3_radio3_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question3_radio3_survey_ing" />
 
                 <TextView
                     android:id="@+id/textView_question3_radio5_survey_ing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="40dp"
                     android:text="textView_qusetion1_radio5"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup_radioGroup3_survey_ing"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3_radio4_survey_ing" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_question3_radio4_survey_ing" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,7 @@
 package com.example.ssurvey;
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -14,10 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.ssurvey.model.Survey;
 
 public class Survey_giftSetting extends MainActivity {
+
+    private FirebaseManager fbManager;
 
     private static final int GALLERY_REQUEST_CODE1 = 100;
     private static final int GALLERY_REQUEST_CODE2 = 200;
@@ -33,13 +39,12 @@ public class Survey_giftSetting extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_gift_setting);
 
+        fbManager = new FirebaseManager();
+
         // XML에 정의된 ConstraintLayout 가져오기
         ConstraintLayout constraintLayout_myInformation = findViewById(R.id.constraintLayout_survey_gift_setting);
 
         navigationBar(constraintLayout_myInformation);
-
-        // 데이터 불러오기
-        loadDataFromSharedPreferences();
 
         surveyGiftSettingRegisterBtn = findViewById(R.id.button_register_survey_giftSetting);
         surveyGiftSettingBeforeBtn = findViewById(R.id.button_before_survey_giftSetting);
@@ -48,10 +53,20 @@ public class Survey_giftSetting extends MainActivity {
             @Override
             public void onClick(View v) {
 
-                deleteSavedData();
+                // Firebase Firestore에 설문 등록
+                String uniqueId = fbManager.addNewSurvey(MakeSurvey.makeSurvey);
 
-                Intent intent = new Intent(getApplicationContext(), Home.class); //홈 화면으로 넘어가는 버튼이벤트
-                startActivity(intent);
+                // 설문이 성공적으로 등록되면 MakeSurvey 클래스의 makeSurvey 초기화
+                if (uniqueId != null && !uniqueId.isEmpty()) {
+                    MakeSurvey.resetSurvey();
+
+                    // 등록 성공 시, 홈 화면으로 이동
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                } else {
+                    // 등록 실패 시, 사용자에게 알림 (예: 토스트 메시지)
+                    Toast.makeText(getApplicationContext(), "설문 등록에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         surveyGiftSettingBeforeBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,23 +127,6 @@ public class Survey_giftSetting extends MainActivity {
                 .into(imageView);
     }
 
-
-    private void loadDataFromSharedPreferences() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String savedUserInput1 = preferences.getString("userInputKey1", "");
-        String savedUserInput2 = preferences.getString("userInputKey2", "");
-        String savedUserInput3 = preferences.getString("userInputKey3", "");
-        String savedUserInput4 = preferences.getString("userInputKey4", "");
-    }
-
-    private void deleteSavedData() {
-        // 저장된 데이터 삭제
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove("userInputKey1");
-        editor.remove("userInputKey2");
-        editor.remove("userInputKey3");
-        editor.remove("userInputKey4");
-        editor.apply();
-    }
 }
+
+

@@ -1,23 +1,35 @@
 package com.example.ssurvey;
 
+import static com.example.ssurvey.FirebaseConstants.SurveyCollectionName;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ssurvey.FBRecyclerView.SurveyListAdapter;
+import com.example.ssurvey.model.Survey;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
-
-//홈화면에 정보를 받아서 띄워주는 함수 있어야함
 
 public class Home extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private Recyclerview_adapter_home adapter;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<SurveyItem> arrayList;
+    private FirebaseManager fbManager;
 
     Button homeGoMyInfoBtn; //홈 화면에서 내 정보 화면으로 넘어가는 버튼
     Button homeGoSettingBtn; //홈 화면에서 설정 화면으로 넘어가는 버튼
@@ -28,37 +40,40 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+<<<<<<< Updated upstream
+=======
+        // 계정 정보 가져오기
+        AuthManager.getInstance();
+
+        fbManager = new FirebaseManager();
+
+>>>>>>> Stashed changes
         recyclerView = findViewById(R.id.recyclerview_home);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
+        adapter = new SurveyListAdapter(arrayList, getApplicationContext());
 
-        // 샘플 데이터 생성 (SurveyItem 대신 실제 데이터 모델 클래스로 변경)
-        List<SurveyItem> data = new ArrayList<>();
-        for (int i = 1; i < 8; i++) {
-            data.add(new SurveyItem("Title " + i, "Description " + i, "Date " + i));
-        }
-        // ...
+        fbManager.getDb().collection(SurveyCollectionName)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null){
+                            Log.e("Firestore에 접근하는 과정에서 에러가 발생했습니다.",error.getMessage());
+                            return;
+                        }
+                        for(DocumentChange dc : value.getDocumentChanges()){
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class));
+                                arrayList.add(surveyItem);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
 
-        // 어댑터 설정
-        adapter = new Recyclerview_adapter_home(data);
         recyclerView.setAdapter(adapter);
-
-        // 리사이클러뷰 아이템 클릭 이벤트 처리
-        adapter.setOnItemClickListener(new Recyclerview_adapter_home.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // 클릭된 아이템의 위치에 대한 처리를 여기에 추가
-
-                // 예시: 클릭된 아이템의 데이터 가져오기
-                SurveyItem clickedItem = data.get(position);
-
-                // 새로운 액티비티로 이동하는 코드
-                Intent intent = new Intent(Home.this, Survey_main.class);
-                // 여기에 클릭된 아이템과 관련된 데이터를 인텐트에 추가할 수 있습니다.
-                // 예시: 아이템의 제목을 전달
-                //intent.putExtra("itemTitle", clickedItem.getTitle());
-                startActivity(intent);
-            }
-        });
 
 
         homeGoMyInfoBtn = findViewById(R.id.button_goMyInfo_home);

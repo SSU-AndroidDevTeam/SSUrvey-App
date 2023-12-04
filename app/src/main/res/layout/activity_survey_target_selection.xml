@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="28dp"
                     android:text="재학생"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/checkBox_students_studentType_survey_targetSelection"
@@ -113,22 +113,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="32dp"
                     android:text="휴학생"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/checkBox_studentsOnLeave_studentType_survey_targetSelection"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_students_studentType_survey_targetSelection" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_students_studentType_survey_targetSelection" />
 
                 <TextView
                     android:id="@+id/textView_graduate_studentType_survey_targetSelection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="32dp"
                     android:text="졸업생"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/checkBox_graduate_studentType_survey_targetSelection"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_studentsOnLeave_studentType_survey_targetSelection" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_studentsOnLeave_studentType_survey_targetSelection" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

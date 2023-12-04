@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout_survey_complete"
+    android:id="@+id/constraintLayout_survey_result_registrant"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Survey_complete">
+    tools:context=".SurveyResultRegistrant">
 
     <TextView
-        android:id="@+id/textView_title_survey_complete"
+        android:id="@+id/textView_title_survey_result_registrant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_date_survey_complete"
+        android:id="@+id/textView_date_survey_result_registrant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,10 +28,10 @@
         android:textSize="16sp"
         android:text="textView_startDate ~ endDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_complete" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_result_registrant" />
 
     <TextView
-        android:id="@+id/textView_Ddate_survey_complete"
+        android:id="@+id/textView_Ddate_survey_result_registrant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,42 +39,20 @@
         android:textSize="16sp"
         android:textColor="#FC0303"
         android:text="textView_Ddate"
-        app:layout_constraintStart_toEndOf="@+id/textView_date_survey_complete"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_complete" />
-
-    <TextView
-        android:id="@+id/textView_discription_survey_complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:text="TextView_discription"
-        android:maxLines="4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_date_survey_complete" />
-
-    <ImageView
-        android:id="@+id/imageView_image_survey_complete"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_discription_survey_complete"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintStart_toEndOf="@+id/textView_date_survey_result_registrant"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_result_registrant" />
 
     <ScrollView
-        android:id="@+id/scrollView_survey_complete"
+        android:id="@+id/scrollView_survey_result_registrant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_goParticipantCheck_survey_result_registrant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_image_survey_complete" >
+        app:layout_constraintTop_toBottomOf="@+id/textView_date_survey_result_registrant" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_survey_result_survey_complete"
+            android:id="@+id/constraintLayout_survey_result_survey_result_registrant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -97,7 +75,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView_participantCountLeft_survey_complete"
+                android:id="@+id/textView_participantCountLeft_survey_result_registrant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -107,41 +85,41 @@
                 app:layout_constraintTop_toTopOf="@+id/linearLayout_studentType_survey_targetSelection" />
 
             <TextView
-                android:id="@+id/textView_participantCount_survey_complete"
+                android:id="@+id/textView_participantCount_survey_result_registrant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="textView_participantCount"
-                app:layout_constraintStart_toEndOf="@+id/textView_participantCountLeft_survey_complete"
+                app:layout_constraintStart_toEndOf="@+id/textView_participantCountLeft_survey_result_registrant"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_participantCountRight_survey_complete"
+                android:id="@+id/textView_participantCountRight_survey_result_registrant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="명"
-                app:layout_constraintStart_toEndOf="@+id/textView_participantCount_survey_complete"
+                app:layout_constraintStart_toEndOf="@+id/textView_participantCount_survey_result_registrant"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_text_survey_complete"
+                android:id="@+id/textView_text_survey_result_registrant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:text="각 항목별 응답 비율 (단위: %)"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_participantCountLeft_survey_complete" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_participantCountLeft_survey_result_registrant" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_q1_survey_complete"
+                android:id="@+id/constraintLayout_q1_survey_result_registrant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_text_survey_complete">
+                app:layout_constraintTop_toBottomOf="@+id/textView_text_survey_result_registrant">
 
                 <TextView
-                    android:id="@+id/textView_questionLeft_survey_complete"
+                    android:id="@+id/textView_questionLeft_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -150,156 +128,156 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView_q1_survey_complete"
+                    android:id="@+id/textView_q1_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_question1"
-                    app:layout_constraintStart_toEndOf="@+id/textView_questionLeft_survey_complete"
-                    app:layout_constraintTop_toTopOf="@+id/textView_questionLeft_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_questionLeft_survey_result_registrant"
+                    app:layout_constraintTop_toTopOf="@+id/textView_questionLeft_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans1Left_survey_complete"
+                    android:id="@+id/textView_q1ans1Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="1."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans1_survey_complete"
+                    android:id="@+id/textView_q1ans1_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q1ans1"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans1Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans1Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans1percent_survey_complete"
+                    android:id="@+id/textView_q1ans1percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_questionLeft_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans2Left_survey_complete"
+                    android:id="@+id/textView_q1ans2Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="2."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans2_survey_complete"
+                    android:id="@+id/textView_q1ans2_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q1ans2"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans2Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans2Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans2percent_survey_complete"
+                    android:id="@+id/textView_q1ans2percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans3Left_survey_complete"
+                    android:id="@+id/textView_q1ans3Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="3."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans3_survey_complete"
+                    android:id="@+id/textView_q1ans3_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q1ans3"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans3Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans3Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans3percent_survey_complete"
+                    android:id="@+id/textView_q1ans3percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans4Left_survey_complete"
+                    android:id="@+id/textView_q1ans4Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="4."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans4_survey_complete"
+                    android:id="@+id/textView_q1ans4_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q1ans4"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans4Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans4Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans4percent_survey_complete"
+                    android:id="@+id/textView_q1ans4percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans5Left_survey_complete"
+                    android:id="@+id/textView_q1ans5Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="5."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans5_survey_complete"
+                    android:id="@+id/textView_q1ans5_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q1ans5"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans5Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q1ans5Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q1ans5percent_survey_complete"
+                    android:id="@+id/textView_q1ans5percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q1ans4Left_survey_result_registrant" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_q2_survey_complete"
+                android:id="@+id/constraintLayout_q2_survey_result_registrant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_q1_survey_complete">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_q1_survey_result_registrant">
 
                 <TextView
-                    android:id="@+id/textView_question2Left_survey_complete"
+                    android:id="@+id/textView_question2Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -308,142 +286,142 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView_q2_survey_complete"
+                    android:id="@+id/textView_q2_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_question2"
-                    app:layout_constraintStart_toEndOf="@+id/textView_question2Left_survey_complete"
-                    app:layout_constraintTop_toTopOf="@+id/textView_question2Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_question2Left_survey_result_registrant"
+                    app:layout_constraintTop_toTopOf="@+id/textView_question2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans1Left_survey_complete"
+                    android:id="@+id/textView_q2ans1Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="1."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans1_survey_complete"
+                    android:id="@+id/textView_q2ans1_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q2ans1"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans1Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans1Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans1percent_survey_complete"
+                    android:id="@+id/textView_q2ans1percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans2Left_survey_complete"
+                    android:id="@+id/textView_q2ans2Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="2."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans2_survey_complete"
+                    android:id="@+id/textView_q2ans2_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q2ans2"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans2Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans2Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans2percent_survey_complete"
+                    android:id="@+id/textView_q2ans2percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans3Left_survey_complete"
+                    android:id="@+id/textView_q2ans3Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="3."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans3_survey_complete"
+                    android:id="@+id/textView_q2ans3_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q2ans3"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans3Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans3Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans3percent_survey_complete"
+                    android:id="@+id/textView_q2ans3percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans4Left_survey_complete"
+                    android:id="@+id/textView_q2ans4Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="4."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans4_survey_complete"
+                    android:id="@+id/textView_q2ans4_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q2ans4"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans4Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans4Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans4percent_survey_complete"
+                    android:id="@+id/textView_q2ans4percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans5Left_survey_complete"
+                    android:id="@+id/textView_q2ans5Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="5."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans5_survey_complete"
+                    android:id="@+id/textView_q2ans5_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q2ans5"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans5Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q2ans5Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q2ans5percent_survey_complete"
+                    android:id="@+id/textView_q2ans5percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q2ans4Left_survey_result_registrant" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -453,10 +431,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_q2_survey_complete">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_q2_survey_result_registrant">
 
                 <TextView
-                    android:id="@+id/textView_question3Left_survey_complete"
+                    android:id="@+id/textView_question3Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -465,152 +443,160 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView_q3_survey_complete"
+                    android:id="@+id/textView_q3_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_question3"
-                    app:layout_constraintStart_toEndOf="@+id/textView_question3Left_survey_complete"
-                    app:layout_constraintTop_toTopOf="@+id/textView_question3Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_question3Left_survey_result_registrant"
+                    app:layout_constraintTop_toTopOf="@+id/textView_question3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans1Left_survey_complete"
+                    android:id="@+id/textView_q3ans1Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="1."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans1_survey_complete"
+                    android:id="@+id/textView_q3ans1_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q3ans1"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans1Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans1Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans1percent_survey_complete"
+                    android:id="@+id/textView_q3ans1percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_question3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans2Left_survey_complete"
+                    android:id="@+id/textView_q3ans2Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="2."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans2_survey_complete"
+                    android:id="@+id/textView_q3ans2_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q3ans2"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans2Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans2Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans2percent_survey_complete"
+                    android:id="@+id/textView_q3ans2percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans1Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans3Left_survey_complete"
+                    android:id="@+id/textView_q3ans3Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="3."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans3_survey_complete"
+                    android:id="@+id/textView_q3ans3_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q3ans3"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans3Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans3Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans3percent_survey_complete"
+                    android:id="@+id/textView_q3ans3percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans2Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans4Left_survey_complete"
+                    android:id="@+id/textView_q3ans4Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="4."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans4_survey_complete"
+                    android:id="@+id/textView_q3ans4_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q3ans4"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans4Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans4Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans4percent_survey_complete"
+                    android:id="@+id/textView_q3ans4percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans3Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans5Left_survey_complete"
+                    android:id="@+id/textView_q3ans5Left_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="5."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans5_survey_complete"
+                    android:id="@+id/textView_q3ans5_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView_q3ans5"
-                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans5Left_survey_complete"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_complete" />
+                    app:layout_constraintStart_toEndOf="@+id/textView_q3ans5Left_survey_result_registrant"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_result_registrant" />
 
                 <TextView
-                    android:id="@+id/textView_q3ans5percent_survey_complete"
+                    android:id="@+id/textView_q3ans5percent_survey_result_registrant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="num"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_q3ans4Left_survey_result_registrant" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
+    <Button
+        android:id="@+id/button_goParticipantCheck_survey_result_registrant"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_main"
+        android:text="응답자 확인"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

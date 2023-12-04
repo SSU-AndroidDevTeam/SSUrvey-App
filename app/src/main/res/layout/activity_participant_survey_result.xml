@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout_participant_survey_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParticipantSurveyResult">
+
+    <TextView
+        android:id="@+id/textView_title_participant_survey_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="응답자 응답 기록"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_participant_participant_survey_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:text="textView_participant_information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_participant_survey_result" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_survey_result_participant_survey_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_participant_participant_survey_result">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_studentType_survey_targetSelection"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView_studentType_survey_targetSelection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:background="@drawable/targetselect_wallpaper" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_studentType_survey_targetSelection"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout_studentType_survey_targetSelection">
+
+            <TextView
+                android:id="@+id/textView_q1Left_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="1."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_q1_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="textView_q1"
+                app:layout_constraintStart_toEndOf="@+id/textView_q1Left_participant_survey_result"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_q1ansLeft_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="응답: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q1Left_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q1ans_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textView_q1ans"
+                app:layout_constraintStart_toEndOf="@+id/textView_q1ansLeft_participant_survey_result"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q1Left_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q2Left_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="2."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q1ansLeft_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q2_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="textView_q2"
+                app:layout_constraintStart_toEndOf="@+id/textView_q2Left_participant_survey_result"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q1ansLeft_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q2ansLeft_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="응답: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q2Left_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q2ans_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textView_q2ans"
+                app:layout_constraintStart_toEndOf="@+id/textView_q2ansLeft_participant_survey_result"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q2Left_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q3Left_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="3."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q2ansLeft_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q3_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="textView_q3"
+                app:layout_constraintStart_toEndOf="@+id/textView_q3Left_participant_survey_result"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q2ansLeft_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q3ansLeft_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="응답: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q3Left_participant_survey_result" />
+
+            <TextView
+                android:id="@+id/textView_q3ans_participant_survey_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textView_q3ans"
+                app:layout_constraintStart_toEndOf="@+id/textView_q3ansLeft_participant_survey_result"
+                app:layout_constraintTop_toBottomOf="@+id/textView_q3Left_participant_survey_result" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_all_invite_participant_survey_result"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_main"
+        android:text="설문 초청"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_before_participant_survey_result"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_sub"
+        android:text="목록 으로"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.ssurvey.FBRecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.ssurvey.R;
 import com.example.ssurvey.SurveyItem;
+import com.example.ssurvey.Survey_main;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,22 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         holder.survey_name.setText(arrayList.get(position).getName());
         holder.survey_desc.setText(arrayList.get(position).getDescription());
         holder.survey_dday.setText(arrayList.get(position).getDate());
+
+        // 아이템뷰가 클릭되었을 때의 이벤트 처리 -12/04 재준 추가한 부분-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 클릭한 아이템의 정보를 가져와서 이동할 화면에 전달하거나 사용
+                SurveyItem clickedItem = arrayList.get(holder.getAdapterPosition());
+
+                // 클릭한 설문의 고유 ID를 가져와서 다음 화면으로 전달
+                //String surveyId = clickedItem.getSurveyId();
+
+                Intent intent = new Intent(v.getContext(), Survey_main.class);
+                //intent.putExtra("surveyId", surveyId);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
