@@ -206,7 +206,6 @@ public class User {
 
     /** 빈 User 객체 생성용 */
     public User() {
-        //
         this.clubInteresting = new ArrayList<Club>();
     }
 

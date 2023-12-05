@@ -37,10 +37,24 @@ public class MainActivity extends AppCompatActivity {
 
         // 버튼 생성 및 추가
         Button myInfoBtn = createButton(R.drawable.button_infoimage);
-        Button homeBtn = createButton(R.drawable.button_homeimage);
+        Button mainBtn;
+
+        // 현재 액티비티가 Home이면
+        if(SSUrvey.getCurrentActivityClass() == Home.class) {
+            // 가운데 메인 버튼을 설문 생성 버튼으로 한다
+            mainBtn = createButton(R.drawable.button_surveyplusimage);
+            mainBtn.setOnClickListener(new MyButtonClickListener(Survey_outline.class));
+        }
+        // 현재 액티비티가 Home이 아니라면
+        else {
+            // 가운데 메인 버튼을 홈 버튼으로 한다
+            mainBtn = createButton(R.drawable.button_homeimage);
+            mainBtn.setOnClickListener(new MyButtonClickListener(Home.class));
+        }
+
         Button settingBtn = createButton(R.drawable.button_settingimage);
         linearLayout.addView(myInfoBtn);
-        linearLayout.addView(homeBtn);
+        linearLayout.addView(mainBtn);
         linearLayout.addView(settingBtn);
 
         // Constraint 설정
@@ -55,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
         else
             if(SSUrvey.getCurrentActivityClass() != LoginActivity.class)
                 myInfoBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
-
-        if(SSUrvey.getCurrentActivityClass() != Home.class)
-            homeBtn.setOnClickListener(new MyButtonClickListener(Home.class));
 
         if(SSUrvey.getCurrentActivityClass() != Setting.class)
             settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
