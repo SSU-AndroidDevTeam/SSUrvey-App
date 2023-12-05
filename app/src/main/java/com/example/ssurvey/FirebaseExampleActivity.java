@@ -12,6 +12,7 @@ import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.model.SurveyStatistics;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.example.ssurvey.service.SurveyResponseCallback;
 import com.example.ssurvey.service.SurveyStatCallback;
 import com.google.firebase.Timestamp;
 
@@ -114,8 +115,6 @@ public class FirebaseExampleActivity extends AppCompatActivity {
 
         /////////////////////////////////// C. 설문 응답 결과를 Write하는 예시 /////////////////////////////
         // 설문 응답 결과는 <설문 uniqueId> 하위에 <설문 응답자 userId>로 저장된다
-        // 설문 응답을 Read하는 예시는 Survey를 read하는 것과 동일하므로 생략한다
-        // 다만 콜백 객체 생성 시 예외처리에 조금 더 신경써야 한다 (사용자가 아직 응답한 적이 없을 경우 NOT_FOUND가 인자로 전달됨)
         SurveyResponse responseExample = new SurveyResponse(
                 "<사용자 uniqueId 값>",
                 1,
@@ -134,8 +133,36 @@ public class FirebaseExampleActivity extends AppCompatActivity {
             }
         });
 
+        ////////////////////////////////// D. 설문 응답 결과를  Read하는 예시 /////////////////////////////
+        // 설문 응답을 Read하는 예시는 Survey를 read하는 것과 거의 동일하다
+        // FirebaseManager의 loadSurveyResponse()에 콜백과 설문 id, 유저 id를 넘기면 해당 유저의 응답에 접근할 수 있다
+        // 만약 해당 유저의 응답을 찾을 수 없다면 설문 결과로는 null값을, cbCode로는 NOT_FOUND를 전달한다.
+        SurveyResponseCallback respCallable = new SurveyResponseCallback() {
+            @Override
+            public void onCallback(SurveyResponse response, CbCode cbCode) {
+                switch (cbCode) {
+                    case OK:
+                        break;
+                    case ERROR:
+                        Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                        return;
+                    case NOT_FOUND:
+                        Log.d("FB", "해당 유저의 응답을 찾을 수 없습니다.");
+                        return;
+                }
+                // 로직 실행
+                binding.text4.setText("홍길동의 DummySurvey 1번 문항 응답 번호: " + response.getQ1Response());
+            }
+        };
 
-        ///////////////////////////////// D. 설문 통계 산출 예시 ////////////////////////////////////////
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbManager.loadSurveyResponse(respCallable, "DummySurvey", "홍길동");
+            }
+        });
+
+        ///////////////////////////////// E. 설문 통계 산출 예시 ////////////////////////////////////////
         // 콜백 객체 정의
         SurveyStatCallback statCallable = new SurveyStatCallback() {
             @Override
@@ -155,11 +182,11 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 // SurveyStatistics의 여러 getter들을 사용해 원하는 통계값을 구할 수 있다
                 String text = "총 응답자 수: " + statistics.getTotalRespondents();
                 text += ", 1번 문항에서 3번을 선택한 사람의 수: " + statistics.getQ1ResponseCount(3);
-                binding.text4.setText(text);
+                binding.text5.setText(text);
             }
         };
 
-        binding.button4.setOnClickListener(new View.OnClickListener() {
+        binding.button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fbManager.getSurveyStatistics("DummySurvey", statCallable);

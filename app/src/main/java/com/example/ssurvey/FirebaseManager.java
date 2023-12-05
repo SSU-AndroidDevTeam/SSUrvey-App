@@ -80,11 +80,11 @@ public class FirebaseManager {
                     if (document.exists()) {
                         callable.onCallback(document.toObject(SurveyResponse.class), CbCode.OK);
                     } else {
-                        callable.onCallback(null, CbCode.ERROR);
+                        // NOTE: 사용자가 설문에 참여하지 않았을 때 해당 에러 발생
+                        callable.onCallback(null, CbCode.NOT_FOUND);
                     }
                 } else {
-                    // NOTE: 사용자가 설문에 참여하지 않았을 때 해당 에러 발생
-                    callable.onCallback(null, CbCode.NOT_FOUND);
+                    callable.onCallback(null, CbCode.ERROR);
                 }
             }
         });
@@ -102,8 +102,8 @@ public class FirebaseManager {
      * 주어진 uniqueId의 설문에 주어진 userId의 유저가 응답한 결과를 반환한다.
      * 만약 응답 기록이 없다면 콜백의 cbCode에 NOT_FOUND를 인자로 전달한다.
      * */
-    public void loadSurveyResponse(SurveyResponseCallback callable, String documentId) {
-        DocumentReference docRef = db.collection(SurveyCollectionName).document(documentId);
+    public void loadSurveyResponse(SurveyResponseCallback callable, String surveyId, String userId) {
+        DocumentReference docRef = db.collection(surveyId).document(userId);
         loadSurveyResponseDocument(docRef, callable);
     }
 
@@ -131,7 +131,6 @@ public class FirebaseManager {
                     SurveyStatistics stat = new SurveyStatistics();
                     for (QueryDocumentSnapshot doc : task.getResult()) {
                         stat.updateStatistics(doc.getData()); // 각 응답 결과들마다 통계 갱신
-                        Log.d("FB", "??");
                     }
                     callable.onCallback(stat, CbCode.OK);
                 } else {
