@@ -1,16 +1,18 @@
 package com.example.ssurvey;
 
 import com.example.ssurvey.model.Survey;
+import java.io.Serializable;
 
 public class SurveyItem {
     private String name;
     private String description;
     private String date;
 
-    public SurveyItem(String name, String description, String date) {
+    public SurveyItem(String name, String description, String date, String surveyId) {
         this.name = name;
         this.description = description;
         this.date = date;
+
     }
 
     public SurveyItem(Survey survey) {

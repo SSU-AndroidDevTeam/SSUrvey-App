@@ -1,10 +1,10 @@
 package com.example.ssurvey;
 
-import android.content.Intent;
-import android.os.Bundle;
-
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,32 +14,32 @@ import com.example.ssurvey.model.Survey;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
 
-public class Survey_main extends MainActivity {
+public class ParticipantSurveyResult extends MainActivity {
 
     private FirebaseManager fbManager;
-    Button surveyGoIngBtn; //설문메인에서 설문ing로 이동하는 버튼
+    Button goParticipantCheckBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey_main);
+        setContentView(R.layout.activity_participant_survey_result);
 
         // XML에 정의된 ConstraintLayout 가져오기
-        ConstraintLayout constraintLayout_survey_main = findViewById(R.id.constraintLayout_survey_main);
+        ConstraintLayout constraintLayout_survey_main = findViewById(R.id.constraintLayout_participant_survey_result);
 
         navigationBar(constraintLayout_survey_main);
 
-        fbManager = new FirebaseManager();
+        goParticipantCheckBtn = findViewById(R.id.button_before_participant_survey_result);
 
-        //설문메인에서 설문ing로 이동하는 버튼이벤트
-        surveyGoIngBtn = findViewById(R.id.button_surveying_survey_main);
-        surveyGoIngBtn.setOnClickListener(new View.OnClickListener() {
+        goParticipantCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Survey_ing.class);
+                Intent intent = new Intent(getApplicationContext(), ParticipantCheck.class);
                 startActivity(intent);
             }
         });
+
+        fbManager = new FirebaseManager();
 
         // SurveyId를 Intent에서 가져옴
         Intent intent = getIntent();
@@ -51,7 +51,6 @@ public class Survey_main extends MainActivity {
         } else {
             Log.d("Survey_main", "SurveyId is null");
         }
-
     }
 
     // SurveyCallback 구현
@@ -77,25 +76,20 @@ public class Survey_main extends MainActivity {
         // Survey 정보를 화면에 표시하는 로직을 작성
 
         if (survey != null) {
-            TextView titleSurveyMain = findViewById(R.id.textView_title_survey_main);
-            TextView dateSurveyMain = findViewById(R.id.textView_date_survey_main);
-            TextView dDateSurveyMain = findViewById(R.id.textView_Ddate_survey_main);
-            TextView descSurveyMain = findViewById(R.id.textView_discription_survey_main);
+            TextView participantParticipantSurveyResult = findViewById(R.id.textView_participant_participant_survey_result);
 
-            // Survey의 정보를 UI에 설정
-            titleSurveyMain.setText(survey.getName());
+            TextView q1ParticipantSurveyResult = findViewById(R.id.textView_q1_participant_survey_result);
+            TextView q2ParticipantSurveyResult = findViewById(R.id.textView_q2_participant_survey_result);
+            TextView q3ParticipantSurveyResult = findViewById(R.id.textView_q3_participant_survey_result);
+            TextView q1ansParticipantSurveyResult = findViewById(R.id.textView_q1ans_participant_survey_result);
+            TextView q2ansParticipantSurveyResult = findViewById(R.id.textView_q2ans_participant_survey_result);
+            TextView q3ansParticipantSurveyResult = findViewById(R.id.textView_q3ans_participant_survey_result);
 
-            // 날짜 형식에 맞게 변환하여 표시 (예시, 실제 날짜 형식에 따라 수정 필요)
-            dateSurveyMain.setText(survey.getOpenDate().toDate().toString() + " ~ " + survey.getCloseDate().toDate().toString());
-
-            // D-day 계산 및 표시 (예시, 실제 D-day 계산 로직에 따라 수정 필요)
-            long dDayMillis = survey.getCloseDate().toDate().getTime() - System.currentTimeMillis();
-            int dDay = (int) (dDayMillis / (24 * 60 * 60 * 1000));
-            dDateSurveyMain.setText("D-" + dDay);
-
-            // 설문 설명 설정
-            descSurveyMain.setText(survey.getDesc());
-        } else {
+            q1ParticipantSurveyResult.setText(survey.getQ1Desc());
+            q2ParticipantSurveyResult.setText(survey.getQ2Desc());
+            q3ParticipantSurveyResult.setText(survey.getQ3Desc());
+        }
+        else {
             Log.d("Survey_main", "Survey object is null");
         }
     }

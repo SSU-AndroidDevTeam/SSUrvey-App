@@ -22,9 +22,14 @@ import android.widget.TextView;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.ssurvey.model.Survey;
+import com.google.firebase.Timestamp;
 
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
     //editText에 입력된 설문 개요들을 서버로 보내주는 함수를 만들어야함
@@ -44,8 +49,11 @@ public class Survey_outline extends MainActivity {
     ImageButton btnImageSelect; //이미지 선택 버튼
     Button surveyOutlineNextBtn; //설문 개요에서 설문 세부 사항으로 넘어가는 버튼
 
-    EditText editTextSurveyTitle; //설문 개요 제목
-    EditText editTextSurveyDescription; //설문 개요 설명
+    EditText nameEditText; //설문 개요 제목
+    EditText descEditText; //설문 개요 설명
+
+    String nameStr, descStr; //설문 개요 제목, 설문 개요 설명
+    Timestamp openDateValue, closeDateValue; //설문 시작일, 설문 종료일
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +68,8 @@ public class Survey_outline extends MainActivity {
 
 
         //설문 개요 제목 부분 가져오기
-        editTextSurveyTitle = findViewById(R.id.editText_survey_title_survey_outline);
-        editTextSurveyDescription = findViewById(R.id.editText_survey_descrption_survey_outline);
+        nameEditText = findViewById(R.id.editText_survey_title_survey_outline);
+        descEditText = findViewById(R.id.editText_survey_descrption_survey_outline);
 
 
 
@@ -195,43 +203,84 @@ public class Survey_outline extends MainActivity {
         textView.setText(selectedDate);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        String userInput1 = editTextSurveyTitle.getText().toString();
-        String userInput2 = editTextSurveyDescription.getText().toString();
-        String userInput3 = startDateTextView.getText().toString();
-        String userInput4 = endDateTextView.getText().toString();
-
-        Log.d("MainActivity", "onPause: userInput1=" + userInput1 + ", userInput2=" + userInput2);
-
-        // 앱 전체에서 공유되는 SharedPreferences에 저장
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("userInputKey1", userInput1);
-        editor.putString("userInputKey2", userInput2);
-        editor.putString("userInputKey3", userInput3);
-        editor.putString("userInputKey4", userInput4);
-        editor.apply();
+    private void updateDateTextViewTimeStamp(TextView textView, Timestamp timestamp) {
+        if (timestamp != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Date date = new Date(timestamp.getSeconds() * 1000L);  // Timestamp를 밀리초로 변환
+            String formattedDate = dateFormat.format(date);
+            textView.setText(formattedDate);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Survey survey = MakeSurvey.makeSurvey;
 
-        // 앱 전체에서 공유되는 SharedPreferences에서 불러오기
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String savedUserInput1 = preferences.getString("userInputKey1", "");
-        String savedUserInput2 = preferences.getString("userInputKey2", "");
-        String savedUserInput3 = preferences.getString("userInputKey3", "");
-        String savedUserInput4 = preferences.getString("userInputKey4", "");
+        if (survey.getName() == null) {
+            nameStr = nameEditText.getText().toString();
+        } else {
+            nameStr = survey.getName();
+        }
 
-        Log.d("MainActivity", "onResume: savedUserInput1=" + savedUserInput1 + ", savedUserInput2=" + savedUserInput2);
+        nameEditText.setText(nameStr);
 
-        editTextSurveyTitle.setText(savedUserInput1);
-        editTextSurveyDescription.setText(savedUserInput2);
-        startDateTextView.setText(savedUserInput3);
-        endDateTextView.setText(savedUserInput4);
+        if (survey.getDesc() == null) {
+            descStr = descEditText.getText().toString();
+        } else {
+            descStr = survey.getDesc();
+        }
+
+        descEditText.setText(descStr);
+
+        // Survey 클래스에서 startDate와 endDate 정보 가져오기
+        Timestamp startDateValue = survey.getOpenDate();
+        Timestamp endDateValue = survey.getCloseDate();
+
+        // startDate를 TextView에 표시하기
+        updateDateTextViewTimeStamp(startDateTextView, startDateValue);
+
+        // endDate를 TextView에 표시하기
+        updateDateTextViewTimeStamp(endDateTextView, endDateValue);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Survey survey = MakeSurvey.makeSurvey;
+
+        // textView에서 텍스트 가져오기
+        String startDateStr = startDateTextView.getText().toString();
+        String endDateStr = endDateTextView.getText().toString();
+
+        // SimpleDateFormat을 사용하여 문자열을 Date 객체로 파싱
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        // 처리할 Date 객체들
+        Date startDate, endDate;
+
+        try {
+            startDate = dateFormat.parse(startDateStr);
+            endDate = dateFormat.parse(endDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return; // 파싱 실패 시 처리할 내용 추가
+        }
+
+        // startDate와 endDate 객체를 Timestamp로 변환
+        long startSeconds = startDate.getTime() / 1000;  // 밀리초를 초로 변환
+        int startNanoseconds = (int) ((startDate.getTime() % 1000) * 1000000);  // 나노초 계산
+
+        long endSeconds = endDate.getTime() / 1000;  // 밀리초를 초로 변환
+        int endNanoseconds = (int) ((endDate.getTime() % 1000) * 1000000);  // 나노초 계산
+
+        Timestamp startDateValue = new Timestamp(startSeconds, startNanoseconds);
+        Timestamp endDateValue = new Timestamp(endSeconds, endNanoseconds);
+
+        // Survey 클래스에 정보 저장
+        survey.setName(nameEditText.getText().toString());
+        survey.setDesc(descEditText.getText().toString());
+        survey.setOpenDate(startDateValue);
+        survey.setCloseDate(endDateValue);
     }
 }
