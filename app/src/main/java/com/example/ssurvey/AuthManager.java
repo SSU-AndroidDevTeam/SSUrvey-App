@@ -63,6 +63,19 @@ public class AuthManager {
         return "";
     }
 
+    /** 현재 로그인 한 User의 학번 (ID) 반환 */
+    public String getCurrentId() {
+        if(currentUser != null)
+            return currentUser.getId();
+        return "";
+    }
+
+    /** 로그아웃 */
+    public void logout() {
+        firebaseAuth.signOut();
+        currentUser = null;
+    }
+
     /** 현재 로그인이 되어있는가? */
     public boolean isLoggedIn() {
         return firebaseAuth.getCurrentUser() != null;
