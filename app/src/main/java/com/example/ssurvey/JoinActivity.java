@@ -318,7 +318,7 @@ public class JoinActivity extends MainActivity {
                 scrollAndFocus(binding.joinTxtSex, binding.joinRadioSex);
                 return "성별을 선택해 주세요.";
             }
-            user.setSex(binding.joinRadioSexMale.isSelected() ? User.Sex.MALE : User.Sex.FEMALE);
+            user.setSex(binding.joinRadioSexMale.isChecked() ? User.Sex.MALE : User.Sex.FEMALE);
 
             if(user.getBirth() == null) {
                 scrollAndFocus(binding.joinTxtBirth, binding.joinBtnBirth);

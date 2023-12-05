@@ -91,6 +91,8 @@ public class UserService {
 
     /** 유저 가져오기 - By 학번 */
     public void getUserById(String id, UserCallback callback) {
+        Log.d(TAG, "getUserById(String id, UserCallback callback)");
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection(COLLECTION).whereEqualTo("id", id).get()
@@ -114,5 +116,7 @@ public class UserService {
                     Log.d(TAG, "getUser Error : " + e.getMessage());
                     callback.onCallback(null, CbCode.ERROR);
                 });
+
+        Log.d(TAG, "~getUserById(String id, UserCallback callback)");
     }
 }
