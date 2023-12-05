@@ -8,11 +8,16 @@ import android.view.View;
 
 import com.example.ssurvey.databinding.ActivityFirebaseExampleBinding;
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.model.SurveyResponse;
+import com.example.ssurvey.model.SurveyStatistics;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.example.ssurvey.service.SurveyStatCallback;
 import com.google.firebase.Timestamp;
 
 import java.util.Date;
+import java.util.Random;
+
 
 public class FirebaseExampleActivity extends AppCompatActivity {
     private FirebaseManager fbManager; // Firebase 작업은 모두 FirebaseManager를 거쳐서 처리한다
@@ -106,5 +111,61 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 binding.text2.setText(uniqueId);
             }
         });
+
+        /////////////////////////////////// C. 설문 응답 결과를 Write하는 예시 /////////////////////////////
+        // 설문 응답 결과는 <설문 uniqueId> 하위에 <설문 응답자 userId>로 저장된다
+        // 설문 응답을 Read하는 예시는 Survey를 read하는 것과 동일하므로 생략한다
+        // 다만 콜백 객체 생성 시 예외처리에 조금 더 신경써야 한다 (사용자가 아직 응답한 적이 없을 경우 NOT_FOUND가 인자로 전달됨)
+        SurveyResponse responseExample = new SurveyResponse(
+                "<사용자 uniqueId 값>",
+                1,
+                2,
+                3,
+                new Timestamp(new Date(23,12,5))
+        );
+
+        binding.button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 사용자의 설문 응답 결과를 DB에 추가한다
+                // 여기서 인자로 응답할 설문의 uniqueId를 전달해야 한다
+                String responseId = fbManager.addSurveyResponse(responseExample, "DummySurvey");
+                binding.text3.setText(responseId);
+            }
+        });
+
+
+        ///////////////////////////////// D. 설문 통계 산출 예시 ////////////////////////////////////////
+        // 콜백 객체 정의
+        SurveyStatCallback statCallable = new SurveyStatCallback() {
+            @Override
+            public void onCallback(SurveyStatistics statistics, CbCode cbCode) {
+                // 예외 처리
+                switch (cbCode) {
+                    case OK:
+                        break;
+                    case ERROR:
+                        Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                        return;
+                    case NOT_FOUND:
+                        Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                        return;
+                }
+                // 로직 실행
+                // SurveyStatistics의 여러 getter들을 사용해 원하는 통계값을 구할 수 있다
+                String text = "총 응답자 수: " + statistics.getTotalRespondents();
+                text += ", 1번 문항에서 3번을 선택한 사람의 수: " + statistics.getQ1ResponseCount(3);
+                binding.text4.setText(text);
+            }
+        };
+
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbManager.getSurveyStatistics("DummySurvey", statCallable);
+                // 지금은 DummySurvey를 문자열로 전달 중이지만, 실제 사용시에는 통계를 얻으려는 설문의 uniqueId를 전달해야 한다
+            }
+        });
+
     }
 }
