@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout_login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,30 +14,84 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <EditText
-            android:id="@+id/id"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="학번" />
+            android:fontFamily="@font/ibmplexsanskr_semibold"
+            android:text="로그인"
+            android:textSize="28sp" />
 
-        <EditText
-            android:id="@+id/password"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호"
-            android:inputType="textPassword" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/login_et_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:hint="학번"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:paddingStart="15dp"
+                    android:textSize="17sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/login_et_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/inputbox"
+                    android:hint="비밀번호"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:paddingStart="15dp"
+                    android:textSize="17sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/login_btn_login"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/button_main_selector"
+                android:text="로그인"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="아직 회원이 아니신가요?"
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="로그인" />
-
-        <Button
-            android:id="@+id/join"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입" />
+            android:id="@+id/login_btn_join"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/button_main_selector"
+            android:text="회원가입"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

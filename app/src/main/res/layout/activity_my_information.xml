@@ -139,4 +139,28 @@
         app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
         app:layout_constraintTop_toBottomOf="@+id/button_invited_my_information" />
 
+    <ImageView
+        android:id="@+id/imageView_logout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_giftimage_my_information"
+        app:srcCompat="@drawable/icon_logout" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="로그아웃"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_registeredimage_my_information"
+        app:layout_constraintTop_toBottomOf="@+id/button_gift_my_information" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

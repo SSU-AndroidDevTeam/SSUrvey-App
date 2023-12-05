@@ -1,8 +1,8 @@
 package com.example.ssurvey;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +15,7 @@ public class MyInformation extends MainActivity {
     Button goParticipatedSurveyBtn; //참여한 설문 버튼
     Button goInvitedSurveyBtn; //초청된 설문 버튼
     Button goMyGiftBtn; //당첨된 경품 버튼
+    Button goLogoutBtn; // 로그아웃 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MyInformation extends MainActivity {
         goParticipatedSurveyBtn = findViewById(R.id.button_participated_my_information);
         goInvitedSurveyBtn = findViewById(R.id.button_invited_my_information);
         goMyGiftBtn = findViewById(R.id.button_gift_my_information);
+        goLogoutBtn = findViewById(R.id.button_logout);
 
         goEditProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,32 @@ public class MyInformation extends MainActivity {
                 startActivity(intent);
             }
         });
+
+        goLogoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDial4Logout();
+            }
+        });
     }
+
+    /** 로그아웃 다이얼로그 */
+    public void showDial4Logout() {
+        new AlertDialog.Builder(this).setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setNegativeButton("아니오", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .setPositiveButton("로그아웃", (dialog, which) -> {
+                    // 로그아웃
+                    AuthManager.getInstance().logout();
+                    finish();
+
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                })
+                .create()
+                .show();
+    }
+
 
 }
