@@ -45,6 +45,8 @@ public class LoginActivity extends MainActivity {
                             // User 데이터 가져오기
                             AuthManager.getInstance().renewCurrentUser();
 
+                            Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(this, Home.class));
                             finish();
                         }
