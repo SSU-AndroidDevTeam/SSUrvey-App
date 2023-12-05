@@ -23,17 +23,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends AppCompatActivity {
+public class Home extends MainActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<SurveyItem> arrayList;
     private FirebaseManager fbManager;
-
-    Button homeGoMyInfoBtn; //홈 화면에서 내 정보 화면으로 넘어가는 버튼
-    Button homeGoSettingBtn; //홈 화면에서 설정 화면으로 넘어가는 버튼
-    Button homeGoSurveyOutlineBtn; //홈 화면에서 설문 개요 화면으로 넘어가는 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,41 +65,8 @@ public class Home extends AppCompatActivity {
                         }
                     }
                 });
-
         recyclerView.setAdapter(adapter);
 
-
-        homeGoMyInfoBtn = findViewById(R.id.button_goMyInfo_home);
-        homeGoSettingBtn = findViewById(R.id.button_goSetting_home);
-        homeGoSurveyOutlineBtn = findViewById(R.id.button_goSurveyOutline_home);
-
-        homeGoMyInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if(AuthManager.getInstance().isLoggedIn())
-                    intent = new Intent(getApplicationContext(), MyInformation.class);
-                else
-                    intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        homeGoSettingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
-                startActivity(intent);
-            }
-        });
-
-        homeGoSurveyOutlineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Survey_outline.class);
-                startActivity(intent);
-            }
-        });
+        super.navigationBar(findViewById(R.id.constraintLayout_home));
     }
-
 }

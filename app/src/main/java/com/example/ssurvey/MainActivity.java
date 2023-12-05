@@ -47,13 +47,20 @@ public class MainActivity extends AppCompatActivity {
         setupConstraints(constraintLayout, linearLayout);
 
         // 각 버튼에 대한 클릭 이벤트 처리
-        if(AuthManager.getInstance().isLoggedIn())
-            myInfoBtn.setOnClickListener(new MyButtonClickListener(MyInformation.class));
+        if(AuthManager.getInstance().isLoggedIn()) {
+            // 같은 액티비티가 띄워진 경우 중복 띄우기 방지
+            if(SSUrvey.getCurrentActivityClass() != MyInformation.class)
+                myInfoBtn.setOnClickListener(new MyButtonClickListener(MyInformation.class));
+        }
         else
-            myInfoBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
+            if(SSUrvey.getCurrentActivityClass() != LoginActivity.class)
+                myInfoBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
 
-        homeBtn.setOnClickListener(new MyButtonClickListener(Home.class));
-        settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
+        if(SSUrvey.getCurrentActivityClass() != Home.class)
+            homeBtn.setOnClickListener(new MyButtonClickListener(Home.class));
+
+        if(SSUrvey.getCurrentActivityClass() != Setting.class)
+            settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
     }
 
     private LinearLayout createLinearLayout() {
@@ -156,5 +163,21 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    /** 입력하지 않은 입력 개체에 대한 스크롤 & 포커싱에 사용
+     * @Params
+     * v4focus : 포커스 대상 View
+     * */
+    protected void focusView (View v4focus) {
+        v4focus.requestFocus();
+
+        // 포커스 대상 View가 EditText라면
+        if(v4focus instanceof EditText) {
+            // 인풋 커서를 입력한 텍스트에서 가장 마지막에 두고,
+            ((EditText) v4focus).setSelection(((EditText) v4focus).getText().length());
+            // 키보드를 띄운다.
+            ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(v4focus, InputMethodManager.SHOW_IMPLICIT);
+        }
     }
 }
