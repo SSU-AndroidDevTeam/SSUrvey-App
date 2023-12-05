@@ -8,7 +8,7 @@ public class SurveyItem {
     private String description;
     private String date;
 
-    public SurveyItem(String name, String description, String date, String surveyId) {
+    public SurveyItem(String name, String description, String date) {
         this.name = name;
         this.description = description;
         this.date = date;
