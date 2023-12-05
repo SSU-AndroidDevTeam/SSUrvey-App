@@ -46,6 +46,9 @@
             android:name=".LoginActivity"
             android:exported="true" />
         <activity
+            android:name=".JoinActivity"
+            android:exported="true" />
+        <activity
             android:name=".FirebaseExampleActivity"
             android:exported="true">
             <intent-filter>
