@@ -40,11 +40,8 @@ public class Survey {
     private String q3Ans3;
     private String q3Ans4;
     private String q3Ans5;
-    /** TODO: 설문 게시일 */
     private Timestamp openDate;
-    /** TODO: 설문 마감일 */
     private Timestamp closeDate;
-    /** TODO: 설문 대상 군집 특정을 위한 값 */
     private String target;
 
     public String getName() {

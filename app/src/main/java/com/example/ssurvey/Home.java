@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Home extends MainActivity {
@@ -63,6 +64,9 @@ public class Home extends MainActivity {
                             }
                             adapter.notifyDataSetChanged();
                         }
+
+                        // 디데이 순 정렬
+                        Collections.sort(arrayList);
                     }
                 });
         recyclerView.setAdapter(adapter);
