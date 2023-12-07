@@ -42,7 +42,7 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
                 .into(holder.survey_image);
         holder.survey_name.setText(arrayList.get(position).getName());
         holder.survey_desc.setText(arrayList.get(position).getDescription());
-        holder.survey_dday.setText(arrayList.get(position).getDate());
+        holder.survey_dday.setText(arrayList.get(position).getDateText());
 
         // 아이템뷰가 클릭되었을 때의 이벤트 처리 -12/04 재준 추가한 부분-
         holder.itemView.setOnClickListener(new View.OnClickListener() {

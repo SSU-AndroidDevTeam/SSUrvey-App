@@ -8,8 +8,6 @@ public class SurveyResponse {
     private int q1Response;
     private int q2Response;
     private int q3Response;
-
-    /** TODO: 설문 응답일 */
     private Timestamp responseDate;
 
     public SurveyResponse() {}

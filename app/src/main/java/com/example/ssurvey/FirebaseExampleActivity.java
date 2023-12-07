@@ -97,8 +97,8 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 "사비",
                 "긱스",
                 "디마리아",
-                new Timestamp(new Date(23,11,25)),
-                new Timestamp(new Date(23,11,25)),
+                new Timestamp(new Date(System.currentTimeMillis())), // 실제 사용 시에는 원하는 시각의 Date 객체를 생성해 전달해야함
+                new Timestamp(new Date(System.currentTimeMillis())),
                 "(구현 안됨)"
         );
 
@@ -120,7 +120,7 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 1,
                 2,
                 3,
-                new Timestamp(new Date(23,12,5))
+                new Timestamp(new Date(System.currentTimeMillis()))
         );
 
         binding.button3.setOnClickListener(new View.OnClickListener() {
