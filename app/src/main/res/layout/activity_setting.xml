@@ -41,13 +41,14 @@
         app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
         app:layout_constraintTop_toBottomOf="@+id/textView_title_setting" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <Switch
         android:id="@+id/switch_participated_setting"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_setting"
+        tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
     <ImageView
         android:id="@+id/imageView_registeredimage_setting"
@@ -71,13 +72,14 @@
         app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
         app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <Switch
         android:id="@+id/switch_registered_setting"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
-        app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_participated_setting"
+        tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
     <ImageView
         android:id="@+id/imageView_invitedimage_setting"
@@ -101,12 +103,13 @@
         app:layout_constraintStart_toEndOf="@+id/imageView_participatedimage_setting"
         app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <Switch
         android:id="@+id/switch_invited_setting"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView_participated_setting"
-        app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_registered_setting"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
