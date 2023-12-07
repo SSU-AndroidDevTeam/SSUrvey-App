@@ -14,6 +14,7 @@ public class SurveyItem implements Comparable<SurveyItem> {
     private String dateText;
     private boolean isClosed = false;
     private int dateLeft = 0;
+    private String surveyId;
 
     public SurveyItem(String name, String description, String dateText) {
         this.name = name;
@@ -21,9 +22,10 @@ public class SurveyItem implements Comparable<SurveyItem> {
         this.dateText = dateText;
     }
 
-    public SurveyItem(Survey survey) {
+    public SurveyItem(Survey survey, String surveyId) {
         this.name = survey.getName();
         this.description = survey.getDesc();
+        this.surveyId = surveyId;
         long currTimeInMs = System.currentTimeMillis();
         long closeDateInMs = survey.getCloseDate().toDate().getTime();
         SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
@@ -63,6 +65,8 @@ public class SurveyItem implements Comparable<SurveyItem> {
     public int getDateLeft() {
         return dateLeft;
     }
+
+    public String getSurveyId() { return surveyId; }
 
     @Override
     public int compareTo(SurveyItem surveyItem) {

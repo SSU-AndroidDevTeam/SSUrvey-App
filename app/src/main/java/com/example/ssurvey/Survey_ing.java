@@ -13,8 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.google.firebase.Timestamp;
+
+import java.util.Date;
 
 public class Survey_ing extends MainActivity {
 
@@ -38,6 +42,13 @@ public class Survey_ing extends MainActivity {
         radioGroup2 = findViewById(R.id.radioGroup_radioGroup2_survey_ing);
         radioGroup3 = findViewById(R.id.radioGroup_radioGroup3_survey_ing);
 
+        fbManager = new FirebaseManager();
+
+        // SurveyId를 Intent에서 가져옴
+        Intent intent = getIntent();
+        String surveyId = intent.getStringExtra("surveyId");
+        Log.d("FB", "surveyId");
+
         //설문 진행중에서 설문 완료로 이동하는 버튼이벤트
         surveyGoCompleteBtn = findViewById(R.id.button_surveycomplete_survey_ing);
         surveyGoCompleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,56 +57,66 @@ public class Survey_ing extends MainActivity {
 
                 int selectedRadioButton1Id = radioGroup1.getCheckedRadioButtonId();
 
+                int q1Result = 1;
+                int q2Result = 1;
+                int q3Result = 1;
                 if (selectedRadioButton1Id == R.id.radioButton_btn1_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 1;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn2_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 2;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn3_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 3;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn4_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 4;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn5_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 5;
                 }
 
                 int selectedRadioButton2Id = radioGroup2.getCheckedRadioButtonId();
 
                 if (selectedRadioButton2Id == R.id.radioButton_btn1_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 1;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn2_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 2;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn3_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 3;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn4_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 4;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn5_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 5;
                 }
 
                 int selectedRadioButton3Id = radioGroup3.getCheckedRadioButtonId();
 
                 if (selectedRadioButton3Id == R.id.radioButton_btn1_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 1;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn2_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 2;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn3_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 3;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn4_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 4;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn5_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 5;
                 }
+
+                SurveyResponse response = new SurveyResponse(
+                        "TODO: UserId",
+                        q1Result,
+                        q2Result,
+                        q3Result,
+                        new Timestamp(new Date(System.currentTimeMillis()))
+                );
+
+                if (surveyId == null || surveyId.isEmpty()) {
+                    Log.wtf("SurveySubmit", "NO SURVEYID");
+                }
+                String responseId = fbManager.addSurveyResponse(response, surveyId);
 
                 Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
                 startActivity(intent);
             }
         });
-
-        fbManager = new FirebaseManager();
-
-        // SurveyId를 Intent에서 가져옴
-        Intent intent = getIntent();
-        String surveyId = intent.getStringExtra("surveyId");
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
