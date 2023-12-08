@@ -79,7 +79,9 @@ public class ParticipantCheck extends MainActivity {
             ArrayList<String> replicantNames = new ArrayList<>();
             for (String repId : replicantIds) {
                 UserService.getInstance().getUserById(repId, (user, code) -> {
-                    replicantNames.add(user.getName());
+                    if(user != null)
+                        if(user.getName() != null && user.getName().length() > 0)
+                            replicantNames.add(user.getName());
 
                     // 마지막 콜백에 리사이클러뷰 생성
                     if(replicantIds.indexOf(repId) == replicantIds.size() - 1) {
