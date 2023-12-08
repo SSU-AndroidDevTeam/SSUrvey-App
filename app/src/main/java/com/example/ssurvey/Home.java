@@ -59,7 +59,7 @@ public class Home extends MainActivity {
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class), dc.getDocument().getId());
+                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class));
                                 arrayList.add(surveyItem);
                             }
                             adapter.notifyDataSetChanged();

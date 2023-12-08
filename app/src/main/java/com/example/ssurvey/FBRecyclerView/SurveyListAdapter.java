@@ -2,7 +2,6 @@ package com.example.ssurvey.FBRecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +52,10 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
                 SurveyItem clickedItem = arrayList.get(holder.getAdapterPosition());
 
                 // 클릭한 설문의 고유 ID를 가져와서 다음 화면으로 전달
-                String surveyId = clickedItem.getSurveyId();
+                //String surveyId = clickedItem.getSurveyId();
 
                 Intent intent = new Intent(v.getContext(), Survey_main.class);
-                intent.putExtra("surveyId", surveyId);
+                //intent.putExtra("surveyId", surveyId);
                 v.getContext().startActivity(intent);
             }
         });
