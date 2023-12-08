@@ -14,6 +14,10 @@ import com.example.ssurvey.model.Survey;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Survey_main extends MainActivity {
 
     private FirebaseManager fbManager;
@@ -86,8 +90,18 @@ public class Survey_main extends MainActivity {
             // Survey의 정보를 UI에 설정
             titleSurveyMain.setText(survey.getName());
 
-            // 날짜 형식에 맞게 변환하여 표시 (예시, 실제 날짜 형식에 따라 수정 필요)
-            dateSurveyMain.setText(survey.getOpenDate().toDate().toString() + " ~ " + survey.getCloseDate().toDate().toString());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+// Firebase Timestamp 객체를 Date 객체로 변환
+            Date openDate = survey.getOpenDate().toDate();
+            Date closeDate = survey.getCloseDate().toDate();
+
+// Date 객체를 문자열로 포맷
+            String formattedOpenDate = dateFormat.format(openDate);
+            String formattedCloseDate = dateFormat.format(closeDate);
+
+            String displayText = formattedOpenDate + " ~ " + formattedCloseDate;
+            dateSurveyMain.setText(displayText);
 
             // D-day 계산 및 표시 (예시, 실제 D-day 계산 로직에 따라 수정 필요)
             long dDayMillis = survey.getCloseDate().toDate().getTime() - System.currentTimeMillis();

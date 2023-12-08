@@ -14,6 +14,10 @@ import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
 import com.example.ssurvey.service.SurveyStatCallback;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Survey_complete extends MainActivity {
 
     private FirebaseManager fbManager;
@@ -94,9 +98,18 @@ public class Survey_complete extends MainActivity {
             // Survey의 정보를 UI에 설정
             titleSurveyComplete.setText(survey.getName());
 
-            // 날짜 형식에 맞게 변환하여 표시 (예시, 실제 날짜 형식에 따라 수정 필요)
-            dateSurveyComplete.setText(survey.getOpenDate().toDate().toString() + " ~ " + survey.getCloseDate().toDate().toString());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+// Firebase Timestamp 객체를 Date 객체로 변환
+            Date openDate = survey.getOpenDate().toDate();
+            Date closeDate = survey.getCloseDate().toDate();
+
+// Date 객체를 문자열로 포맷
+            String formattedOpenDate = dateFormat.format(openDate);
+            String formattedCloseDate = dateFormat.format(closeDate);
+
+            String displayText = formattedOpenDate + " ~ " + formattedCloseDate;
+            dateSurveyComplete.setText(displayText);
             // D-day 계산 및 표시 (예시, 실제 D-day 계산 로직에 따라 수정 필요)
             long dDayMillis = survey.getCloseDate().toDate().getTime() - System.currentTimeMillis();
             int dDay = (int) (dDayMillis / (24 * 60 * 60 * 1000));
@@ -177,23 +190,44 @@ public class Survey_complete extends MainActivity {
 
         participantCountSurveyComplete.setText(String.valueOf(statistics.getTotalRespondents()));
 
-        //계산식 수정 필요 있음
-        q1ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(1)/statistics.getTotalRespondents()*100));
-        q1ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(2)/statistics.getTotalRespondents()*100));
-        q1ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(3)/statistics.getTotalRespondents()*100));
-        q1ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(4)/statistics.getTotalRespondents()*100));
-        q1ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(5)/statistics.getTotalRespondents()*100));
+        int q1Count1, q1Count2, q1Count3, q1Count4, q1Count5;
+        int q2Count1, q2Count2, q2Count3, q2Count4, q2Count5;
+        int q3Count1, q3Count2, q3Count3, q3Count4, q3Count5;
 
-        q2ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(1)/statistics.getTotalRespondents()*100));
-        q2ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(2)/statistics.getTotalRespondents()*100));
-        q2ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(3)/statistics.getTotalRespondents()*100));
-        q2ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(4)/statistics.getTotalRespondents()*100));
-        q2ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(5)/statistics.getTotalRespondents()*100));
+        q1Count1 = (int)((double)statistics.getQ1ResponseCount(1)/statistics.getTotalRespondents())*100;
+        q1Count2 = (int)((double)statistics.getQ1ResponseCount(2)/statistics.getTotalRespondents())*100;
+        q1Count3 = (int)((double)statistics.getQ1ResponseCount(3)/statistics.getTotalRespondents())*100;
+        q1Count4 = (int)((double)statistics.getQ1ResponseCount(4)/statistics.getTotalRespondents())*100;
+        q1Count5 = (int)((double)statistics.getQ1ResponseCount(5)/statistics.getTotalRespondents())*100;
 
-        q3ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(1)/statistics.getTotalRespondents()*100));
-        q3ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(2)/statistics.getTotalRespondents()*100));
-        q3ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(3)/statistics.getTotalRespondents()*100));
-        q3ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(4)/statistics.getTotalRespondents()*100));
-        q3ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(5)/statistics.getTotalRespondents()*100));
+        q2Count1 = (int)((double)statistics.getQ2ResponseCount(1)/statistics.getTotalRespondents())*100;
+        q2Count2 = (int)((double)statistics.getQ2ResponseCount(2)/statistics.getTotalRespondents())*100;
+        q2Count3 = (int)((double)statistics.getQ2ResponseCount(3)/statistics.getTotalRespondents())*100;
+        q2Count4 = (int)((double)statistics.getQ2ResponseCount(4)/statistics.getTotalRespondents())*100;
+        q2Count5 = (int)((double)statistics.getQ2ResponseCount(5)/statistics.getTotalRespondents())*100;
+
+        q3Count1 = (int)((double)statistics.getQ3ResponseCount(1)/statistics.getTotalRespondents())*100;
+        q3Count2 = (int)((double)statistics.getQ3ResponseCount(2)/statistics.getTotalRespondents())*100;
+        q3Count3 = (int)((double)statistics.getQ3ResponseCount(3)/statistics.getTotalRespondents())*100;
+        q3Count4 = (int)((double)statistics.getQ3ResponseCount(4)/statistics.getTotalRespondents())*100;
+        q3Count5 = (int)((double)statistics.getQ3ResponseCount(5)/statistics.getTotalRespondents())*100;
+
+        q1ans1NumSurveyComplete.setText(String.valueOf(q1Count1));
+        q1ans2NumSurveyComplete.setText(String.valueOf(q1Count2));
+        q1ans3NumSurveyComplete.setText(String.valueOf(q1Count3));
+        q1ans4NumSurveyComplete.setText(String.valueOf(q1Count4));
+        q1ans5NumSurveyComplete.setText(String.valueOf(q1Count5));
+
+        q2ans1NumSurveyComplete.setText(String.valueOf(q2Count1));
+        q2ans2NumSurveyComplete.setText(String.valueOf(q2Count2));
+        q2ans3NumSurveyComplete.setText(String.valueOf(q2Count3));
+        q2ans4NumSurveyComplete.setText(String.valueOf(q2Count4));
+        q2ans5NumSurveyComplete.setText(String.valueOf(q2Count5));
+
+        q3ans1NumSurveyComplete.setText(String.valueOf(q3Count1));
+        q3ans2NumSurveyComplete.setText(String.valueOf(q3Count2));
+        q3ans3NumSurveyComplete.setText(String.valueOf(q3Count3));
+        q3ans4NumSurveyComplete.setText(String.valueOf(q3Count4));
+        q3ans5NumSurveyComplete.setText(String.valueOf(q3Count5));
     }
 }
