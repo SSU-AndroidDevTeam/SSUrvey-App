@@ -26,8 +26,7 @@ import java.util.List;
 public class Home extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private SurveyListAdapter adapter;
     private ArrayList<SurveyItem> arrayList;
     private FirebaseManager fbManager;
 
@@ -40,20 +39,13 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-<<<<<<< Updated upstream
-=======
-        // 계정 정보 가져오기
-        AuthManager.getInstance();
-
-        fbManager = new FirebaseManager();
-
->>>>>>> Stashed changes
         recyclerView = findViewById(R.id.recyclerview_home);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         arrayList = new ArrayList<>();
-        adapter = new SurveyListAdapter(arrayList, getApplicationContext());
+
+        adapter = new SurveyListAdapter(arrayList, getApplicationContext(), SurveyListAdapter.FILTER_ALL);
+        recyclerView.setAdapter(adapter);
 
         fbManager.getDb().collection(SurveyCollectionName)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -65,7 +57,7 @@ public class Home extends AppCompatActivity {
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class));
+                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class), dc.getDocument().getId());
                                 arrayList.add(surveyItem);
                             }
                             adapter.notifyDataSetChanged();
