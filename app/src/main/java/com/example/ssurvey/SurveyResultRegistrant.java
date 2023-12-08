@@ -55,7 +55,7 @@ public class SurveyResultRegistrant extends MainActivity {
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
             fbManager.loadSurveyOfId(surveyCallback, surveyId);
-            fbManager.getSurveyStatistics("DummySurvey", statCallable);
+            fbManager.getSurveyStatistics(surveyId, statCallable);
         } else {
             Log.d("Survey_main", "SurveyId is null");
         }
