@@ -25,6 +25,8 @@ public class Survey_giftSetting extends MainActivity {
 
     private FirebaseManager fbManager;
 
+    private String uniqueId;
+
     private static final int GALLERY_REQUEST_CODE1 = 100;
     private static final int GALLERY_REQUEST_CODE2 = 200;
 
@@ -54,7 +56,7 @@ public class Survey_giftSetting extends MainActivity {
             public void onClick(View v) {
 
                 // Firebase Firestore에 설문 등록
-                String uniqueId = fbManager.addNewSurvey(MakeSurvey.makeSurvey);
+                uniqueId = fbManager.addNewSurvey(MakeSurvey.makeSurvey);
 
                 // 설문이 성공적으로 등록되면 MakeSurvey 클래스의 makeSurvey 초기화
                 if (uniqueId != null && !uniqueId.isEmpty()) {

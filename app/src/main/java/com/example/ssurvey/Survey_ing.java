@@ -13,8 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import java.util.Date;
+import com.google.firebase.Timestamp;
 
 public class Survey_ing extends MainActivity {
 
@@ -23,10 +26,16 @@ public class Survey_ing extends MainActivity {
 
     RadioGroup radioGroup1, radioGroup2, radioGroup3;
 
+    TextView q1ans1SurveyIng, q1ans2SurveyIng, q1ans3SurveyIng, q1ans4SurveyIng, q1ans5SurveyIng;
+    TextView q2ans1SurveyIng, q2ans2SurveyIng, q2ans3SurveyIng, q2ans4SurveyIng, q2ans5SurveyIng;
+    TextView q3ans1SurveyIng, q3ans2SurveyIng, q3ans3SurveyIng, q3ans4SurveyIng, q3ans5SurveyIng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_ing);
+
+        fbManager = new FirebaseManager();
 
         // XML에 정의된 ConstraintLayout 가져오기
         ConstraintLayout constraintLayout_survey_ing = findViewById(R.id.constraintLayout_survey_ing);
@@ -38,6 +47,11 @@ public class Survey_ing extends MainActivity {
         radioGroup2 = findViewById(R.id.radioGroup_radioGroup2_survey_ing);
         radioGroup3 = findViewById(R.id.radioGroup_radioGroup3_survey_ing);
 
+        // SurveyId를 Intent에서 가져옴
+        Intent intent = getIntent();
+        String surveyId = intent.getStringExtra("surveyId");
+        Log.wtf("FB", "ing에서 받은 id: "+surveyId);
+
         //설문 진행중에서 설문 완료로 이동하는 버튼이벤트
         surveyGoCompleteBtn = findViewById(R.id.button_surveycomplete_survey_ing);
         surveyGoCompleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,56 +60,66 @@ public class Survey_ing extends MainActivity {
 
                 int selectedRadioButton1Id = radioGroup1.getCheckedRadioButtonId();
 
+                int q1Result = 1;
+                int q2Result = 1;
+                int q3Result = 1;
                 if (selectedRadioButton1Id == R.id.radioButton_btn1_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 1;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn2_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 2;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn3_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 3;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn4_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 4;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn5_question1_survey_ing) {
-                    // 처리 코드 작성
+                    q1Result = 5;
                 }
 
                 int selectedRadioButton2Id = radioGroup2.getCheckedRadioButtonId();
 
                 if (selectedRadioButton2Id == R.id.radioButton_btn1_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 1;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn2_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 2;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn3_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 3;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn4_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 4;
                 } else if (selectedRadioButton2Id == R.id.radioButton_btn5_question2_survey_ing) {
-                    // 처리 코드 작성
+                    q2Result = 5;
                 }
 
                 int selectedRadioButton3Id = radioGroup3.getCheckedRadioButtonId();
 
                 if (selectedRadioButton3Id == R.id.radioButton_btn1_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 1;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn2_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 2;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn3_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 3;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn4_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 4;
                 } else if (selectedRadioButton3Id == R.id.radioButton_btn5_question3_survey_ing) {
-                    // 처리 코드 작성
+                    q3Result = 5;
                 }
+
+                AuthManager authManager = AuthManager.getInstance();
+
+                SurveyResponse response = new SurveyResponse(
+                        "ㅇㅇㅁㄴㅇㅁㄴㅇ",// authManager.getCurrentUid(), -> 에러
+                        q1Result,
+                        q2Result,
+                        q3Result,
+                        new Timestamp(new Date(System.currentTimeMillis()))
+                );
+
+                String responseId = fbManager.addSurveyResponse(response, surveyId);
 
                 Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
                 startActivity(intent);
             }
         });
 
-        fbManager = new FirebaseManager();
-
-        // SurveyId를 Intent에서 가져옴
-        Intent intent = getIntent();
-        String surveyId = intent.getStringExtra("surveyId");
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
@@ -103,6 +127,14 @@ public class Survey_ing extends MainActivity {
         } else {
             Log.d("Survey_main", "SurveyId is null");
         }
+    }
+
+    private Timestamp getCurrentTimestamp() {
+        // 현재 날짜 및 시간을 가져오기
+        Date currentDate = new Date();
+
+        // Date를 Timestamp로 변환
+        return new Timestamp(currentDate);
     }
 
     // SurveyCallback 구현
@@ -134,25 +166,25 @@ public class Survey_ing extends MainActivity {
             titleSurveyIng.setText(survey.getName());
 
             TextView q1SurveyIng = findViewById(R.id.textView_question1_title_survey_ing);
-            TextView q1ans1SurveyIng = findViewById(R.id.textView_question1_radio1_survey_ing);
-            TextView q1ans2SurveyIng = findViewById(R.id.textView_question1_radio2_survey_ing);
-            TextView q1ans3SurveyIng = findViewById(R.id.textView_question1_radio3_survey_ing);
-            TextView q1ans4SurveyIng = findViewById(R.id.textView_question1_radio4_survey_ing);
-            TextView q1ans5SurveyIng = findViewById(R.id.textView_question1_radio5_survey_ing);
+            q1ans1SurveyIng = findViewById(R.id.textView_question1_radio1_survey_ing);
+            q1ans2SurveyIng = findViewById(R.id.textView_question1_radio2_survey_ing);
+            q1ans3SurveyIng = findViewById(R.id.textView_question1_radio3_survey_ing);
+            q1ans4SurveyIng = findViewById(R.id.textView_question1_radio4_survey_ing);
+            q1ans5SurveyIng = findViewById(R.id.textView_question1_radio5_survey_ing);
 
             TextView q2SurveyIng = findViewById(R.id.textView_question2_title_survey_ing);
-            TextView q2ans1SurveyIng = findViewById(R.id.textView_question2_radio1_survey_ing);
-            TextView q2ans2SurveyIng = findViewById(R.id.textView_question2_radio2_survey_ing);
-            TextView q2ans3SurveyIng = findViewById(R.id.textView_question2_radio3_survey_ing);
-            TextView q2ans4SurveyIng = findViewById(R.id.textView_question2_radio4_survey_ing);
-            TextView q2ans5SurveyIng = findViewById(R.id.textView_question2_radio5_survey_ing);
+            q2ans1SurveyIng = findViewById(R.id.textView_question2_radio1_survey_ing);
+            q2ans2SurveyIng = findViewById(R.id.textView_question2_radio2_survey_ing);
+            q2ans3SurveyIng = findViewById(R.id.textView_question2_radio3_survey_ing);
+            q2ans4SurveyIng = findViewById(R.id.textView_question2_radio4_survey_ing);
+            q2ans5SurveyIng = findViewById(R.id.textView_question2_radio5_survey_ing);
 
             TextView q3SurveyIng = findViewById(R.id.textView_question3_title_survey_ing);
-            TextView q3ans1SurveyIng = findViewById(R.id.textView_question3_radio1_survey_ing);
-            TextView q3ans2SurveyIng = findViewById(R.id.textView_question3_radio2_survey_ing);
-            TextView q3ans3SurveyIng = findViewById(R.id.textView_question3_radio3_survey_ing);
-            TextView q3ans4SurveyIng = findViewById(R.id.textView_question3_radio4_survey_ing);
-            TextView q3ans5SurveyIng = findViewById(R.id.textView_question3_radio5_survey_ing);
+            q3ans1SurveyIng = findViewById(R.id.textView_question3_radio1_survey_ing);
+            q3ans2SurveyIng = findViewById(R.id.textView_question3_radio2_survey_ing);
+            q3ans3SurveyIng = findViewById(R.id.textView_question3_radio3_survey_ing);
+            q3ans4SurveyIng = findViewById(R.id.textView_question3_radio4_survey_ing);
+            q3ans5SurveyIng = findViewById(R.id.textView_question3_radio5_survey_ing);
 
             q1SurveyIng.setText(survey.getQ1Desc());
             q1ans1SurveyIng.setText(survey.getQ1Ans1());

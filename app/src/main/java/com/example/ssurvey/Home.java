@@ -21,33 +21,31 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Home extends MainActivity {
+public class Home extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private SurveyListAdapter adapter;
     private ArrayList<SurveyItem> arrayList;
     private FirebaseManager fbManager;
+
+    Button homeGoMyInfoBtn; //홈 화면에서 내 정보 화면으로 넘어가는 버튼
+    Button homeGoSettingBtn; //홈 화면에서 설정 화면으로 넘어가는 버튼
+    Button homeGoSurveyOutlineBtn; //홈 화면에서 설문 개요 화면으로 넘어가는 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // 계정 정보 가져오기
-        AuthManager.getInstance();
-
-        fbManager = new FirebaseManager();
-
         recyclerView = findViewById(R.id.recyclerview_home);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         arrayList = new ArrayList<>();
-        adapter = new SurveyListAdapter(arrayList, getApplicationContext());
+
+        adapter = new SurveyListAdapter(arrayList, getApplicationContext(), SurveyListAdapter.FILTER_ALL);
+        recyclerView.setAdapter(adapter);
 
         fbManager.getDb().collection(SurveyCollectionName)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -59,18 +57,44 @@ public class Home extends MainActivity {
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class));
+                                SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class), dc.getDocument().getId());
                                 arrayList.add(surveyItem);
                             }
                             adapter.notifyDataSetChanged();
                         }
-
-                        // 디데이 순 정렬
-                        Collections.sort(arrayList);
                     }
                 });
+
         recyclerView.setAdapter(adapter);
 
-        super.navigationBar(findViewById(R.id.constraintLayout_home));
+
+        homeGoMyInfoBtn = findViewById(R.id.button_goMyInfo_home);
+        homeGoSettingBtn = findViewById(R.id.button_goSetting_home);
+        homeGoSurveyOutlineBtn = findViewById(R.id.button_goSurveyOutline_home);
+
+        homeGoMyInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyInformation.class);
+                startActivity(intent);
+            }
+        });
+
+        homeGoSettingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        homeGoSurveyOutlineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Survey_outline.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

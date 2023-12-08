@@ -165,7 +165,6 @@ public class Survey_outline extends MainActivity {
         imageView.setLayoutParams(layoutParams);
     }
 
-
     // 달력 다이얼로그 보여주는 메소드
     private void showDatePickerDialog(final boolean isStartDate) {
         Calendar calendar = isStartDate ? startDateCalendar : endDateCalendar;
@@ -196,6 +195,7 @@ public class Survey_outline extends MainActivity {
 
         datePickerDialog.show();
     }
+
     // 텍스트뷰에 날짜 설정하는 메소드
     private void updateDateTextView(TextView textView, Calendar calendar) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());

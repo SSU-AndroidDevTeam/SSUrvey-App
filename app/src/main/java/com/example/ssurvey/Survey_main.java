@@ -31,19 +31,21 @@ public class Survey_main extends MainActivity {
 
         fbManager = new FirebaseManager();
 
+        // SurveyId를 Intent에서 가져옴
+        Intent intent = getIntent();
+        String surveyId = intent.getStringExtra("surveyId");
+
         //설문메인에서 설문ing로 이동하는 버튼이벤트
         surveyGoIngBtn = findViewById(R.id.button_surveying_survey_main);
         surveyGoIngBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Survey_ing.class);
+                intent.putExtra("surveyId", surveyId);
                 startActivity(intent);
             }
         });
 
-        // SurveyId를 Intent에서 가져옴
-        Intent intent = getIntent();
-        String surveyId = intent.getStringExtra("surveyId");
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
