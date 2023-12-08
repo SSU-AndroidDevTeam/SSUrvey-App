@@ -12,6 +12,7 @@ import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.model.SurveyStatistics;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.example.ssurvey.service.SurveyReplicantCallback;
 import com.example.ssurvey.service.SurveyResponseCallback;
 import com.example.ssurvey.service.SurveyStatCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,6 +136,29 @@ public class FirebaseManager {
                     callable.onCallback(stat, CbCode.OK);
                 } else {
                     Log.d("FB", "설문 응답 자료들을 파이어스토어에서 가져오는 과정에서 에러가 발생했습니다.");
+                    callable.onCallback(null, CbCode.ERROR);
+                }
+            }
+        });
+        colRef.get();
+    }
+
+    /**
+     * 해당 설문에 참여한 모든 유저들의 id (학번)을 리스트로 반환한다.
+     */
+    public void getSurveyReplicants(String surveyId, SurveyReplicantCallback callable) {
+        CollectionReference colRef = db.collection(surveyId);
+        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    ArrayList<String> replicants = new ArrayList();
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        replicants.add(doc.getId());
+                    }
+                    callable.onCallback(replicants, CbCode.OK);
+                } else {
+                    Log.d("FB", "설문 참여자들의 id를 파이어스토어에서 가져오는 과정에서 에러가 발생했습니다.");
                     callable.onCallback(null, CbCode.ERROR);
                 }
             }

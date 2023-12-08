@@ -12,10 +12,12 @@ import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.model.SurveyStatistics;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.example.ssurvey.service.SurveyReplicantCallback;
 import com.example.ssurvey.service.SurveyResponseCallback;
 import com.example.ssurvey.service.SurveyStatCallback;
 import com.google.firebase.Timestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -194,5 +196,35 @@ public class FirebaseExampleActivity extends AppCompatActivity {
             }
         });
 
+
+        /////////////////////////////////////// F. 설문 참여자 정보 Read 예시 //////////////////////////////////////
+        SurveyReplicantCallback replCallback = new SurveyReplicantCallback() {
+            @Override
+            public void onCallback(ArrayList<String> replicants, CbCode cbCode) {
+                // 예외 처리
+                switch (cbCode) {
+                    case OK:
+                        break;
+                    case ERROR:
+                        Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                        return;
+                    case NOT_FOUND:
+                        Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                        return;
+                }
+
+                // 로직 실행
+                for (String replicant : replicants) {
+                    Log.d("FB", "설문 참여자: " + replicant);
+                }
+            }
+        };
+
+        binding.button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbManager.getSurveyReplicants("DummySurvey", replCallback); // 설문 id 전달
+            }
+        });
     }
 }
