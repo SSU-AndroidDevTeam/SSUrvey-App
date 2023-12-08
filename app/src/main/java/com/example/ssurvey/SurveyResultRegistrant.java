@@ -36,21 +36,21 @@ public class SurveyResultRegistrant extends MainActivity {
 
         navigationBar(constraintLayout_survey_main);
 
-        goParticipantCheckBtn = findViewById(R.id.button_goParticipantCheck_survey_result_registrant);
-
-        goParticipantCheckBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ParticipantCheck.class);
-                startActivity(intent);
-            }
-        });
-
         fbManager = new FirebaseManager();
 
         // SurveyId를 Intent에서 가져옴
         Intent intent = getIntent();
         String surveyId = intent.getStringExtra("surveyId");
+
+        goParticipantCheckBtn = findViewById(R.id.button_goParticipantCheck_survey_result_registrant);
+        goParticipantCheckBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ParticipantCheck.class);
+                intent.putExtra("surveyId", surveyId);
+                startActivity(intent);
+            }
+        });
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
