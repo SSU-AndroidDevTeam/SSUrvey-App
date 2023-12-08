@@ -100,8 +100,10 @@ public class Survey_ing extends MainActivity {
                     q3Result = 5;
                 }
 
+                AuthManager authManager = AuthManager.getInstance();
+
                 SurveyResponse response = new SurveyResponse(
-                        "TODO: UserId",
+                        authManager.getCurrentId(),
                         q1Result,
                         q2Result,
                         q3Result,
@@ -114,6 +116,7 @@ public class Survey_ing extends MainActivity {
                 String responseId = fbManager.addSurveyResponse(response, surveyId);
 
                 Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
+                intent.putExtra("surveyId", surveyId);
                 startActivity(intent);
             }
         });

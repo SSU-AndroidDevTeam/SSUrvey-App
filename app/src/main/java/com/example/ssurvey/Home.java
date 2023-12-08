@@ -27,8 +27,7 @@ import java.util.List;
 public class Home extends MainActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private SurveyListAdapter adapter;
     private ArrayList<SurveyItem> arrayList;
     private FirebaseManager fbManager;
 
@@ -44,10 +43,11 @@ public class Home extends MainActivity {
 
         recyclerView = findViewById(R.id.recyclerview_home);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         arrayList = new ArrayList<>();
-        adapter = new SurveyListAdapter(arrayList, getApplicationContext());
+
+        adapter = new SurveyListAdapter(arrayList, getApplicationContext(), SurveyListAdapter.FILTER_ALL);
+        recyclerView.setAdapter(adapter);
 
         fbManager.getDb().collection(SurveyCollectionName)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -69,7 +69,6 @@ public class Home extends MainActivity {
                         Collections.sort(arrayList);
                     }
                 });
-        recyclerView.setAdapter(adapter);
 
         super.navigationBar(findViewById(R.id.constraintLayout_home));
     }

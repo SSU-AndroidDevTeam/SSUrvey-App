@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class FBRecyclerExampleActivity extends AppCompatActivity {
+    /*
     private ActivityFbrecyclerExampleBinding binding;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -67,4 +68,6 @@ public class FBRecyclerExampleActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
     }
+    */
+
 }

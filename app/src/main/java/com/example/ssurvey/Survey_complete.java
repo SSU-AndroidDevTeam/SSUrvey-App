@@ -9,8 +9,10 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.model.SurveyStatistics;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
+import com.example.ssurvey.service.SurveyStatCallback;
 
 public class Survey_complete extends MainActivity {
 
@@ -32,10 +34,12 @@ public class Survey_complete extends MainActivity {
         // SurveyId를 Intent에서 가져옴
         Intent intent = getIntent();
         String surveyId = intent.getStringExtra("surveyId");
+        Log.d("FB", "surveyId");
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
             fbManager.loadSurveyOfId(surveyCallback, surveyId);
+            fbManager.getSurveyStatistics(surveyId, statCallable);
         } else {
             Log.d("Survey_main", "SurveyId is null");
         }
@@ -56,6 +60,24 @@ public class Survey_complete extends MainActivity {
                 case NOT_FOUND:
                     Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
                     break;
+            }
+        }
+    };
+
+    SurveyStatCallback statCallable = new SurveyStatCallback() {
+        @Override
+        public void onCallback(SurveyStatistics statistics, CbCode cbCode) {
+            // 예외 처리
+            switch (cbCode) {
+                case OK:
+                    displaySurveyStatistics(statistics);
+                    break;
+                case ERROR:
+                    Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                    return;
+                case NOT_FOUND:
+                    Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                    return;
             }
         }
     };
@@ -82,8 +104,6 @@ public class Survey_complete extends MainActivity {
 
             // 설문 설명 설정
             descSurveyComplete.setText(survey.getDesc());
-
-            TextView participantCountSurveyComplete = findViewById(R.id.textView_participantCount_survey_complete);
 
             TextView q1SurveyComplete = findViewById(R.id.textView_q1_survey_complete);
             TextView q1ans1SurveyComplete = findViewById(R.id.textView_q1ans1_survey_complete);
@@ -127,26 +147,53 @@ public class Survey_complete extends MainActivity {
             q3ans4SurveyComplete.setText(survey.getQ3Ans4());
             q3ans5SurveyComplete.setText(survey.getQ3Ans5());
 
-            TextView q1ans1NumSurveyComplete = findViewById(R.id.textView_q1ans1percent_survey_complete);
-            TextView q1ans2NumSurveyComplete = findViewById(R.id.textView_q1ans2percent_survey_complete);
-            TextView q1ans3NumSurveyComplete = findViewById(R.id.textView_q1ans3percent_survey_complete);
-            TextView q1ans4NumSurveyComplete = findViewById(R.id.textView_q1ans4percent_survey_complete);
-            TextView q1ans5NumSurveyComplete = findViewById(R.id.textView_q1ans5percent_survey_complete);
 
-            TextView q2ans1NumSurveyComplete = findViewById(R.id.textView_q2ans1percent_survey_complete);
-            TextView q2ans2NumSurveyComplete = findViewById(R.id.textView_q2ans2percent_survey_complete);
-            TextView q2ans3NumSurveyComplete = findViewById(R.id.textView_q2ans3percent_survey_complete);
-            TextView q2ans4NumSurveyComplete = findViewById(R.id.textView_q2ans4percent_survey_complete);
-            TextView q2ans5NumSurveyComplete = findViewById(R.id.textView_q2ans5percent_survey_complete);
-
-            TextView q3ans1NumSurveyComplete = findViewById(R.id.textView_q3ans1percent_survey_complete);
-            TextView q3ans2NumSurveyComplete = findViewById(R.id.textView_q3ans2percent_survey_complete);
-            TextView q3ans3NumSurveyComplete = findViewById(R.id.textView_q3ans3percent_survey_complete);
-            TextView q3ans4NumSurveyComplete = findViewById(R.id.textView_q3ans4percent_survey_complete);
-            TextView q3ans5NumSurveyComplete = findViewById(R.id.textView_q3ans5percent_survey_complete);
         }
         else {
             Log.d("Survey_main", "Survey object is null");
         }
+    }
+    private void displaySurveyStatistics(SurveyStatistics statistics) {
+
+        TextView participantCountSurveyComplete = findViewById(R.id.textView_participantCount_survey_complete);
+
+        TextView q1ans1NumSurveyComplete = findViewById(R.id.textView_q1ans1percent_survey_complete);
+        TextView q1ans2NumSurveyComplete = findViewById(R.id.textView_q1ans2percent_survey_complete);
+        TextView q1ans3NumSurveyComplete = findViewById(R.id.textView_q1ans3percent_survey_complete);
+        TextView q1ans4NumSurveyComplete = findViewById(R.id.textView_q1ans4percent_survey_complete);
+        TextView q1ans5NumSurveyComplete = findViewById(R.id.textView_q1ans5percent_survey_complete);
+
+        TextView q2ans1NumSurveyComplete = findViewById(R.id.textView_q2ans1percent_survey_complete);
+        TextView q2ans2NumSurveyComplete = findViewById(R.id.textView_q2ans2percent_survey_complete);
+        TextView q2ans3NumSurveyComplete = findViewById(R.id.textView_q2ans3percent_survey_complete);
+        TextView q2ans4NumSurveyComplete = findViewById(R.id.textView_q2ans4percent_survey_complete);
+        TextView q2ans5NumSurveyComplete = findViewById(R.id.textView_q2ans5percent_survey_complete);
+
+        TextView q3ans1NumSurveyComplete = findViewById(R.id.textView_q3ans1percent_survey_complete);
+        TextView q3ans2NumSurveyComplete = findViewById(R.id.textView_q3ans2percent_survey_complete);
+        TextView q3ans3NumSurveyComplete = findViewById(R.id.textView_q3ans3percent_survey_complete);
+        TextView q3ans4NumSurveyComplete = findViewById(R.id.textView_q3ans4percent_survey_complete);
+        TextView q3ans5NumSurveyComplete = findViewById(R.id.textView_q3ans5percent_survey_complete);
+
+        participantCountSurveyComplete.setText(String.valueOf(statistics.getTotalRespondents()));
+
+        //계산식 수정 필요 있음
+        q1ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(1)/statistics.getTotalRespondents()*100));
+        q1ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(2)/statistics.getTotalRespondents()*100));
+        q1ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(3)/statistics.getTotalRespondents()*100));
+        q1ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(4)/statistics.getTotalRespondents()*100));
+        q1ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ1ResponseCount(5)/statistics.getTotalRespondents()*100));
+
+        q2ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(1)/statistics.getTotalRespondents()*100));
+        q2ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(2)/statistics.getTotalRespondents()*100));
+        q2ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(3)/statistics.getTotalRespondents()*100));
+        q2ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(4)/statistics.getTotalRespondents()*100));
+        q2ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ2ResponseCount(5)/statistics.getTotalRespondents()*100));
+
+        q3ans1NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(1)/statistics.getTotalRespondents()*100));
+        q3ans2NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(2)/statistics.getTotalRespondents()*100));
+        q3ans3NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(3)/statistics.getTotalRespondents()*100));
+        q3ans4NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(4)/statistics.getTotalRespondents()*100));
+        q3ans5NumSurveyComplete.setText(String.valueOf(statistics.getQ3ResponseCount(5)/statistics.getTotalRespondents()*100));
     }
 }
