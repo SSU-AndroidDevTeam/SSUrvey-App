@@ -15,6 +15,7 @@ import com.example.ssurvey.model.Survey;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
 import com.example.ssurvey.service.SurveyReplicantCallback;
+import com.example.ssurvey.service.UserService;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -77,17 +78,22 @@ public class ParticipantCheck extends MainActivity {
             // 각 id별 이름 가져오기
             ArrayList<String> replicantNames = new ArrayList<>();
             for (String repId : replicantIds) {
-                replicantNames.add("<아이디 " + repId + "의 유저명>"); // TODO: 유저 id -> 유저 명으로 변환하는 함수 필요. 여기 한 줄만 수정하면 됩니다
+                UserService.getInstance().getUserById(repId, (user, code) -> {
+                    replicantNames.add(user.getName());
+
+                    // 마지막 콜백에 리사이클러뷰 생성
+                    if(replicantIds.indexOf(repId) == replicantIds.size() - 1) {
+                        // 리사이클러뷰 생성 및 어댑터 생성, 연결
+                        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_participant_check);
+                        replAdapter = new ReplicantRecycleAdapter();
+
+                        // 참여자 이름 목록 전달
+                        replAdapter.setReplicantNames(replicantNames);
+                        recyclerView.setAdapter(replAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    }
+                });
             }
-
-            // 리사이클러뷰 생성 및 어댑터 생성, 연결
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerView_participant_check);
-            replAdapter = new ReplicantRecycleAdapter();
-
-            // 참여자 이름 목록 전달
-            replAdapter.setReplicantNames(replicantNames);
-            recyclerView.setAdapter(replAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         }
     };
 }
