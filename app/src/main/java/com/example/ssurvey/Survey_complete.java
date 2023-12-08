@@ -38,7 +38,6 @@ public class Survey_complete extends MainActivity {
         // SurveyId를 Intent에서 가져옴
         Intent intent = getIntent();
         String surveyId = intent.getStringExtra("surveyId");
-        Log.d("FB", "surveyId");
 
         // FirebaseManager를 통해 Survey 데이터 로드
         if (surveyId != null) {
@@ -190,27 +189,27 @@ public class Survey_complete extends MainActivity {
 
         participantCountSurveyComplete.setText(String.valueOf(statistics.getTotalRespondents()));
 
-        int q1Count1, q1Count2, q1Count3, q1Count4, q1Count5;
-        int q2Count1, q2Count2, q2Count3, q2Count4, q2Count5;
-        int q3Count1, q3Count2, q3Count3, q3Count4, q3Count5;
+        double q1Count1, q1Count2, q1Count3, q1Count4, q1Count5;
+        double q2Count1, q2Count2, q2Count3, q2Count4, q2Count5;
+        double q3Count1, q3Count2, q3Count3, q3Count4, q3Count5;
 
-        q1Count1 = (int)((double)statistics.getQ1ResponseCount(1)/statistics.getTotalRespondents())*100;
-        q1Count2 = (int)((double)statistics.getQ1ResponseCount(2)/statistics.getTotalRespondents())*100;
-        q1Count3 = (int)((double)statistics.getQ1ResponseCount(3)/statistics.getTotalRespondents())*100;
-        q1Count4 = (int)((double)statistics.getQ1ResponseCount(4)/statistics.getTotalRespondents())*100;
-        q1Count5 = (int)((double)statistics.getQ1ResponseCount(5)/statistics.getTotalRespondents())*100;
+        q1Count1 = Math.round((double)statistics.getQ1ResponseCount(1)/statistics.getTotalRespondents()*100);
+        q1Count2 = Math.round((double)statistics.getQ1ResponseCount(2)/statistics.getTotalRespondents()*100);
+        q1Count3 = Math.round((double)statistics.getQ1ResponseCount(3)/statistics.getTotalRespondents()*100);
+        q1Count4 = Math.round((double)statistics.getQ1ResponseCount(4)/statistics.getTotalRespondents()*100);
+        q1Count5 = Math.round((double)statistics.getQ1ResponseCount(5)/statistics.getTotalRespondents()*100);
 
-        q2Count1 = (int)((double)statistics.getQ2ResponseCount(1)/statistics.getTotalRespondents())*100;
-        q2Count2 = (int)((double)statistics.getQ2ResponseCount(2)/statistics.getTotalRespondents())*100;
-        q2Count3 = (int)((double)statistics.getQ2ResponseCount(3)/statistics.getTotalRespondents())*100;
-        q2Count4 = (int)((double)statistics.getQ2ResponseCount(4)/statistics.getTotalRespondents())*100;
-        q2Count5 = (int)((double)statistics.getQ2ResponseCount(5)/statistics.getTotalRespondents())*100;
+        q2Count1 = Math.round((double)statistics.getQ2ResponseCount(1)/statistics.getTotalRespondents()*100);
+        q2Count2 = Math.round((double)statistics.getQ2ResponseCount(2)/statistics.getTotalRespondents()*100);
+        q2Count3 = Math.round((double)statistics.getQ2ResponseCount(3)/statistics.getTotalRespondents()*100);
+        q2Count4 = Math.round((double)statistics.getQ2ResponseCount(4)/statistics.getTotalRespondents()*100);
+        q2Count5 = Math.round((double)statistics.getQ2ResponseCount(5)/statistics.getTotalRespondents()*100);
 
-        q3Count1 = (int)((double)statistics.getQ3ResponseCount(1)/statistics.getTotalRespondents())*100;
-        q3Count2 = (int)((double)statistics.getQ3ResponseCount(2)/statistics.getTotalRespondents())*100;
-        q3Count3 = (int)((double)statistics.getQ3ResponseCount(3)/statistics.getTotalRespondents())*100;
-        q3Count4 = (int)((double)statistics.getQ3ResponseCount(4)/statistics.getTotalRespondents())*100;
-        q3Count5 = (int)((double)statistics.getQ3ResponseCount(5)/statistics.getTotalRespondents())*100;
+        q3Count1 = Math.round((double)statistics.getQ3ResponseCount(1)/statistics.getTotalRespondents()*100);
+        q3Count2 = Math.round((double)statistics.getQ3ResponseCount(2)/statistics.getTotalRespondents()*100);
+        q3Count3 = Math.round((double)statistics.getQ3ResponseCount(3)/statistics.getTotalRespondents()*100);
+        q3Count4 = Math.round((double)statistics.getQ3ResponseCount(4)/statistics.getTotalRespondents()*100);
+        q3Count5 = Math.round((double)statistics.getQ3ResponseCount(5)/statistics.getTotalRespondents()*100);
 
         q1ans1NumSurveyComplete.setText(String.valueOf(q1Count1));
         q1ans2NumSurveyComplete.setText(String.valueOf(q1Count2));

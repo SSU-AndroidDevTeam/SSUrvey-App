@@ -109,12 +109,7 @@ public class Survey_ing extends MainActivity {
                         q3Result,
                         new Timestamp(new Date(System.currentTimeMillis()))
                 );
-
-                if (surveyId == null || surveyId.isEmpty()) {
-                    Log.wtf("SurveySubmit", "NO SURVEYID");
-                }
                 String responseId = fbManager.addSurveyResponse(response, surveyId);
-
                 Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
                 intent.putExtra("surveyId", surveyId);
                 startActivity(intent);

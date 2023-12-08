@@ -32,7 +32,7 @@ public class JoinActivity extends MainActivity {
     final String TAG = "JoinActivity";
 
     // 개발 시 회원가입 간소화용
-    final boolean isDevMode = false;
+    final boolean isDevMode = true;
 
     ActivityJoinBinding binding;
 
