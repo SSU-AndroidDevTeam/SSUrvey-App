@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ssurvey.AuthManager;
 import com.example.ssurvey.R;
 import com.example.ssurvey.SurveyItem;
 import com.example.ssurvey.SurveyResultRegistrant;
@@ -26,8 +27,7 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
     private Context context;
     private int filterCondition;
 
-    private String currentUserID;
-
+    String currentUserID;
     public static final int FILTER_REGISTERED = 1;
     public static final int FILTER_PARTICIPATED = 2;
     public static final int FILTER_INVITED = 3;
@@ -52,13 +52,19 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
     public void onBindViewHolder(@NonNull SurveyListHolder holder, int position) {
         SurveyItem currentItem = arrayList.get(position);
 
+        AuthManager authManager = AuthManager.getInstance();
+
+        currentUserID = authManager.getCurrentId();
+        Log.d("SurveyListAdapter", "Current UserID: " + currentUserID); // 로그 추가
+
         // 필터링 조건에 따라 아이템을 제한하여 표시
         switch (filterCondition) {
             case FILTER_REGISTERED:
-                //if (!currentItem.getRegisteredUserID().equals(currentUserID))
+                //if (!currentItem.getSurveyId().equals(currentUserID))
             {
                 // 등록된 설문이 아닌 경우 아이템을 표시하지 않음
-                //    return;
+                //Log.d("SurveyListAdapter", "Filtered out: " + currentItem.getSurveyId()); // 로그 추가
+                   //return;
             }
             break;
             case FILTER_PARTICIPATED:
@@ -116,11 +122,16 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
     @Override
     public int getItemCount() {
         // 필터링된 아이템의 개수만 반환
+
+        AuthManager authManager = AuthManager.getInstance();
+
+        currentUserID = authManager.getCurrentId();
+
         int count = 0;
         for (SurveyItem item : arrayList) {
             switch (filterCondition) {
                 case FILTER_REGISTERED:
-                    //if (item.getRegisteredUserID().equals(currentUserID))
+                    //if (item.getSurveyId().equals(currentUserID))
                 {
                     count++;
                 }
@@ -202,5 +213,4 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         context.startActivity(intent);
         //참여한 경우와 아닌경우 구분할 필요있음
     }
-
 }

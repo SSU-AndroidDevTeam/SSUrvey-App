@@ -20,6 +20,10 @@ public class ParticipantSurveyResult extends MainActivity {
 
     private FirebaseManager fbManager;
     Button goParticipantCheckBtn;
+    TextView participantParticipantSurveyResult;
+    TextView q1ParticipantSurveyResult, q2ParticipantSurveyResult, q3ParticipantSurveyResult;
+    TextView q1ansParticipantSurveyResult, q2ansParticipantSurveyResult, q3ansParticipantSurveyResult;
+    int q1Num, q2Num, q3Num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,30 +37,49 @@ public class ParticipantSurveyResult extends MainActivity {
 
         goParticipantCheckBtn = findViewById(R.id.button_before_participant_survey_result);
 
+        Intent intent = getIntent();
+        String surveyId = intent.getStringExtra("surveyId");
+        String replicantId = intent.getStringExtra("replicantId");
+        String replicantName = intent.getStringExtra("replicantName");
+
         goParticipantCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ParticipantCheck.class);
+                intent.putExtra("surveyId", surveyId);
                 startActivity(intent);
             }
         });
 
         fbManager = new FirebaseManager();
 
-        // SurveyId를 Intent에서 가져옴 어디서 받아올건지 알아볼 것
-        Intent intent = getIntent();
-        String surveyId = intent.getStringExtra("surveyId");
+        fbManager.loadSurveyResponse(respCallable, surveyId, replicantId);
+        fbManager.loadSurveyOfId(surveyCallback, surveyId);
 
-        // FirebaseManager를 통해 Survey 데이터 로드
-        if (surveyId != null) {
-            fbManager.loadSurveyOfId(surveyCallback, surveyId);
-            fbManager.loadSurveyResponse(respCallable, "DummySurvey", "홍길동");
-        } else {
-            Log.d("Survey_main", "SurveyId is null");
-        }
+
+        participantParticipantSurveyResult = findViewById(R.id.textView_participant_participant_survey_result);
+
+        participantParticipantSurveyResult.setText(replicantName + "님의 설문 응답 결과");
     }
 
     // SurveyCallback 구현
+    SurveyResponseCallback respCallable = new SurveyResponseCallback() {
+        @Override
+        public void onCallback(SurveyResponse response, CbCode cbCode) {
+            switch (cbCode) {
+                case OK:
+                    displaySurveyResult(response);
+                    break;
+                case ERROR:
+                    Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                    return;
+                case NOT_FOUND:
+                    Log.d("FB", "해당 유저의 응답을 찾을 수 없습니다.");
+                    return;
+            }
+        }
+    };
+
     private SurveyCallback surveyCallback = new SurveyCallback() {
         @Override
         public void onCallback(Survey survey, CbCode cbCode) {
@@ -75,37 +98,32 @@ public class ParticipantSurveyResult extends MainActivity {
         }
     };
 
-    SurveyResponseCallback respCallable = new SurveyResponseCallback() {
-        @Override
-        public void onCallback(SurveyResponse response, CbCode cbCode) {
-            switch (cbCode) {
-                case OK:
-                    displaySurveyResult(response);
-                    break;
-                case ERROR:
-                    Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
-                    return;
-                case NOT_FOUND:
-                    Log.d("FB", "해당 유저의 응답을 찾을 수 없습니다.");
-                    return;
-            }
+    private void displaySurveyResult(SurveyResponse response) {
+        // Survey 정보를 화면에 표시하는 로직을 작성
+
+        if (response != null) {
+
+            q1Num = response.getQ1Response();
+            q2Num = response.getQ2Response();
+            q3Num = response.getQ3Response();
         }
-    };
-
-    TextView q1ansParticipantSurveyResult = findViewById(R.id.textView_q1ans_participant_survey_result);
-    TextView q2ansParticipantSurveyResult = findViewById(R.id.textView_q2ans_participant_survey_result);
-    TextView q3ansParticipantSurveyResult = findViewById(R.id.textView_q3ans_participant_survey_result);
-
-    int q1Num, q2Num, q3Num;
+        else {
+            Log.d("Survey_main", "Survey object is null");
+        }
+    }
 
     private void displaySurveyDetails(Survey survey) {
         // Survey 정보를 화면에 표시하는 로직을 작성
 
         if (survey != null) {
 
-            TextView q1ParticipantSurveyResult = findViewById(R.id.textView_q1_participant_survey_result);
-            TextView q2ParticipantSurveyResult = findViewById(R.id.textView_q2_participant_survey_result);
-            TextView q3ParticipantSurveyResult = findViewById(R.id.textView_q3_participant_survey_result);
+            q1ansParticipantSurveyResult = findViewById(R.id.textView_q1ans_participant_survey_result);
+            q2ansParticipantSurveyResult = findViewById(R.id.textView_q2ans_participant_survey_result);
+            q3ansParticipantSurveyResult = findViewById(R.id.textView_q3ans_participant_survey_result);
+
+            q1ParticipantSurveyResult = findViewById(R.id.textView_q1_participant_survey_result);
+            q2ParticipantSurveyResult = findViewById(R.id.textView_q2_participant_survey_result);
+            q3ParticipantSurveyResult = findViewById(R.id.textView_q3_participant_survey_result);
 
             q1ParticipantSurveyResult.setText(survey.getQ1Desc());
             q2ParticipantSurveyResult.setText(survey.getQ2Desc());
@@ -158,23 +176,6 @@ public class ParticipantSurveyResult extends MainActivity {
             else if (q3Num == 5) {
                 q3ansParticipantSurveyResult.setText(survey.getQ3Ans5());
             }
-        }
-        else {
-            Log.d("Survey_main", "Survey object is null");
-        }
-    }
-
-    private void displaySurveyResult(SurveyResponse response) {
-        // Survey 정보를 화면에 표시하는 로직을 작성
-
-        if (response != null) {
-            TextView participantParticipantSurveyResult = findViewById(R.id.textView_participant_participant_survey_result);
-
-            participantParticipantSurveyResult.setText(response.getUserId() + "님의 설문 응답 결과");
-
-            q1Num = response.getQ1Response();
-            q2Num = response.getQ2Response();
-            q3Num = response.getQ3Response();
         }
         else {
             Log.d("Survey_main", "Survey object is null");
