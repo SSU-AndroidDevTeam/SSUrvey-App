@@ -49,6 +49,8 @@ public class Survey_questions extends MainActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Survey_targetSelection.class);
+                // 선택한 항목을 유지하기 위해 기존 액티비티 재활용
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });

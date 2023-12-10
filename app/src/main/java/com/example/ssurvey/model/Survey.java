@@ -42,7 +42,7 @@ public class Survey {
     private String q3Ans5;
     private Timestamp openDate;
     private Timestamp closeDate;
-    private String target;
+    private SurveyTarget target;
 
     public String getName() {
         return name;
@@ -236,11 +236,11 @@ public class Survey {
         this.closeDate = closeDate;
     }
 
-    public String getTarget() {
+    public SurveyTarget getTarget() {
         return target;
     }
 
-    public void setTarget(String target) {
+    public void setTarget(SurveyTarget target) {
         this.target = target;
     }
 
@@ -276,7 +276,7 @@ public class Survey {
 
         Timestamp openDate,
         Timestamp closeDate,
-        String target
+        SurveyTarget target
     ) {
         this.name = name;
         this.desc = desc;

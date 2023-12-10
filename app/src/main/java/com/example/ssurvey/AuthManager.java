@@ -10,6 +10,11 @@ import com.google.firebase.auth.FirebaseUser;
  * 현재 로그인 한 유저에 대한 관리 클래스
  */
 public class AuthManager {
+
+    public interface Callback {
+        public void onCallback();
+    }
+
     private static AuthManager instance = null;
 
     /** 학번ID 이메일 변환용 도메인 */
@@ -22,12 +27,6 @@ public class AuthManager {
 
     private AuthManager() {
         firebaseAuth = FirebaseAuth.getInstance();
-
-        if(!getCurrentUid().isEmpty()) {
-            UserService.getInstance().getUser(getCurrentUid(), (user, code) -> {
-                currentUser = user;
-            });
-        }
     }
 
     public static AuthManager getInstance() {
@@ -41,9 +40,19 @@ public class AuthManager {
         return firebaseAuth;
     }
 
+    public void initCurrentUser(Callback callback) {
+        if(!getCurrentUid().isEmpty() && currentUser == null)
+            UserService.getInstance().getUser(getCurrentUid(), (user, code) -> {
+                currentUser = user;
+                callback.onCallback();
+            });
+        else
+            callback.onCallback();
+    }
+
     /** 현재 유저 갱신 */
     public void renewCurrentUser() {
-        if(getCurrentUid() != null)
+        if(!getCurrentUid().isEmpty())
             UserService.getInstance().getUser(getCurrentUid(), (user, code) -> {
                 currentUser = user;
             });

@@ -398,31 +398,31 @@ public class EditProfileActivity extends MainActivity {
             scrollAndFocus(binding.editProfileTxtHasChangeMajor, binding.editProfileRadioHasChangeMajor);
             return "전과 (학과 이동) 유무를 선택해 주세요.";
         }
-        user.setHasChangeMajor(binding.editProfileRadioHasChangeMajorTrue.isSelected());
+        user.setHasChangeMajor(binding.editProfileRadioHasChangeMajorTrue.isChecked());
 
         if(binding.editProfileRadioHasTeaching.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.editProfileTxtHasTeaching, binding.editProfileRadioHasTeaching);
             return "교직 이수 유무를 선택해 주세요.";
         }
-        user.setHasTeaching(binding.editProfileRadioHasTeachingTrue.isSelected());
+        user.setHasTeaching(binding.editProfileRadioHasTeachingTrue.isChecked());
 
         if(binding.editProfileRadioHasFlunk.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.editProfileTxtHasFlunk, binding.editProfileRadioHasFlunk);
             return "유급 기록 유무를 선택해 주세요.";
         }
-        user.setHasFlunk(binding.editProfileRadioHasFlunkTrue.isSelected());
+        user.setHasFlunk(binding.editProfileRadioHasFlunkTrue.isChecked());
 
         if(binding.editProfileRadioHasWarning.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.editProfileTxtHasWarning, binding.editProfileRadioHasWarning);
             return "학사 경고 기록 유무를 선택해 주세요.";
         }
-        user.setHasWarning(binding.editProfileRadioHasWarningTrue.isSelected());
+        user.setHasWarning(binding.editProfileRadioHasWarningTrue.isChecked());
 
         if(binding.editProfileRadioHasLeave.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.editProfileTxtHasLeave, binding.editProfileRadioHasLeave);
             return "휴학 기록 유무를 선택해 주세요.";
         }
-        user.setHasLeave(binding.editProfileRadioHasLeaveTrue.isSelected());
+        user.setHasLeave(binding.editProfileRadioHasLeaveTrue.isChecked());
 
         if (binding.editProfileRadioClub.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.editProfileTxtClub, binding.editProfileRadioClub);

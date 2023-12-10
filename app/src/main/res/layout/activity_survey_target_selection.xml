@@ -2,410 +2,1139 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout_survey_targetSelection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Survey_targetSelection">
 
-    <TextView
-        android:id="@+id/textView_title_survey_targetSelection"
+    <LinearLayout
+        android:id="@+id/survey_target_selection_ll_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="설문조사 대상 선정"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/survey_target_selection_txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="42sp"
+            android:text="설문조사 대상 선정"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:text="섹션의 항목을 하나도 선택하지 않았다면,\n해당 섹션의 모든 항목을 선택한 것과 동일합니다."
+            android:textSize="14.8sp" />
+    </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scrollView_survey_targetSelection"
+        android:id="@+id/survey_target_selection_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_before_survey_targetSelection"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/survey_target_selection_btn_before_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_survey_targetSelection">
+        app:layout_constraintTop_toBottomOf="@+id/survey_target_selection_ll_title">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_scroll_survey_targetSelection"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:orientation="vertical">
 
+            <!-- 성별 -->
             <TextView
-                android:id="@+id/textView_studentType_survey_targetSelection"
+                android:id="@+id/survey_target_selection_txt_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:text="성별"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:enabled="false"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_sex_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_sex_male"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_sex_female"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 학생 유형 -->
+            <!-- 재학생은 기본 체크해놨음 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_student_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="학생 유형"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="20sp" />
 
             <LinearLayout
-                android:id="@+id/linearLayout_studentType_survey_targetSelection"
+                android:id="@+id/survey_target_selection_ll_chkbx_student_type"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_studentType_survey_targetSelection">
+                android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/imageView_studentType_survey_targetSelection"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/targetselect_wallpaper" />
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_type_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_type_in"
+                    android:textSize="16sp"
+                    android:checked="true"/>
 
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_type_leave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_type_leave"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_type_graduate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_type_graduate"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_studentType_survey_targetSelection"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout_studentType_survey_targetSelection">
-
-                <CheckBox
-                    android:id="@+id/checkBox_students_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_studentsOnLeave_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_students_studentType_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_graduate_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_studentsOnLeave_studentType_survey_targetSelection" />
-
-                <TextView
-                    android:id="@+id/textView_students_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
-                    android:text="재학생"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_students_studentType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView_studentsOnLeave_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="휴학생"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_studentsOnLeave_studentType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_students_studentType_survey_targetSelection" />
-
-                <TextView
-                    android:id="@+id/textView_graduate_studentType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="졸업생"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_graduate_studentType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_studentsOnLeave_studentType_survey_targetSelection" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <!-- 학생 과정 -->
+            <!-- 학사, 학석사는 기본 체크해놨음 -->
             <TextView
-                android:id="@+id/textView_studentGrade_survey_targetSelection"
+                android:id="@+id/survey_target_selection_txt_student_course"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="학생 학년"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_studentType_survey_targetSelection" />
+                android:layout_marginTop="20dp"
+                android:text="학생 과정"
+                android:textSize="20sp" />
 
             <LinearLayout
-                android:id="@+id/linearLayout_studentGrade_survey_targetSelection"
+                android:id="@+id/survey_target_selection_ll_chkbx_student_course"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_studentGrade_survey_targetSelection">
+                android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/imageView_studentGrade_survey_targetSelection"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/targetselect_wallpaper" />
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_course_bachelor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_course_bachelor"
+                    android:textSize="16sp"
+                    android:checked="true"/>
 
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_course_bachelor_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_course_bachelor_master"
+                    android:textSize="16sp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_course_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_course_master"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_course_master_doctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_course_master_doctor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_student_course_doctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_student_course_doctor"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_studentGrade_survey_targetSelection"
+            <!-- 학생 학년 -->
+            <!-- 학(석)사 과정을 고른 경우에만 노출 -->
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_grade"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout_studentGrade_survey_targetSelection">
-
-                <CheckBox
-                    android:id="@+id/checkBox_1Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_2Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_1Grade_studentGrade_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_3Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_2Grade_studentGrade_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_4Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_3Grade_studentGrade_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_5Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_4Grade_studentGrade_survey_targetSelection" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView_1Grade_studentGrade_survey_targetSelection"
+                    android:id="@+id/survey_target_selection_txt_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
-                    android:text="1학년"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_1Grade_studentGrade_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginTop="20dp"
+                    android:text="학생 학년 (학부생만 해당)"
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/textView_2Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:id="@+id/survey_target_selection_ll_chkbx_grade"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="2학년"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_2Grade_studentGrade_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@id/textView_1Grade_studentGrade_survey_targetSelection" />
+                    android:background="@drawable/inputbox"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/textView_3Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="3학년"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_3Grade_studentGrade_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_2Grade_studentGrade_survey_targetSelection" />
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_grade_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_grade_1"
+                        android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView_4Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="4학년"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_4Grade_studentGrade_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_3Grade_studentGrade_survey_targetSelection" />
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_grade_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_grade_2"
+                        android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView_5Grade_studentGrade_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="5학년"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_5Grade_studentGrade_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_4Grade_studentGrade_survey_targetSelection" />
-                
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_grade_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_grade_3"
+                        android:textSize="16sp" />
 
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_grade_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_grade_4"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_grade_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_grade_5"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 소속 대학 -->
             <TextView
-                android:id="@+id/textView_majorCompletionType_survey_targetSelection"
+                android:id="@+id/survey_target_selection_txt_college"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="이수 유형"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_studentGrade_survey_targetSelection" />
+                android:layout_marginTop="20dp"
+                android:text="소속 대학"
+                android:textSize="20sp" />
 
             <LinearLayout
-                android:id="@+id/linearLayout_majorCompletionType_survey_targetSelection"
+                android:id="@+id/survey_target_selection_ll_chkbx_college"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_majorCompletionType_survey_targetSelection">
+                android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/imageView_majorCompletionType_survey_targetSelection"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/targetselect_wallpaper" />
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_humanities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_humanities"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_natural"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_natural"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_law"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_law"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_social"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_economics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_economics"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_business"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_business"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_engineering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_engineering"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_it"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_it"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_convergence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_convergence"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_college_semiconductor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_college_semiconductor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 다전공 이수 유형 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_multi_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="다전공 이수 유형"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_multi_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_multi_major_none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_multi_major_none"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_multi_major_minor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_multi_major_minor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_multi_major_double_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_multi_major_double_major"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_majorCompletionType_survey_targetSelection"
+            <!-- 다전공 소속 대학 -->
+            <!-- 다전공 이수 유형이 부전공, 복수전공을 고른 경우에만 노출 -->
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_college_multi_major"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout_majorCompletionType_survey_targetSelection">
-
-                <CheckBox
-                    android:id="@+id/checkBox_major_majorCompletionType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_changeMajor_majorCompletionType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_major_majorCompletionType_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_doubleMajor_majorCompletionType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_changeMajor_majorCompletionType_survey_targetSelection" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_minorMajor_majorCompletionType_survey_targetSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_doubleMajor_majorCompletionType_survey_targetSelection" />
-
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/textView_major_majorComplrtionType_survey_targetSelection"
+                    android:id="@+id/survey_target_selection_txt_college_multi_major"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
-                    android:text="주전공"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_major_majorCompletionType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginTop="20dp"
+                    android:text="다전공 소속 대학"
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/textView_changeMajor_majorComplrtionType_survey_targetSelection"
+                <LinearLayout
+                    android:id="@+id/survey_target_selection_ll_chkbx_college_multi_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_humanities"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_humanities"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_natural"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_natural"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_law"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_law"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_social"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_social"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_economics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_economics"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_business"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_engineering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_engineering"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_it"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_it"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_convergence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_convergence"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/survey_target_selection_chkbx_college_multi_major_semiconductor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_semiconductor"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- ~다전공 소속 대학 -->
+
+            <!-- 전과 (학과 이동) 유무 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_has_change_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="전과 (학과 이동) 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_has_change_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_change_major_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="해당 없음"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_change_major_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
                     android:text="전과생"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_changeMajor_majorCompletionType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_major_majorComplrtionType_survey_targetSelection" />
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView_doubleMajor_majorComplrtionType_survey_targetSelection"
+            </LinearLayout>
+
+            <!-- 교직 이수 유무 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_has_teaching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="교직 이수 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_has_teaching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_teaching_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="복수전공"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_doubleMajor_majorCompletionType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_changeMajor_majorComplrtionType_survey_targetSelection" />
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 해당 없음"
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView_minorMajor_majorComplrtionType_survey_targetSelection"
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_teaching_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:text="부전공"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_minorMajor_majorCompletionType_survey_targetSelection"
-                    app:layout_constraintTop_toTopOf="@+id/textView_doubleMajor_majorComplrtionType_survey_targetSelection" />
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 교직 이수생"
+                    android:textSize="16sp" />
 
+            </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- 유급 기록 유무 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_has_flunk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="유급 기록 유무"
+                android:textSize="20sp" />
 
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_has_flunk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
 
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_flunk_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 유급 기록 없음"
+                    android:textSize="16sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_flunk_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 유급 기록 존재"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!-- 학사 경고 기록 유무 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_has_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="학사 경고 기록 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_has_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_warning_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 학사 경고 기록 없음"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_warning_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 학사 경고 기록 존재"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!-- 휴학 기록 유무 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_has_leave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="휴학 기록 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_has_leave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_leave_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 휴학 기록 없음"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_has_leave_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text=" 휴학 기록 존재"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!-- 소속 동아리 범주 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="소속 동아리"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_club"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_none"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_sports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_sports"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_outdoor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_outdoor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_books"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_language"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_culture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_culture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_music"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_crafts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_crafts"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_dance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_dance"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_social"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_picture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_games"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_develop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_develop"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_cooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_cooking"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_volunteer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_volunteer"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_etc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_etc"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!-- 관심 동아리 범주 -->
+            <TextView
+                android:id="@+id/survey_target_selection_txt_club_intrst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="관심 동아리"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/survey_target_selection_ll_chkbx_club_intrst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_sports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_sports"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_outdoor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_outdoor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_books"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_language"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_culture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_culture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_music"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_crafts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_crafts"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_dance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_dance"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_social"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_picture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_games"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_develop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_develop"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_cooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_cooking"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_volunteer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_volunteer"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/survey_target_selection_chkbx_club_intrst_etc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:text="@string/user_club_etc"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 여백 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button_next_survey_targetSelection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="84dp"
-        android:background="@drawable/button_main"
-        android:text="다음 단계"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button_before_survey_targetSelection"
+        android:id="@+id/survey_target_selection_btn_before_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -414,5 +1143,16 @@
         android:text="이전 단계"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/survey_target_selection_btn_next_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button_main"
+        android:text="다음 단계"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

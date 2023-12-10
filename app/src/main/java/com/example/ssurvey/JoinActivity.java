@@ -417,31 +417,31 @@ public class JoinActivity extends MainActivity {
             scrollAndFocus(binding.joinTxtHasChangeMajor, binding.joinRadioHasChangeMajor);
             return "전과 (학과 이동) 유무를 선택해 주세요.";
         }
-        user.setHasChangeMajor(binding.joinRadioHasChangeMajorTrue.isSelected());
+        user.setHasChangeMajor(binding.joinRadioHasChangeMajorTrue.isChecked());
 
         if(binding.joinRadioHasTeaching.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.joinTxtHasTeaching, binding.joinRadioHasTeaching);
             return "교직 이수 유무를 선택해 주세요.";
         }
-        user.setHasTeaching(binding.joinRadioHasTeachingTrue.isSelected());
+        user.setHasTeaching(binding.joinRadioHasTeachingTrue.isChecked());
 
         if(binding.joinRadioHasFlunk.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.joinTxtHasFlunk, binding.joinRadioHasFlunk);
             return "유급 기록 유무를 선택해 주세요.";
         }
-        user.setHasFlunk(binding.joinRadioHasFlunkTrue.isSelected());
+        user.setHasFlunk(binding.joinRadioHasFlunkTrue.isChecked());
 
         if(binding.joinRadioHasWarning.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.joinTxtHasWarning, binding.joinRadioHasWarning);
             return "학사 경고 기록 유무를 선택해 주세요.";
         }
-        user.setHasWarning(binding.joinRadioHasWarningTrue.isSelected());
+        user.setHasWarning(binding.joinRadioHasWarningTrue.isChecked());
 
         if(binding.joinRadioHasLeave.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.joinTxtHasLeave, binding.joinRadioHasLeave);
             return "휴학 기록 유무를 선택해 주세요.";
         }
-        user.setHasLeave(binding.joinRadioHasLeaveTrue.isSelected());
+        user.setHasLeave(binding.joinRadioHasLeaveTrue.isChecked());
 
         if (binding.joinRadioClub.getCheckedRadioButtonId() == -1) {
             scrollAndFocus(binding.joinTxtClub, binding.joinRadioClub);

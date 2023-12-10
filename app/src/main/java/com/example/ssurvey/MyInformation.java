@@ -104,5 +104,10 @@ public class MyInformation extends MainActivity {
                 .show();
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 작성 중인 설문 대상 액티비티가 있다면 종료
+        Survey_targetSelection.actvityFinish();
+    }
 }

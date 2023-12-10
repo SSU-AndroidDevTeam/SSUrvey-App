@@ -10,6 +10,7 @@ import com.example.ssurvey.databinding.ActivityFirebaseExampleBinding;
 import com.example.ssurvey.model.Survey;
 import com.example.ssurvey.model.SurveyResponse;
 import com.example.ssurvey.model.SurveyStatistics;
+import com.example.ssurvey.model.SurveyTarget;
 import com.example.ssurvey.service.CbCode;
 import com.example.ssurvey.service.SurveyCallback;
 import com.example.ssurvey.service.SurveyReplicantCallback;
@@ -101,7 +102,7 @@ public class FirebaseExampleActivity extends AppCompatActivity {
                 "디마리아",
                 new Timestamp(new Date(System.currentTimeMillis())), // 실제 사용 시에는 원하는 시각의 Date 객체를 생성해 전달해야함
                 new Timestamp(new Date(System.currentTimeMillis())),
-                "(구현 안됨)"
+                new SurveyTarget()
         );
 
         // 2. 함수를 사용해 파이어스토어에 Write한다.

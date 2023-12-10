@@ -27,7 +27,9 @@ public class SurveyItem implements Comparable<SurveyItem> {
         this.description = survey.getDesc();
         this.surveyId = surveyId;
         long currTimeInMs = System.currentTimeMillis();
-        long closeDateInMs = survey.getCloseDate().toDate().getTime();
+        long closeDateInMs = currTimeInMs;
+        if(survey.getCloseDate() != null)
+            closeDateInMs = survey.getCloseDate().toDate().getTime();
         SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
     }
 

@@ -9,6 +9,12 @@
     <string name="user_student_type_leave">휴학생</string>
     <string name="user_student_type_graduate">졸업생</string>
 
+    <string name="user_grade_1">1 학년</string>
+    <string name="user_grade_2">2 학년</string>
+    <string name="user_grade_3">3 학년</string>
+    <string name="user_grade_4">4 학년</string>
+    <string name="user_grade_5">5 학년</string>
+
     <string name="user_student_course_bachelor">학사 과정</string>
     <string name="user_student_course_bachelor_master">학석사 통합 과정</string>
     <string name="user_student_course_master">석사 과정</string>

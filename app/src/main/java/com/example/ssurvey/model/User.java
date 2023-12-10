@@ -18,6 +18,15 @@ public class User {
         FEMALE
     }
 
+    /** R.string에 등록된 문자열과 비교 후 대응되는 Sex 반환  */
+    public static Sex getSex(Context context, String key) {
+        if(context.getString(R.string.user_sex_male).equals(key))
+            return Sex.MALE;
+        if(context.getString(R.string.user_sex_female).equals(key))
+            return Sex.FEMALE;
+        return Sex.NONE;
+    }
+
     /** Sex 내 상수에 대응되는 문자열 반환  */
     public static String getStringMatchedSex(Context context, Sex key) {
         switch (key) {
