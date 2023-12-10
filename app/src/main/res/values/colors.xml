@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <!-- EditText Color -->
     <color name="edit_text">#333333</color>
+    <!-- ReadOnly Color -->
+    <color name="readonly">#BCBCBC</color>
 </resources>

@@ -2,34 +2,1247 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout_editProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfile">
+    tools:context=".EditProfileActivity">
 
-    <TextView
-        android:id="@+id/textView_title_editProfile"
+    <LinearLayout
+        android:id="@+id/edit_profile_ll_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="회원 정보 수정"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button_edit_complete_editProfile"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="84dp"
-        android:background="@drawable/button_main"
-        android:text="수정"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/edit_profile_txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:fontFamily="@font/ibmplexsanskr_semibold"
+            android:text="내 정보 수정"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
+    <ScrollView
+        android:id="@+id/edit_profile_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_ll_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:orientation="vertical">
+
+            <!-- 학번 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학번"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edit_profile_et_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:enabled="false"
+                android:inputType="number"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingStart="15dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/edit_profile_btn_pw_change"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/button_main_selector"
+                android:paddingStart="23dp"
+                android:paddingEnd="23dp"
+                android:text="비밀번호 수정"
+                android:textSize="17sp" />
+
+            <!-- 비밀번호 수정 버튼을 누르기 전까진 보여주지 않는다. -->
+            <LinearLayout
+                android:id="@+id/edit_profile_ll_pw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- 비밀번호 -->
+                <TextView
+                    android:id="@+id/edit_profile_txt_pw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="비밀번호"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/edit_profile_et_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:paddingStart="15dp"
+                    android:textSize="16sp" />
+
+                <!-- 비밀번호 확인 -->
+                <TextView
+                    android:id="@+id/edit_profile_txt_pw_chk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="비밀번호 확인"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/edit_profile_et_pw_chk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:paddingStart="15dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 이름 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="이름"
+                android:textSize="20sp"
+                android:enabled="false"/>
+
+            <EditText
+                android:id="@+id/edit_profile_et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:inputType="text"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingStart="15dp"
+                android:textSize="16sp"
+                android:enabled="false" />
+
+            <!-- 성별 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="성별"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp"
+                android:enabled="false">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_sex_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_sex_male"
+                        android:textSize="16sp"
+                        android:enabled="false" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_sex_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_sex_female"
+                        android:textSize="16sp"
+                        android:enabled="false" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 생년월일 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="생년월일"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/edit_profile_btn_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_cal_disabled" />
+
+                    <TextView
+                        android:id="@+id/edit_profile_txt_input_birth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/readonly"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 이메일 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="이메일"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edit_profile_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:inputType="textEmailAddress"
+                android:maxLength="40"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingStart="15dp"
+                android:textSize="16sp" />
+
+            <!-- 휴대폰 번호 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="휴대폰 번호"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edit_profile_et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:inputType="number"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingStart="15dp"
+                android:textSize="16sp" />
+
+            <!-- 학생 유형 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_student_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="학생 유형"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_student_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_type_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_type_in"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_type_leave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_type_leave"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_type_graduate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_type_graduate"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 학생 과정 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_student_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="학생 과정"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_student_course"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_course_bachelor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_course_bachelor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_course_bachelor_master"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_course_bachelor_master"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_course_master"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_course_master"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_course_master_doctor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_course_master_doctor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_student_course_doctor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_student_course_doctor"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 학생 학년 -->
+            <!-- 학사, 학석사 과정을 고른 경우에만 노출 -->
+            <LinearLayout
+                android:id="@+id/edit_profile_ll_grade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/edit_profile_txt_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="학생 학년"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/edit_profile_et_grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="5dp"
+                    android:paddingStart="15dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 소속 대학 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_college"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="소속 대학"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_college"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_humanities"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_humanities"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_natural"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_natural"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_law"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_law"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_social"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_social"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_economics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_economics"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_business"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_engineering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_engineering"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_it"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_it"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_convergence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_convergence"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_college_semiconductor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_college_semiconductor"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 다전공 이수 유형 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_multi_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="다전공 이수 유형"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_multi_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_multi_major_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_multi_major_none"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_multi_major_minor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_multi_major_minor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_multi_major_double_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="@string/user_multi_major_double_major"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 다전공 소속 대학 -->
+            <!-- 다전공 이수 유형이 부전공, 복수전공을 고른 경우에만 노출 -->
+            <LinearLayout
+                android:id="@+id/edit_profile_ll_college_multi_major"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/edit_profile_txt_college_multi_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="다전공 소속 대학"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputbox"
+                    android:padding="8dp">
+
+                    <RadioGroup
+                        android:id="@+id/edit_profile_radio_college_multi_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_humanities"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_humanities"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_natural"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_natural"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_law"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_law"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_social"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_social"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_economics"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_economics"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_business"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_business"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_engineering"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_engineering"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_it"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_it"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_convergence"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_convergence"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_radio_college_multi_major_semiconductor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:paddingLeft="8dp"
+                            android:text="@string/user_college_semiconductor"
+                            android:textSize="16sp" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- ~다전공 소속 대학 -->
+
+            <!-- 전과 (학과 이동) 유무 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_has_change_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="전과 (학과 이동) 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_has_change_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_change_major_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="해당 없음"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_change_major_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text="전과생"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 교직 이수 유무 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_has_teaching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="교직 이수 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_has_teaching"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_teaching_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 해당 없음"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_teaching_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 교직 이수생"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 유급 기록 유무 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_has_flunk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="유급 기록 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_has_flunk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_flunk_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 유급 기록 없음"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_flunk_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 유급 기록 존재"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 학사 경고 기록 유무 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_has_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="학사 경고 기록 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_has_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_warning_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 학사 경고 기록 없음"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_warning_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 학사 경고 기록 존재"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 휴학 기록 유무 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_has_leave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="휴학 기록 유무"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_has_leave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_leave_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 휴학 기록 없음"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_has_leave_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="8dp"
+                        android:text=" 휴학 기록 존재"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 소속 동아리 범주 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_club"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="소속 동아리"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:padding="8dp">
+
+                <RadioGroup
+                    android:id="@+id/edit_profile_radio_club"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_none"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_sports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_sports"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_outdoor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_outdoor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_books"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_books"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_language"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_culture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_culture"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_music"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_crafts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_crafts"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_dance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_dance"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_social"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_social"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_picture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_picture"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_games"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_games"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_develop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_develop"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_cooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_cooking"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_volunteer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_volunteer"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile_radio_club_etc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="@string/user_club_etc"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 관심 동아리 범주 -->
+            <TextView
+                android:id="@+id/edit_profile_txt_club_intrst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="관심 동아리"
+                android:textSize="20sp" />
+
+            <!-- CheckBox의 부모(관리자) 역할을 하기 때문에 다른 요소는 넣지 말아야 함 -->
+            <LinearLayout
+                android:id="@+id/edit_profile_ll_chkbx_club"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_sports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_sports"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_outdoor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_outdoor"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_books"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_language"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_culture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_culture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_music"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_crafts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_crafts"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_dance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_dance"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_social"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_picture"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_games"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_develop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_develop"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_cooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_cooking"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_volunteer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_volunteer"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/edit_profile_chkbx_club_intrst_etc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_club_etc"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/edit_profile_btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/button_main_selector"
+                android:paddingStart="36dp"
+                android:paddingEnd="36dp"
+                android:text="수정"
+                android:textSize="17sp" />
+
+            <!-- 여백 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

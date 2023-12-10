@@ -59,7 +59,7 @@ public class JoinActivity extends MainActivity {
 
             // 이미 선택된 날짜가 있는 경우, 기선택한 날짜 기준으로 다이얼로그를 띄운다.
             if(user.getBirth() != null) {
-                year4Dial = user.getBirth().getYear();
+                year4Dial = user.getBirth().getYear() + 1900;
                 month4Dial = user.getBirth().getMonth();
                 day4Dial = user.getBirth().getDate();
             } else {
@@ -160,56 +160,65 @@ public class JoinActivity extends MainActivity {
                 Toast.makeText(this, setUserAndResultMsg(), Toast.LENGTH_SHORT).show();
             // 모든 검사를 통과
             else {
-                // 프로그래스 아이콘 노출 및 터치 불능 처리
-                binding.joinProgress.setVisibility(View.VISIBLE);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Toast.makeText(this, "회원 가입 중입니다.", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(this)
+                        .setTitle("회원 가입")
+                        .setMessage("작성하신 내용으로 회원가입 하시겠습니까?\n\n학번, 이름, 성별, 생년월일은 가입 후 변경할 수 없습니다.")
+                        .setNegativeButton("취소", (dialog, which) -> dialog.dismiss())
+                        .setPositiveButton("가입", (dialog, which) -> {
 
-                // 학번을 이메일 형식으로 바꿔 Firebase 인증용 ID로 등록한다.
-                String firebaseId = AuthManager.id2Email(user.getId());
+                            // 프로그래스 아이콘 노출 및 터치 불능 처리
+                            binding.joinProgress.setVisibility(View.VISIBLE);
+                            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(this, "회원 가입 중입니다.", Toast.LENGTH_SHORT).show();
 
-                // Firebase Authentication에 사용자 등록
-                AuthManager.getInstance().getFirebaseAuth().
-                        createUserWithEmailAndPassword(firebaseId, password).addOnCompleteListener(this, task -> {
-                            Log.d(TAG, "createUserWithEmailAndPassword()");
+                            // 학번을 이메일 형식으로 바꿔 Firebase 인증용 ID로 등록한다.
+                            String firebaseId = AuthManager.id2Email(user.getId());
 
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "Firebase Authentication 등록 성공");
+                            // Firebase Authentication에 사용자 등록
+                            AuthManager.getInstance().getFirebaseAuth().
+                                    createUserWithEmailAndPassword(firebaseId, password).addOnCompleteListener(this, task -> {
+                                        Log.d(TAG, "createUserWithEmailAndPassword()");
 
-                                if(task.getResult().getUser() != null)
-                                    user.setUid(task.getResult().getUser().getUid());
-                                user.setFirebaseId(firebaseId);
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Firebase Authentication 등록 성공");
 
-                                // DB에 유저 등록
-                                UserService.getInstance().setUser(user);
+                                            if(task.getResult().getUser() != null)
+                                                user.setUid(task.getResult().getUser().getUid());
+                                            user.setFirebaseId(firebaseId);
 
-                                // 어스 매니저에 현재 유저 정보 저장
-                                AuthManager.getInstance().setCurrentUser(user);
-                                Toast.makeText(this, "회원 가입에 성공했습니다.", Toast.LENGTH_LONG).show();
+                                            // DB에 유저 등록
+                                            UserService.getInstance().setUser(user);
 
-                                // 메인 화면으로 이동
-                                startActivity(new Intent(this, Home.class));
-                                finish();
-                            } else {
-                                Log.d(TAG, "Firebase Authentication 등록 실패");
+                                            // 어스 매니저에 현재 유저 정보 저장
+                                            AuthManager.getInstance().setCurrentUser(user);
+                                            Toast.makeText(this, "회원 가입에 성공했습니다.", Toast.LENGTH_LONG).show();
 
-                                Exception exception = task.getException();
-                                if (exception instanceof FirebaseAuthUserCollisionException)
-                                    Toast.makeText(getApplicationContext(), "이미 등록된 학번입니다.", Toast.LENGTH_SHORT).show();
-                                else if (exception instanceof FirebaseAuthWeakPasswordException)
-                                    Toast.makeText(getApplicationContext(), "비밀번호가 너무 짧습니다.", Toast.LENGTH_SHORT).show();
-                                else if (exception instanceof FirebaseAuthInvalidCredentialsException)
-                                    Toast.makeText(getApplicationContext(), "잘못된 학번입니다.", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(getApplicationContext(), "회원 가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                            }
+                                            // 메인 화면으로 이동
+                                            startActivity(new Intent(this, Home.class));
+                                            finish();
+                                        } else {
+                                            Log.d(TAG, "Firebase Authentication 등록 실패");
 
-                            // 프로그래스 아이콘 숨김 및 터치 가능 처리
-                            binding.joinProgress.setVisibility(View.GONE);
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                            Exception exception = task.getException();
+                                            if (exception instanceof FirebaseAuthUserCollisionException)
+                                                Toast.makeText(getApplicationContext(), "이미 등록된 학번입니다.", Toast.LENGTH_SHORT).show();
+                                            else if (exception instanceof FirebaseAuthWeakPasswordException)
+                                                Toast.makeText(getApplicationContext(), "비밀번호가 너무 짧습니다.", Toast.LENGTH_SHORT).show();
+                                            else if (exception instanceof FirebaseAuthInvalidCredentialsException)
+                                                Toast.makeText(getApplicationContext(), "잘못된 학번입니다.", Toast.LENGTH_SHORT).show();
+                                            else
+                                                Toast.makeText(getApplicationContext(), "회원 가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        }
 
-                            Log.d(TAG, "~createUserWithEmailAndPassword()");
-                    });
+                                        // 프로그래스 아이콘 숨김 및 터치 가능 처리
+                                        binding.joinProgress.setVisibility(View.GONE);
+                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                                        Log.d(TAG, "~createUserWithEmailAndPassword()");
+                                    });
+                        })
+                        .create()
+                        .show();
             }
         });
     }
@@ -264,6 +273,11 @@ public class JoinActivity extends MainActivity {
         if(user.getId().length() != 8) {
             scrollAndFocus(binding.joinTxtId, binding.joinEtId);
             return "학번은 여덟 자리여야 합니다.";
+        }
+        
+        if(Integer.parseInt(user.getId()) < 19000000) {
+            scrollAndFocus(binding.joinTxtId, binding.joinEtId);
+            return "정상적인 학번을 입력해주십시오.";
         }
 
         password = binding.joinEtPw.getText().toString();
@@ -366,9 +380,13 @@ public class JoinActivity extends MainActivity {
                 scrollAndFocus(binding.joinLlGrade, binding.joinEtGrade);
                 return "학년을 입력해 주세요.";
             }
-
             int grade = Integer.parseInt(strGrade);
-            if(grade < 1 || grade > 5) {
+            if(User.StudentCourse.BACHELOR_MASTER.equals(user.getStudentCourse())) {
+                if(grade < 3 || grade > 5) {
+                    scrollAndFocus(binding.joinLlGrade, binding.joinEtGrade);
+                    return "학석사 통합 과정생의 학년은 3부터 5사이의 숫자만 입력 가능합니다.";
+                }
+            } else if(grade < 1 || grade > 5) {
                 scrollAndFocus(binding.joinLlGrade, binding.joinEtGrade);
                 return "학년은 1부터 5사이의 숫자만 입력 가능합니다.";
             }
@@ -447,13 +465,11 @@ public class JoinActivity extends MainActivity {
     @Override
     public void onBackPressed() {
         if(binding.joinProgress.getVisibility() == View.GONE) {
-            new AlertDialog.Builder(this).setTitle("회원 가입 중단").setMessage("작성하던 내용이 사라집니다.\n회원 가입을 중단하시겠습니까?")
-                    .setNegativeButton("계속 작성", (dialog, which) -> {
-                        dialog.dismiss();
-                    })
-                    .setPositiveButton("나가기", (dialog, which) -> {
-                        super.onBackPressed();
-                    })
+            new AlertDialog.Builder(this)
+                    .setTitle("회원 가입 중단")
+                    .setMessage("작성하던 내용이 사라집니다.\n\n회원 가입을 중단하시겠습니까?")
+                    .setNegativeButton("계속 작성", (dialog, which) -> dialog.dismiss())
+                    .setPositiveButton("나가기", (dialog, which) -> super.onBackPressed())
                     .create()
                     .show();
         }

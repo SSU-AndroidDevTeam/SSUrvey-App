@@ -32,19 +32,7 @@ public class UserService {
     }
 
     /**
-     * 유저 삽입
-     */
-    public void setUser(Map<String, Object> user) {
-        Log.d(TAG, "setUser(Map<String, Object> user)");
-
-        CollectionReference colRef = db.collection(COLLECTION);
-        colRef.document(user.get("uid").toString()).set(user);
-
-        Log.d(TAG, "~setUser(Map<String, Object> user)");
-    }
-
-    /**
-     * 유저 삽입
+     * 유저 INSERT or UPDATE
      */
     public void setUser(User user) {
         Log.d(TAG, "setUser(User user)");

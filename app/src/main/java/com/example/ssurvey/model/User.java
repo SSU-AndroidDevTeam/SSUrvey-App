@@ -11,14 +11,27 @@ public class User {
 
     /** 성별 */
     public enum Sex {
+        NONE,
         /** 남성 */
         MALE,
         /** 여성 */
         FEMALE
     }
 
+    /** Sex 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedSex(Context context, Sex key) {
+        switch (key) {
+            case MALE:
+                return context.getString(R.string.user_sex_male);
+            case FEMALE:
+                return context.getString(R.string.user_sex_female);
+        }
+        return "";
+    }
+
     /** 학생 유형 */
     public enum StudentType {
+        NONE,
         /** 재학생 */
         IN,
         /** 휴학생 */
@@ -29,15 +42,31 @@ public class User {
 
     /** R.string에 등록된 문자열과 비교 후 대응되는 StudentType 반환  */
     public static StudentType getStudentType(Context context, String key) {
+        if(context.getString(R.string.user_student_type_in).equals(key))
+            return StudentType.IN;
         if(context.getString(R.string.user_student_type_leave).equals(key))
             return StudentType.LEAVE;
         if(context.getString(R.string.user_student_type_graduate).equals(key))
             return StudentType.GRADUATE;
-        return StudentType.IN;
+        return StudentType.NONE;
+    }
+
+    /** StudentType 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedStudentType(Context context, StudentType key) {
+        switch (key) {
+            case IN:
+                return context.getString(R.string.user_student_type_in);
+            case LEAVE:
+                return context.getString(R.string.user_student_type_leave);
+            case GRADUATE:
+                return context.getString(R.string.user_student_type_graduate);
+        }
+        return "";
     }
 
     /** 학생 과정 */
     public enum StudentCourse {
+        NONE,
         /** 학사 과정 */
         BACHELOR,
         /** 학석사 통합 과정 */
@@ -52,6 +81,8 @@ public class User {
 
     /** R.string에 등록된 문자열과 비교 후 대응되는 StudentCourse 반환  */
     public static StudentCourse getStudentCourse(Context context, String key) {
+        if(context.getString(R.string.user_student_course_bachelor).equals(key))
+            return StudentCourse.BACHELOR;
         if(context.getString(R.string.user_student_course_bachelor_master).equals(key))
             return StudentCourse.BACHELOR_MASTER;
         if(context.getString(R.string.user_student_course_master).equals(key))
@@ -60,7 +91,24 @@ public class User {
             return StudentCourse.MASTER_DOCTOR;
         if(context.getString(R.string.user_student_course_doctor).equals(key))
             return StudentCourse.DOCTOR;
-        return StudentCourse.BACHELOR;
+        return StudentCourse.NONE;
+    }
+
+    /** StudentCourse 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedStudentCourse(Context context, StudentCourse key) {
+        switch (key) {
+            case BACHELOR:
+                return context.getString(R.string.user_student_course_bachelor);
+            case BACHELOR_MASTER:
+                return context.getString(R.string.user_student_course_bachelor_master);
+            case MASTER:
+                return context.getString(R.string.user_student_course_master);
+            case MASTER_DOCTOR:
+                return context.getString(R.string.user_student_course_master_doctor);
+            case DOCTOR:
+                return context.getString(R.string.user_student_course_doctor);
+        }
+        return "";
     }
 
     /** 소속 대학 */
@@ -114,6 +162,33 @@ public class User {
         return College.NONE;
     }
 
+    /** College 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedCollege(Context context, College key) {
+        switch (key) {
+            case HUMANITIES:
+                return context.getString(R.string.user_college_humanities);
+            case NATURAL:
+                return context.getString(R.string.user_college_natural);
+            case LAW:
+                return context.getString(R.string.user_college_law);
+            case SOCIAL:
+                return context.getString(R.string.user_college_social);
+            case ECONOMICS:
+                return context.getString(R.string.user_college_economics);
+            case BUSINESS:
+                return context.getString(R.string.user_college_business);
+            case ENGINEERING:
+                return context.getString(R.string.user_college_engineering);
+            case IT:
+                return context.getString(R.string.user_college_it);
+            case CONVERGENCE:
+                return context.getString(R.string.user_college_convergence);
+            case SEMICONDUCTOR:
+                return context.getString(R.string.user_college_semiconductor);
+        }
+        return "";
+    }
+
     /** 다전공 이수 유형 */
     public enum MultiMajor {
         /** 해당 없음 */
@@ -131,6 +206,17 @@ public class User {
         if(context.getString(R.string.user_multi_major_double_major).equals(key))
             return MultiMajor.DOUBLE_MAJOR;
         return MultiMajor.NONE;
+    }
+
+    /** MultiMajor 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedMultiMajor(Context context, MultiMajor key) {
+        switch (key) {
+            case MINOR:
+                return context.getString(R.string.user_multi_major_minor);
+            case DOUBLE_MAJOR:
+                return context.getString(R.string.user_multi_major_double_major);
+        }
+        return context.getString(R.string.user_multi_major_none);
     }
 
     /** 동아리 범주 */
@@ -204,16 +290,45 @@ public class User {
         return Club.NONE;
     }
 
-    /** 빈 User 객체 생성용 */
-    public User() {
-        this.clubInteresting = new ArrayList<Club>();
+    /** MultiMajor 내 상수에 대응되는 문자열 반환  */
+    public static String getStringMatchedClub(Context context, Club key) {
+        switch (key) {
+            case SPORTS:
+                return context.getString(R.string.user_club_sports);
+            case OUTDOOR:
+                return context.getString(R.string.user_club_outdoor);
+            case BOOKS:
+                return context.getString(R.string.user_club_books);
+            case LANGUAGE:
+                return context.getString(R.string.user_club_language);
+            case CULTURE:
+                return context.getString(R.string.user_club_culture);
+            case MUSIC:
+                return context.getString(R.string.user_club_music);
+            case CRAFTS:
+                return context.getString(R.string.user_club_crafts);
+            case DANCE:
+                return context.getString(R.string.user_club_dance);
+            case SOCIAL:
+                return context.getString(R.string.user_club_social);
+            case PICTURE:
+                return context.getString(R.string.user_club_picture);
+            case GAMES:
+                return context.getString(R.string.user_club_games);
+            case DEVELOP:
+                return context.getString(R.string.user_club_develop);
+            case COOKING:
+                return context.getString(R.string.user_club_cooking);
+            case VOLUNTEER:
+                return context.getString(R.string.user_club_volunteer);
+            case ETC:
+                return context.getString(R.string.user_club_etc);
+        }
+        return context.getString(R.string.user_club_none);
     }
 
-    public User(String uid, String firebaseId, String id) {
-        super();
-        this.uid = uid;
-        this.firebaseId = firebaseId;
-        this.id = id;
+    public User() {
+        this.clubInteresting = new ArrayList<Club>();
     }
 
     /** 유저 고유 ID (UID) */

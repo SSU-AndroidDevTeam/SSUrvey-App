@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="24dp"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- 회원 가입 -->
         <TextView
             android:id="@+id/join_txt_title"
             android:layout_width="wrap_content"
@@ -25,11 +26,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 학번 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="타인의 학번 등 허위 정보 입력 시 제재 조치가 이뤄집니다."
+            android:text="타인의 학번 등 허위 정보 입력 시 제재 조치가 이뤄집니다.\n학번, 이름, 성별, 생년월일은 가입 후 변경할 수 없습니다."
             android:textSize="14.8sp" />
     </LinearLayout>
 
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:paddingLeft="8dp"
-                        android:text="남성"
+                        android:text="@string/user_sex_male"
                         android:textSize="16sp" />
 
                     <RadioButton
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:paddingLeft="8dp"
-                        android:text="여성"
+                        android:text="@string/user_sex_female"
                         android:textSize="16sp" />
                 </RadioGroup>
             </LinearLayout>
@@ -1231,6 +1231,8 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:paddingStart="175dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -81,6 +81,11 @@ public class AuthManager {
         return firebaseAuth.getCurrentUser() != null;
     }
 
+    /** 현재 로그인 한 유저의 비밀번호 업데이트 */
+    public void updatePassword(String newPw) {
+        firebaseAuth.getCurrentUser().updatePassword(newPw);
+    }
+
     /***
      * 학번을 이메일로 변환한 문자열을 반환해준다. (firebase email auth에 사용하기 위함)
      * @param id 학번

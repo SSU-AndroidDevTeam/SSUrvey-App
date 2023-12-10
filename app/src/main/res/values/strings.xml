@@ -2,6 +2,9 @@
     <string name="app_name">SSUrvey</string>
 
     <!-- User -->
+    <string name="user_sex_male">남성</string>
+    <string name="user_sex_female">여성</string>
+
     <string name="user_student_type_in">재학생</string>
     <string name="user_student_type_leave">휴학생</string>
     <string name="user_student_type_graduate">졸업생</string>
