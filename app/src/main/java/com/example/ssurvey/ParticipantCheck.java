@@ -50,6 +50,7 @@ public class ParticipantCheck extends MainActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SurveyResultRegistrant.class);
+                intent.putExtra("surveyId", surveyId);
                 startActivity(intent);
             }
         });
@@ -71,6 +72,9 @@ public class ParticipantCheck extends MainActivity {
                     break;
             }
 
+            Intent intent = getIntent();
+            String surveyId = intent.getStringExtra("surveyId");
+
             // 로직
             replicantIds = replicants;
             AuthManager authManager = AuthManager.getInstance();
@@ -90,7 +94,24 @@ public class ParticipantCheck extends MainActivity {
                         replAdapter = new ReplicantRecycleAdapter();
 
                         // 참여자 이름 목록 전달
-                        replAdapter.setReplicantNames(replicantNames);
+                       // replAdapter.setReplicantNames(replicantNames);
+
+                        replAdapter.setReplicantNamesAndIds(replicantNames, replicantIds);
+
+
+                        // 아이템 클릭 리스너 설정
+                        replAdapter.setOnItemClickListener(new ReplicantRecycleAdapter.OnItemClickListener() {
+                            public void onItemClick(String replicantId, String replicantName) {
+                                Log.d("ParticipantCheck", "Clicked on replicant with Id: " + replicantId);
+                                // 클릭한 참여자의 정보를 다른 화면으로 전달하는 로직 추가
+                                Intent intent = new Intent(getApplicationContext(), ParticipantSurveyResult.class);
+                                intent.putExtra("surveyId", surveyId);
+                                intent.putExtra("replicantId", replicantId);
+                                intent.putExtra("replicantName", replicantName);
+                                startActivity(intent);
+                            }
+                        });
+
                         recyclerView.setAdapter(replAdapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     }

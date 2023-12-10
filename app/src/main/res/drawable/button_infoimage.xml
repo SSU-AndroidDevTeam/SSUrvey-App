@@ -27,6 +27,9 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/info" />
+    <item android:drawable="@drawable/info"
+
+        android:left="10dp"
+        android:right="10dp"/>
 
 </layer-list>

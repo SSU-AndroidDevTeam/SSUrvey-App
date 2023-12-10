@@ -17,6 +17,7 @@ import com.example.ssurvey.service.SurveyCallback;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class Survey_main extends MainActivity {
 
@@ -103,10 +104,24 @@ public class Survey_main extends MainActivity {
             String displayText = formattedOpenDate + " ~ " + formattedCloseDate;
             dateSurveyMain.setText(displayText);
 
-            // D-day 계산 및 표시 (예시, 실제 D-day 계산 로직에 따라 수정 필요)
-            long dDayMillis = survey.getCloseDate().toDate().getTime() - System.currentTimeMillis();
-            int dDay = (int) (dDayMillis / (24 * 60 * 60 * 1000));
-            dDateSurveyMain.setText("D-" + dDay);
+            // 현재 날짜를 구합니다.
+            Date currentDate = new Date();
+
+// closeDate와의 날짜 차이를 계산합니다.
+            long timeDiff = closeDate.getTime() - currentDate.getTime();
+            long daysDiff = TimeUnit.MILLISECONDS.toDays(timeDiff);
+
+// 계산된 D-day를 문자열로 표시합니다.
+            String dDayText;
+            if (daysDiff > 0) {
+                dDayText = "D-" + (daysDiff + 1); // 남은 날짜를 D-1부터 시작하도록 표시
+            } else if (daysDiff == 0) {
+                dDayText = "D-day";
+            } else {
+                dDayText = "종료";
+            }
+
+            dDateSurveyMain.setText(dDayText);
 
             // 설문 설명 설정
             descSurveyMain.setText(survey.getDesc());
