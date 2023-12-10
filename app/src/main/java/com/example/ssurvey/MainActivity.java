@@ -7,8 +7,9 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.addView(linearLayout);
 
         // 버튼 생성 및 추가
-        Button myInfoBtn = createButton(R.drawable.button_infoimage);
-        Button mainBtn;
+        ImageButton myInfoBtn = createButton(R.drawable.button_infoimage);
+        ImageButton mainBtn;
 
         // 현재 액티비티가 Home이면
         if(SSUrvey.getCurrentActivityClass() == Home.class) {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             mainBtn.setOnClickListener(new MyButtonClickListener(Home.class));
         }
 
-        Button settingBtn = createButton(R.drawable.button_settingimage);
+        ImageButton settingBtn = createButton(R.drawable.button_settingimage);
         linearLayout.addView(myInfoBtn);
         linearLayout.addView(mainBtn);
         linearLayout.addView(settingBtn);
@@ -93,15 +94,17 @@ public class MainActivity extends AppCompatActivity {
         return linearLayout;
     }
 
-    private Button createButton(int backgroundResource) {
-        Button button = new Button(this);
+    private ImageButton createButton(int backgroundResource) {
+        ImageButton button = new ImageButton(this);
         // layout_width를 0dp로 설정하고 layout_weight를 부여
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));  // 1.0f는 weight입니다.
 
         // 배경 이미지 설정
-        button.setBackgroundResource(backgroundResource);
+        button.setImageResource(backgroundResource);
+        button.setBackgroundColor(getColor(R.color.white));
+        button.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return button;
     }
