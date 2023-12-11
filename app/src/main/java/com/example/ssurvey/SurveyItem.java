@@ -9,12 +9,24 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SurveyItem implements Comparable<SurveyItem> {
+    /** 설문 상태 */
+    public enum SurveyState {
+        NONE,
+        /** 진행 중 */
+        IN,
+        /** 예정 */
+        SOON,
+        /** 종료 */
+        COMPLETE
+    }
+
     private String name;
     private String description;
     private String dateText;
     private boolean isClosed = false;
     private int dateLeft = 0;
     private String surveyId;
+    private SurveyState surveyState = SurveyState.NONE;
 
     public SurveyItem(String name, String description, String dateText) {
         this.name = name;
@@ -31,6 +43,18 @@ public class SurveyItem implements Comparable<SurveyItem> {
         if(survey.getCloseDate() != null)
             closeDateInMs = survey.getCloseDate().toDate().getTime();
         SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
+    }
+
+    public SurveyItem(Survey survey, String surveyId, SurveyItem.SurveyState surveyState) {
+        this.name = survey.getName();
+        this.description = survey.getDesc();
+        this.surveyId = surveyId;
+        long currTimeInMs = System.currentTimeMillis();
+        long closeDateInMs = currTimeInMs;
+        if(survey.getCloseDate() != null)
+            closeDateInMs = survey.getCloseDate().toDate().getTime();
+        SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
+        this.surveyState = surveyState;
     }
 
     private int MsToDays(long milliseconds) {
@@ -69,6 +93,10 @@ public class SurveyItem implements Comparable<SurveyItem> {
     }
 
     public String getSurveyId() { return surveyId; }
+
+    public SurveyItem.SurveyState getSurveyState() {
+        return surveyState;
+    }
 
     @Override
     public int compareTo(SurveyItem surveyItem) {

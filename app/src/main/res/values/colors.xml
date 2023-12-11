@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#616161</color>
+    <color name="white">#FFFFFF</color>
     <!-- EditText Color -->
     <color name="edit_text">#333333</color>
     <!-- ReadOnly Color -->
     <color name="readonly">#BCBCBC</color>
+    <color name="main_tap">#DADADA</color>
 </resources>

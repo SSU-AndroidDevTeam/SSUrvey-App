@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_actionbar_home"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="46dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,26 +23,29 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_home"
-            android:text="진행중"
-            android:textSize="24sp" />
+            android:fontFamily="@font/ibmplexsanskr_semibold"
+            android:text="진행 중"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_soon_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button_home"
+            android:background="@drawable/button_home_disabled"
+            android:fontFamily="@font/ibmplexsanskr_semibold"
             android:text="예정"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_complete_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button_home"
+            android:background="@drawable/button_home_disabled"
+            android:fontFamily="@font/ibmplexsanskr_semibold"
             android:text="종료"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

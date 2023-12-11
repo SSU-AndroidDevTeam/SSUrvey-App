@@ -156,6 +156,11 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         return count;
     }
 
+    public void clear() {
+        arrayList.clear();
+        notifyDataSetChanged();
+    }
+
     public class SurveyListHolder extends RecyclerView.ViewHolder {
         private ImageView survey_image;
         private TextView survey_name;
@@ -205,12 +210,15 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
     private void HomeClick(int position) {
         // 클릭한 아이템의 정보를 가져와서 이동할 화면에 전달하거나 사용
         SurveyItem clickedItem = arrayList.get(position);
-        String surveyId = clickedItem.getSurveyId();
 
-        Intent intent = new Intent(context, Survey_main.class);
-        intent.putExtra("surveyId", surveyId);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-        //참여한 경우와 아닌경우 구분할 필요있음
+        // 예정, 종료 설문은 터치 불능 처리
+        if(clickedItem.getSurveyState() == SurveyItem.SurveyState.NONE || clickedItem.getSurveyState() == SurveyItem.SurveyState.IN) {
+            String surveyId = clickedItem.getSurveyId();
+            Intent intent = new Intent(context, Survey_main.class);
+            intent.putExtra("surveyId", surveyId);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            //참여한 경우와 아닌경우 구분할 필요있음
+        }
     }
 }
