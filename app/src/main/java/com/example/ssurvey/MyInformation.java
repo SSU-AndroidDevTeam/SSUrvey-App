@@ -107,6 +107,13 @@ public class MyInformation extends MainActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 로그인이 된 상태가 아니라면 액티비티를 닫는다.
+        if(!AuthManager.getInstance().isLoggedIn()) {
+            finish();
+            return;
+        }
+
         // 작성 중인 설문 대상 액티비티가 있다면 종료
         Survey_targetSelection.actvityFinish();
     }

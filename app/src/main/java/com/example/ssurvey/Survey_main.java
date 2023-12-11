@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ssurvey.model.Survey;
 import com.example.ssurvey.service.CbCode;
@@ -46,7 +47,15 @@ public class Survey_main extends MainActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Survey_ing.class);
-                intent.putExtra("surveyId", surveyId);
+                if(!AuthManager.getInstance().isLoggedIn()) {
+                    Toast.makeText(getActivity(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent = new Intent(getApplicationContext(), LoginActivity.class);
+                }
+                else {
+                    intent = new Intent(getApplicationContext(), Survey_ing.class);
+                    intent.putExtra("surveyId", surveyId);
+                }
                 startActivity(intent);
             }
         });

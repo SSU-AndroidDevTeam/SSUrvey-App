@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,8 +20,17 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageButton myInfoBtn;
+
+    private MainActivity activity;
+
+    public MainActivity getActivity() {
+        return activity;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        activity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,14 +47,19 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.addView(linearLayout);
 
         // 버튼 생성 및 추가
-        ImageButton myInfoBtn = createButton(R.drawable.button_infoimage);
+        myInfoBtn = createButton(R.drawable.button_infoimage);
         ImageButton mainBtn;
 
         // 현재 액티비티가 Home이면
         if(SSUrvey.getCurrentActivityClass() == Home.class) {
             // 가운데 메인 버튼을 설문 생성 버튼으로 한다
             mainBtn = createButton(R.drawable.button_surveyplusimage);
-            mainBtn.setOnClickListener(new MyButtonClickListener(Survey_outline.class));
+
+            // 로그인 된 상태일 때만 설문 등록으로 이동하도록 한다
+            if(AuthManager.getInstance().isLoggedIn())
+                mainBtn.setOnClickListener(new MyButtonClickListener(Survey_outline.class));
+            else
+                mainBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
         }
         // 현재 액티비티가 Home이 아니라면
         else {
@@ -71,8 +86,13 @@ public class MainActivity extends AppCompatActivity {
             if(SSUrvey.getCurrentActivityClass() != LoginActivity.class)
                 myInfoBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
 
-        if(SSUrvey.getCurrentActivityClass() != Setting.class)
-            settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
+        if(SSUrvey.getCurrentActivityClass() != Setting.class) {
+            // 로그인 된 상태일 때만 설정으로 이동하도록 한다
+            if (AuthManager.getInstance().isLoggedIn())
+                settingBtn.setOnClickListener(new MyButtonClickListener(Setting.class));
+            else
+                settingBtn.setOnClickListener(new MyButtonClickListener(LoginActivity.class));
+        }
     }
 
     private LinearLayout createLinearLayout() {
@@ -134,8 +154,17 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            // 계정 버튼을 누른게 아니고
+            if(!v.equals(myInfoBtn)) {
+                // 받은 클래스가 로그인 액티비티면 로그인 안내 토스트를 띄운다.
+                if(this.destinationActivityClass.equals(LoginActivity.class))
+                    Toast.makeText(getActivity(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+            }
+
             // 버튼에 따른 처리
             Intent intent = new Intent(MainActivity.this, destinationActivityClass);
+            // 기존 액티비티 재활용
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
         }
     }
