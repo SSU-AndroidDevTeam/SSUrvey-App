@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ssurvey.model.Survey;
 
@@ -48,8 +49,79 @@ public class Survey_questions extends MainActivity {
         surveyQuestionsNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (q1DescEditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 질문을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q1Ans1EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 항목1을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q1Ans2EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 항목2를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q1Ans3EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 항목3을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q1Ans4EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 항목4를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q1Ans5EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문1의 항목5를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2DescEditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 질문을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2Ans1EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 항목1을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2Ans2EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 항목2를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2Ans3EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 항목3을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2Ans4EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 항목4를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q2Ans5EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문2의 항목5를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3DescEditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 질문을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3Ans1EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 항목1을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3Ans2EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 항목2를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3Ans3EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 항목3을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3Ans4EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 항목4를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (q3Ans5EditText.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "설문3의 항목5를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getApplicationContext(), Survey_targetSelection.class);
-                // 선택한 항목을 유지하기 위해 기존 액티비티 재활용
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

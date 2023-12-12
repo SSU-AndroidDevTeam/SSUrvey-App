@@ -21,6 +21,7 @@ import com.example.ssurvey.Survey_complete;
 import com.example.ssurvey.Survey_main;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.SurveyListHolder> {
     private ArrayList<SurveyItem> arrayList;
@@ -55,16 +56,16 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         AuthManager authManager = AuthManager.getInstance();
 
         currentUserID = authManager.getCurrentId();
-        Log.d("SurveyListAdapter", "Current UserID: " + currentUserID); // 로그 추가
+        //Log.d("SurveyListAdapter", "Current UserID: " + currentUserID); // 로그 추가
+        //Log.d("SurveyListAdapter", "Current Item Host ID: " + currentItem.getHostId()); // 로그 추가
 
         // 필터링 조건에 따라 아이템을 제한하여 표시
         switch (filterCondition) {
             case FILTER_REGISTERED:
-                //if (!currentItem.getSurveyId().equals(currentUserID))
+                //if (!Objects.equals(currentItem.getHostId(), currentUserID))
             {
                 // 등록된 설문이 아닌 경우 아이템을 표시하지 않음
-                //Log.d("SurveyListAdapter", "Filtered out: " + currentItem.getSurveyId()); // 로그 추가
-                   //return;
+                  // return;
             }
             break;
             case FILTER_PARTICIPATED:
@@ -85,7 +86,7 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         }
 
         Glide.with(holder.itemView)
-                .load(R.drawable.ic_launcher_background) // TODO: 이미지 동적 로딩
+                .load(R.drawable.surveyregister) // TODO: 이미지 동적 로딩
                 .into(holder.survey_image);
         holder.survey_name.setText(currentItem.getName());
         holder.survey_desc.setText(currentItem.getDescription());
@@ -122,6 +123,7 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
     @Override
     public int getItemCount() {
         // 필터링된 아이템의 개수만 반환
+        //Log.d("SurveyListAdapter", "Filter Condition: " + filterCondition);
 
         AuthManager authManager = AuthManager.getInstance();
 
@@ -131,9 +133,11 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         for (SurveyItem item : arrayList) {
             switch (filterCondition) {
                 case FILTER_REGISTERED:
-                    //if (item.getSurveyId().equals(currentUserID))
+                    //Log.d("SurveyListAdapter", "Current Item Host ID: " + item.getHostId()); // 로그 추가
+                     //if (item.getHostId() != null && item.getHostId().equals(currentUserID))
                 {
                     count++;
+                    //Log.d("SurveyListAdapter", "Count: " + count); // 로그 추가
                 }
                 break;
                 case FILTER_PARTICIPATED:
@@ -155,6 +159,8 @@ public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.Su
         }
         return count;
     }
+
+
 
     public void clear() {
         arrayList.clear();

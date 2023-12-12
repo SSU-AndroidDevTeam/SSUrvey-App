@@ -28,6 +28,8 @@ public class SurveyItem implements Comparable<SurveyItem> {
     private String surveyId;
     private SurveyState surveyState = SurveyState.NONE;
 
+    private String hostId;
+
     public SurveyItem(String name, String description, String dateText) {
         this.name = name;
         this.description = description;
@@ -43,6 +45,8 @@ public class SurveyItem implements Comparable<SurveyItem> {
         if(survey.getCloseDate() != null)
             closeDateInMs = survey.getCloseDate().toDate().getTime();
         SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
+        this.hostId = survey.getHostId();
+        Log.d("SurveyItem", "SurveyItem created: " + this.name + ", " + this.description + ", " + this.dateText);
     }
 
     public SurveyItem(Survey survey, String surveyId, SurveyItem.SurveyState surveyState) {
@@ -55,6 +59,7 @@ public class SurveyItem implements Comparable<SurveyItem> {
             closeDateInMs = survey.getCloseDate().toDate().getTime();
         SetDateLeft(MsToDays(closeDateInMs - currTimeInMs));
         this.surveyState = surveyState;
+        this.hostId = survey.getHostId();
     }
 
     private int MsToDays(long milliseconds) {
@@ -97,6 +102,8 @@ public class SurveyItem implements Comparable<SurveyItem> {
     public SurveyItem.SurveyState getSurveyState() {
         return surveyState;
     }
+
+    public String getHostId() { return hostId; }
 
     @Override
     public int compareTo(SurveyItem surveyItem) {

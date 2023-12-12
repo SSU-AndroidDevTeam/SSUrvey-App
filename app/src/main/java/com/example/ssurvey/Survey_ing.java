@@ -57,9 +57,9 @@ public class Survey_ing extends MainActivity {
 
                 int selectedRadioButton1Id = radioGroup1.getCheckedRadioButtonId();
 
-                int q1Result = 1;
-                int q2Result = 1;
-                int q3Result = 1;
+                int q1Result = 0;
+                int q2Result = 0;
+                int q3Result = 0;
                 if (selectedRadioButton1Id == R.id.radioButton_btn1_question1_survey_ing) {
                     q1Result = 1;
                 } else if (selectedRadioButton1Id == R.id.radioButton_btn2_question1_survey_ing) {
@@ -100,19 +100,24 @@ public class Survey_ing extends MainActivity {
                     q3Result = 5;
                 }
 
-                AuthManager authManager = AuthManager.getInstance();
-
-                SurveyResponse response = new SurveyResponse(
-                        authManager.getCurrentId(),
-                        q1Result,
-                        q2Result,
-                        q3Result,
-                        new Timestamp(new Date(System.currentTimeMillis()))
-                );
-                String responseId = fbManager.addSurveyResponse(response, surveyId);
-                Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
-                intent.putExtra("surveyId", surveyId);
-                startActivity(intent);
+                if (q1Result == 0 || q2Result == 0 || q3Result == 0) {
+                    // 하나라도 선택되지 않았을 경우 토스트 출력
+                    Toast.makeText(getApplicationContext(), "모든 질문에 답해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 모든 질문에 답했을 경우 다음 화면으로 이동
+                    AuthManager authManager = AuthManager.getInstance();
+                    SurveyResponse response = new SurveyResponse(
+                            authManager.getCurrentId(),
+                            q1Result,
+                            q2Result,
+                            q3Result,
+                            new Timestamp(new Date(System.currentTimeMillis()))
+                    );
+                    String responseId = fbManager.addSurveyResponse(response, surveyId);
+                    Intent intent = new Intent(getApplicationContext(), Survey_complete.class);
+                    intent.putExtra("surveyId", surveyId);
+                    startActivity(intent);
+                }
             }
         });
 

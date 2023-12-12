@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.ssurvey.model.Survey;
@@ -79,6 +80,26 @@ public class Survey_outline extends MainActivity {
             @Override
             public void onClick(View v) {
 
+                if (nameEditText.getText().toString().length() == 0) {
+                    // 설문 제목이 입력되지 않은 경우
+                    Toast.makeText(getApplicationContext(), "설문 제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (descEditText.getText().toString().length() == 0) {
+                    // 설문 설명이 입력되지 않은 경우
+                    Toast.makeText(getApplicationContext(), "설문 설명을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (startDateTextView.getText().toString().length() == 0) {
+                    // 설문 시작일이 입력되지 않은 경우
+                    Toast.makeText(getApplicationContext(), "설문 시작일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (endDateTextView.getText().toString().length() == 0) {
+                    // 설문 종료일이 입력되지 않은 경우
+                    Toast.makeText(getApplicationContext(), "설문 종료일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getApplicationContext(), Survey_questions.class);
                 startActivity(intent);
             }
@@ -248,6 +269,8 @@ public class Survey_outline extends MainActivity {
     protected void onPause() {
         super.onPause();
         Survey survey = MakeSurvey.makeSurvey;
+        AuthManager authManager = AuthManager.getInstance();
+        String currentUserID = authManager.getCurrentId();
 
         // textView에서 텍스트 가져오기
         String startDateStr = startDateTextView.getText().toString();
@@ -282,5 +305,6 @@ public class Survey_outline extends MainActivity {
         survey.setDesc(descEditText.getText().toString());
         survey.setOpenDate(startDateValue);
         survey.setCloseDate(endDateValue);
+        survey.setHostId(currentUserID);
     }
 }

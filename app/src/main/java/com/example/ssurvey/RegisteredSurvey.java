@@ -20,6 +20,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class RegisteredSurvey extends MainActivity {
 
@@ -59,11 +60,22 @@ public class RegisteredSurvey extends MainActivity {
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(dc.getType() == DocumentChange.Type.ADDED){
                                 SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class), dc.getDocument().getId());
+
+                                // 필터링 작업 수행
+                                AuthManager authManager = AuthManager.getInstance();
+                                String currentUserID = authManager.getCurrentId();
+
+                                // FILTER_REGISTERED 조건에 따라 필터링
+                                if (!Objects.equals(surveyItem.getHostId(), currentUserID)) {
+                                    // 등록된 설문이 아닌 경우 아이템을 추가하지 않음
+                                    continue;
+                                }
+
                                 arrayList.add(surveyItem);
                             }
-                            adapter.notifyDataSetChanged();
-                        }
 
+                        }
+                        adapter.notifyDataSetChanged();
                         // 디데이 순 정렬
                         Collections.sort(arrayList);
                     }

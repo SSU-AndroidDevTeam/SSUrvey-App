@@ -13,6 +13,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import com.example.ssurvey.FBRecyclerView.SurveyListAdapter;
 import com.example.ssurvey.model.Survey;
+import com.example.ssurvey.service.CbCode;
+import com.example.ssurvey.service.SurveyReplicantCallback;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -28,6 +30,8 @@ public class ParticipatedSurvey extends MainActivity {
     private ArrayList<SurveyItem> arrayList;
     private FirebaseManager fbManager;
 
+    boolean isParticipated = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,8 @@ public class ParticipatedSurvey extends MainActivity {
         navigationBar(constraintLayout_myInformation);
 
         fbManager = new FirebaseManager();
+        AuthManager authManager = AuthManager.getInstance();
+        String currentUserID = authManager.getCurrentId();
 
         recyclerView = findViewById(R.id.recyclerView_participated_survey);
         recyclerView.setHasFixedSize(true);
@@ -57,15 +63,38 @@ public class ParticipatedSurvey extends MainActivity {
                             return;
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
+                            isParticipated = false;
                             if(dc.getType() == DocumentChange.Type.ADDED){
                                 SurveyItem surveyItem = new SurveyItem(dc.getDocument().toObject(Survey.class), dc.getDocument().getId());
-                                arrayList.add(surveyItem);
+                                fbManager.getSurveyReplicants(surveyItem.getSurveyId(), new SurveyReplicantCallback() {
+                                    @Override
+                                    public void onCallback(ArrayList<String> replicants, CbCode cbCode) {
+                                        // 예외 처리
+                                        switch (cbCode) {
+                                            case OK:
+                                                if (replicants.contains(currentUserID)) {
+                                                    // 현재 사용자가 참여자 목록에 포함되어 있는 경우
+                                                    arrayList.add(surveyItem);
+                                                    adapter.notifyDataSetChanged();
+                                                    Collections.sort(arrayList);
+                                                    Log.d("FB", "현재 사용자가 참여자입니다.");
+                                                } else {
+                                                    // 현재 사용자가 참여자 목록에 포함되어 있지 않은 경우
+                                                    Log.d("FB", "현재 사용자가 참여자가 아닙니다.");
+                                                }
+                                                break;
+                                            case ERROR:
+                                                Log.d("FB", "알 수 없는 이유로 파이어스토어에 접근할 수 없습니다.");
+                                                break;
+                                            case NOT_FOUND:
+                                                Log.d("FB", "파이어스토어에서 요청한 데이터를 찾을 수 없습니다.");
+                                                break;
+                                        }
+                                    }
+                                });
                             }
-                            adapter.notifyDataSetChanged();
                         }
 
-                        // 디데이 순 정렬
-                        Collections.sort(arrayList);
                     }
                 });
     }
